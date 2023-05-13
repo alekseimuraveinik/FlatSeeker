@@ -21,7 +21,11 @@ class ListScreenViewModel: ObservableObject {
             let sys = Python.import("sys")
             sys.path.append(path)
             
-            client = Client(apiId: apiId, apiHash: apiHash, phoneNumber: "+995555993502")
+            let client = Client(apiId: apiId, apiHash: apiHash, phoneNumber: "+995555993502")
+            self.client = client
+            if client.isInitiallyAuthorized {
+                fetchMessages()
+            }
         }
     }
     
@@ -33,7 +37,17 @@ class ListScreenViewModel: ObservableObject {
         
         Task {
             client.signIn(code: code)
-            
+            fetchMessages()
+        }
+    }
+    
+    private func fetchMessages() {
+        guard let client else {
+            assertionFailure("Client is nil")
+            return
+        }
+        
+        Task {
             let messageGroups = await client.getMessages(chatId: chatId, limit: 20)
 
             guard let group = messageGroups.first else {
@@ -41,8 +55,10 @@ class ListScreenViewModel: ObservableObject {
                 return
             }
 
-            text = group.message
-            photos = group.photos
+            await MainActor.run {
+                text = group.message
+                photos = group.photos
+            }
         }
     }
 }
