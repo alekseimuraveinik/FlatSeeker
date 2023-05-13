@@ -11,6 +11,11 @@
 		DA2555C02A0EE1A3001D48DC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2555BF2A0EE1A3001D48DC /* ContentView.swift */; };
 		DA2555C22A0EE1A4001D48DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA2555C12A0EE1A4001D48DC /* Assets.xcassets */; };
 		DA2555C52A0EE1A4001D48DC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA2555C42A0EE1A4001D48DC /* Preview Assets.xcassets */; };
+		DA2555D02A0EE23C001D48DC /* ListScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2555CF2A0EE23C001D48DC /* ListScreenView.swift */; };
+		DA2555D22A0EE24A001D48DC /* ListScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2555D12A0EE24A001D48DC /* ListScreenViewModel.swift */; };
+		DA80977A2A0F23B3001021F8 /* FlatSeekerCore in Frameworks */ = {isa = PBXBuildFile; productRef = DA8097792A0F23B3001021F8 /* FlatSeekerCore */; };
+		DACC2DD92A0F1A69002CF606 /* Python.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = DACC2DD82A0F1A69002CF606 /* Python.xcframework */; };
+		DACC2DDB2A0F1A7D002CF606 /* python-stdlib in Resources */ = {isa = PBXBuildFile; fileRef = DACC2DDA2A0F1A7D002CF606 /* python-stdlib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +24,11 @@
 		DA2555BF2A0EE1A3001D48DC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DA2555C12A0EE1A4001D48DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA2555C42A0EE1A4001D48DC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		DA2555CF2A0EE23C001D48DC /* ListScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListScreenView.swift; sourceTree = "<group>"; };
+		DA2555D12A0EE24A001D48DC /* ListScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListScreenViewModel.swift; sourceTree = "<group>"; };
+		DA8097782A0F23AA001021F8 /* FlatSeekerCore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = FlatSeekerCore; path = ../FlatSeekerCore; sourceTree = "<group>"; };
+		DACC2DD82A0F1A69002CF606 /* Python.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = Python.xcframework; sourceTree = "<group>"; };
+		DACC2DDA2A0F1A7D002CF606 /* python-stdlib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "python-stdlib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +36,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DACC2DD92A0F1A69002CF606 /* Python.xcframework in Frameworks */,
+				DA80977A2A0F23B3001021F8 /* FlatSeekerCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -35,8 +47,11 @@
 		DA2555B12A0EE1A3001D48DC = {
 			isa = PBXGroup;
 			children = (
+				DA8097772A0F23AA001021F8 /* Packages */,
 				DA2555BC2A0EE1A3001D48DC /* FlatSeeker */,
+				DABF47282A0F069D00FDEAB9 /* Resources */,
 				DA2555BB2A0EE1A3001D48DC /* Products */,
+				DA2555D42A0EE2CD001D48DC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -51,8 +66,7 @@
 		DA2555BC2A0EE1A3001D48DC /* FlatSeeker */ = {
 			isa = PBXGroup;
 			children = (
-				DA2555BD2A0EE1A3001D48DC /* FlatSeekerApp.swift */,
-				DA2555BF2A0EE1A3001D48DC /* ContentView.swift */,
+				DA2555CD2A0EE20F001D48DC /* Sources */,
 				DA2555C12A0EE1A4001D48DC /* Assets.xcassets */,
 				DA2555C32A0EE1A4001D48DC /* Preview Content */,
 			);
@@ -65,6 +79,49 @@
 				DA2555C42A0EE1A4001D48DC /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		DA2555CD2A0EE20F001D48DC /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				DA2555CE2A0EE227001D48DC /* ListScreen */,
+				DA2555BD2A0EE1A3001D48DC /* FlatSeekerApp.swift */,
+				DA2555BF2A0EE1A3001D48DC /* ContentView.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		DA2555CE2A0EE227001D48DC /* ListScreen */ = {
+			isa = PBXGroup;
+			children = (
+				DA2555CF2A0EE23C001D48DC /* ListScreenView.swift */,
+				DA2555D12A0EE24A001D48DC /* ListScreenViewModel.swift */,
+			);
+			path = ListScreen;
+			sourceTree = "<group>";
+		};
+		DA2555D42A0EE2CD001D48DC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DACC2DD82A0F1A69002CF606 /* Python.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DA8097772A0F23AA001021F8 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				DA8097782A0F23AA001021F8 /* FlatSeekerCore */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		DABF47282A0F069D00FDEAB9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DACC2DDA2A0F1A7D002CF606 /* python-stdlib */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +140,9 @@
 			dependencies = (
 			);
 			name = FlatSeeker;
+			packageProductDependencies = (
+				DA8097792A0F23B3001021F8 /* FlatSeekerCore */,
+			);
 			productName = FlatSeeker;
 			productReference = DA2555BA2A0EE1A3001D48DC /* FlatSeeker.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +171,8 @@
 				Base,
 			);
 			mainGroup = DA2555B12A0EE1A3001D48DC;
+			packageReferences = (
+			);
 			productRefGroup = DA2555BB2A0EE1A3001D48DC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -127,6 +189,7 @@
 			files = (
 				DA2555C52A0EE1A4001D48DC /* Preview Assets.xcassets in Resources */,
 				DA2555C22A0EE1A4001D48DC /* Assets.xcassets in Resources */,
+				DACC2DDB2A0F1A7D002CF606 /* python-stdlib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +200,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA2555D22A0EE24A001D48DC /* ListScreenViewModel.swift in Sources */,
+				DA2555D02A0EE23C001D48DC /* ListScreenView.swift in Sources */,
 				DA2555C02A0EE1A3001D48DC /* ContentView.swift in Sources */,
 				DA2555BE2A0EE1A3001D48DC /* FlatSeekerApp.swift in Sources */,
 			);
@@ -195,7 +260,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -249,7 +314,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -267,13 +332,18 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FlatSeeker/Preview Content\"";
+				DEVELOPMENT_TEAM = K8U997Y7W9;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -281,9 +351,11 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.FlatSeeker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -295,13 +367,18 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FlatSeeker/Preview Content\"";
+				DEVELOPMENT_TEAM = K8U997Y7W9;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -309,9 +386,11 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.FlatSeeker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -337,6 +416,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DA8097792A0F23B3001021F8 /* FlatSeekerCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FlatSeekerCore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DA2555B22A0EE1A3001D48DC /* Project object */;
 }
