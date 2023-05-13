@@ -12,8 +12,9 @@ class ListScreenViewModel: ObservableObject {
     
     func onAppear() {
         Task {
-            let path = Bundle.main.path(forResource: "python-stdlib", ofType: nil)!
-            PythonRuntime.initialize(stdlibPath: path)
+            let stdlibPath = Bundle.main.path(forResource: "python-stdlib", ofType: nil)!
+            let pipsPath = Bundle.main.path(forResource: "pips", ofType: nil)!
+            PythonRuntime.initialize(stdlibPath: stdlibPath, pipsPath: pipsPath)
             
             let client = Client(apiId: apiId, apiHash: apiHash, phoneNumber: "+995555993502")
             self.client = client

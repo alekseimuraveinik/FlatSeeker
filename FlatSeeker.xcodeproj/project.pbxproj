@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA0BC1EB2A0FE48B00C2196A /* pips in Resources */ = {isa = PBXBuildFile; fileRef = DA0BC1EA2A0FE48B00C2196A /* pips */; };
 		DA18A5E72A0FD94E0049B16F /* PythonRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = DA18A5E62A0FD94E0049B16F /* PythonRuntime */; };
 		DA2555BE2A0EE1A3001D48DC /* FlatSeekerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2555BD2A0EE1A3001D48DC /* FlatSeekerApp.swift */; };
 		DA2555C02A0EE1A3001D48DC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2555BF2A0EE1A3001D48DC /* ContentView.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DA0BC1EA2A0FE48B00C2196A /* pips */ = {isa = PBXFileReference; lastKnownFileType = folder; path = pips; sourceTree = "<group>"; };
 		DA18A5E52A0FD9420049B16F /* PythonRuntime */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = PythonRuntime; path = ../PythonRuntime; sourceTree = "<group>"; };
 		DA2555BA2A0EE1A3001D48DC /* FlatSeeker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlatSeeker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA2555BD2A0EE1A3001D48DC /* FlatSeekerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlatSeekerApp.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 		DA82C5E02A0FDDF900E4E228 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DA0BC1EA2A0FE48B00C2196A /* pips */,
 				DA82CDB52A0FDE0C00E4E228 /* python-stdlib */,
 			);
 			path = Resources;
@@ -188,6 +191,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA0BC1EB2A0FE48B00C2196A /* pips in Resources */,
 				DA2555C52A0EE1A4001D48DC /* Preview Assets.xcassets in Resources */,
 				DA2555C22A0EE1A4001D48DC /* Assets.xcassets in Resources */,
 				DA82CDB62A0FDE0C00E4E228 /* python-stdlib in Resources */,
