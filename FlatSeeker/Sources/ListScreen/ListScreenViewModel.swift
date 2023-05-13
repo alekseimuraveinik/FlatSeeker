@@ -1,8 +1,7 @@
 import Combine
 import Core
 import Foundation
-import Python
-import PythonKit
+import PythonRuntime
 
 class ListScreenViewModel: ObservableObject {
     @Published private (set) var text: String = "Initializing"
@@ -13,13 +12,8 @@ class ListScreenViewModel: ObservableObject {
     
     func onAppear() {
         Task {
-            Py_Initialize()
-            
             let path = Bundle.main.path(forResource: "python-stdlib", ofType: nil)!
-            setenv("PYTHONHOME", path, 1)
-            setenv("PYTHONPATH", path, 1)
-            let sys = Python.import("sys")
-            sys.path.append(path)
+            PythonRuntime.initialize(stdlibPath: path)
             
             let client = Client(apiId: apiId, apiHash: apiHash, phoneNumber: "+995555993502")
             self.client = client
