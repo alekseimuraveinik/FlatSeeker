@@ -1,5 +1,5 @@
 import Combine
-import Core
+import FlatSeekerCore
 import Foundation
 import PythonRuntime
 
