@@ -11,16 +11,10 @@ class ListScreenViewModel: ObservableObject {
     private var client: Client?
     
     func onAppear() {
-        Task {
-            let stdlibPath = Bundle.main.path(forResource: "python-stdlib", ofType: nil)!
-            let pipsPath = Bundle.main.path(forResource: "pips", ofType: nil)!
-            PythonRuntime.initialize(stdlibPath: stdlibPath, pipsPath: pipsPath)
-            
-            let client = Client(apiId: apiId, apiHash: apiHash, phoneNumber: "+995555993502")
-            self.client = client
-            if client.isInitiallyAuthorized {
-                fetchMessages()
-            }
+        let client = Client(apiId: apiId, apiHash: apiHash, phoneNumber: "+995555993502")
+        self.client = client
+        if client.isInitiallyAuthorized {
+            fetchMessages()
         }
     }
     
@@ -30,10 +24,8 @@ class ListScreenViewModel: ObservableObject {
             return
         }
         
-        Task {
-            client.signIn(code: code)
-            fetchMessages()
-        }
+        client.signIn(code: code)
+        fetchMessages()
     }
     
     private func fetchMessages() {
@@ -42,19 +34,15 @@ class ListScreenViewModel: ObservableObject {
             return
         }
         
-        Task {
-            let messageGroups = await client.getMessages(chatId: chatId, limit: 20)
+        let messageGroups = client.getMessages(chatId: chatId, limit: 20)
 
-            guard let group = messageGroups.first else {
-                print("No message groups")
-                return
-            }
-
-            await MainActor.run {
-                text = group.message
-                photos = group.photos
-            }
+        guard let group = messageGroups.first else {
+            assertionFailure("No message groups")
+            return
         }
+
+        text = group.message
+        photos = group.photos
     }
 }
 

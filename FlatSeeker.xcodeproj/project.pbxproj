@@ -8,29 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		DA0BC1EB2A0FE48B00C2196A /* pips in Resources */ = {isa = PBXBuildFile; fileRef = DA0BC1EA2A0FE48B00C2196A /* pips */; };
-		DA18A5E72A0FD94E0049B16F /* PythonRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = DA18A5E62A0FD94E0049B16F /* PythonRuntime */; };
 		DA2555BE2A0EE1A3001D48DC /* FlatSeekerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2555BD2A0EE1A3001D48DC /* FlatSeekerApp.swift */; };
-		DA2555C02A0EE1A3001D48DC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2555BF2A0EE1A3001D48DC /* ContentView.swift */; };
 		DA2555C22A0EE1A4001D48DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA2555C12A0EE1A4001D48DC /* Assets.xcassets */; };
 		DA2555C52A0EE1A4001D48DC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA2555C42A0EE1A4001D48DC /* Preview Assets.xcassets */; };
 		DA2555D02A0EE23C001D48DC /* ListScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2555CF2A0EE23C001D48DC /* ListScreenView.swift */; };
 		DA2555D22A0EE24A001D48DC /* ListScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2555D12A0EE24A001D48DC /* ListScreenViewModel.swift */; };
 		DA80977A2A0F23B3001021F8 /* FlatSeekerCore in Frameworks */ = {isa = PBXBuildFile; productRef = DA8097792A0F23B3001021F8 /* FlatSeekerCore */; };
 		DA82CDB62A0FDE0C00E4E228 /* python-stdlib in Resources */ = {isa = PBXBuildFile; fileRef = DA82CDB52A0FDE0C00E4E228 /* python-stdlib */; };
+		DAC7E5BE2A103E9000540B0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC7E5BD2A103E9000540B0C /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		DA0BC1EA2A0FE48B00C2196A /* pips */ = {isa = PBXFileReference; lastKnownFileType = folder; path = pips; sourceTree = "<group>"; };
-		DA18A5E52A0FD9420049B16F /* PythonRuntime */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = PythonRuntime; path = ../PythonRuntime; sourceTree = "<group>"; };
 		DA2555BA2A0EE1A3001D48DC /* FlatSeeker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlatSeeker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA2555BD2A0EE1A3001D48DC /* FlatSeekerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlatSeekerApp.swift; sourceTree = "<group>"; };
-		DA2555BF2A0EE1A3001D48DC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DA2555C12A0EE1A4001D48DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA2555C42A0EE1A4001D48DC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DA2555CF2A0EE23C001D48DC /* ListScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListScreenView.swift; sourceTree = "<group>"; };
 		DA2555D12A0EE24A001D48DC /* ListScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListScreenViewModel.swift; sourceTree = "<group>"; };
 		DA8097782A0F23AA001021F8 /* FlatSeekerCore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = FlatSeekerCore; path = ../FlatSeekerCore; sourceTree = "<group>"; };
 		DA82CDB52A0FDE0C00E4E228 /* python-stdlib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "python-stdlib"; sourceTree = "<group>"; };
+		DAC7E5BD2A103E9000540B0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,7 +36,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA18A5E72A0FD94E0049B16F /* PythonRuntime in Frameworks */,
 				DA80977A2A0F23B3001021F8 /* FlatSeekerCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -52,7 +49,6 @@
 				DA8097772A0F23AA001021F8 /* Packages */,
 				DA2555BC2A0EE1A3001D48DC /* FlatSeeker */,
 				DA2555BB2A0EE1A3001D48DC /* Products */,
-				DA2555D42A0EE2CD001D48DC /* Frameworks */,
 				DA82C5E02A0FDDF900E4E228 /* Resources */,
 			);
 			sourceTree = "<group>";
@@ -86,9 +82,9 @@
 		DA2555CD2A0EE20F001D48DC /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				DA2555CE2A0EE227001D48DC /* ListScreen */,
+				DAC7E5BD2A103E9000540B0C /* AppDelegate.swift */,
 				DA2555BD2A0EE1A3001D48DC /* FlatSeekerApp.swift */,
-				DA2555BF2A0EE1A3001D48DC /* ContentView.swift */,
+				DA2555CE2A0EE227001D48DC /* ListScreen */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -102,18 +98,10 @@
 			path = ListScreen;
 			sourceTree = "<group>";
 		};
-		DA2555D42A0EE2CD001D48DC /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		DA8097772A0F23AA001021F8 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
 				DA8097782A0F23AA001021F8 /* FlatSeekerCore */,
-				DA18A5E52A0FD9420049B16F /* PythonRuntime */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -145,7 +133,6 @@
 			name = FlatSeeker;
 			packageProductDependencies = (
 				DA8097792A0F23B3001021F8 /* FlatSeekerCore */,
-				DA18A5E62A0FD94E0049B16F /* PythonRuntime */,
 			);
 			productName = FlatSeeker;
 			productReference = DA2555BA2A0EE1A3001D48DC /* FlatSeeker.app */;
@@ -205,9 +192,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAC7E5BE2A103E9000540B0C /* AppDelegate.swift in Sources */,
 				DA2555D22A0EE24A001D48DC /* ListScreenViewModel.swift in Sources */,
 				DA2555D02A0EE23C001D48DC /* ListScreenView.swift in Sources */,
-				DA2555C02A0EE1A3001D48DC /* ContentView.swift in Sources */,
 				DA2555BE2A0EE1A3001D48DC /* FlatSeekerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -423,10 +410,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		DA18A5E62A0FD94E0049B16F /* PythonRuntime */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = PythonRuntime;
-		};
 		DA8097792A0F23B3001021F8 /* FlatSeekerCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = FlatSeekerCore;

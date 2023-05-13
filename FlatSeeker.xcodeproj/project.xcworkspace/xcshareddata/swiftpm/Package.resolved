@@ -8,6 +8,15 @@
         "revision" : "81f621d094a7c8923207efe5178f50dba1b56c39",
         "version" : "0.3.1"
       }
+    },
+    {
+      "identity" : "pythonruntime",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/alekseimuraveinik/PythonRuntime.git",
+      "state" : {
+        "revision" : "3949f7193b8894274afd74bb776a72e7ceca3db0",
+        "version" : "1.0.0"
+      }
     }
   ],
   "version" : 2

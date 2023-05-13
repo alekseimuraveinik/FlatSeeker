@@ -10,19 +10,19 @@ build_time_vars = {'ABIFLAGS': '',
  'BASECFLAGS': '-Wno-unused-result -Wsign-compare -Wunreachable-code',
  'BASECPPFLAGS': '',
  'BASEMODLIBS': '',
- 'BINDIR': '/Users/alekseimuraveinik/Desktop/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/bin',
- 'BINLIBDEST': '/Users/alekseimuraveinik/Desktop/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/lib/python3.9',
+ 'BINDIR': '/Users/alekseimuraveinik/projects/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/bin',
+ 'BINLIBDEST': '/Users/alekseimuraveinik/projects/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/lib/python3.9',
  'BLDLIBRARY': 'libpython3.9.a',
  'BLDSHARED': 'xcrun --sdk iphonesimulator clang -target '
               'x86_64-apple-ios-simulator -bundle -undefined dynamic_lookup '
               '-isysroot '
               '/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator16.2.sdk '
               '-mios-version-min=12.0 '
-              '-L/Users/alekseimuraveinik/Desktop/Python-Apple-support/merge/iOS/iphonesimulator/bzip2-1.0.8/lib '
-              '-L/Users/alekseimuraveinik/Desktop/Python-Apple-support/merge/iOS/iphonesimulator/xz-5.2.6/lib',
+              '-L/Users/alekseimuraveinik/projects/Python-Apple-support/merge/iOS/iphonesimulator/bzip2-1.0.8/lib '
+              '-L/Users/alekseimuraveinik/projects/Python-Apple-support/merge/iOS/iphonesimulator/xz-5.2.6/lib',
  'BUILDEXE': '.exe',
  'BUILDPYTHON': 'python.exe',
- 'BUILD_GNU_TYPE': 'x86_64-apple-darwin',
+ 'BUILD_GNU_TYPE': 'aarch64-apple-darwin',
  'BYTESTR_DEPS': '\\',
  'CC': 'xcrun --sdk iphonesimulator clang -target x86_64-apple-ios-simulator',
  'CCSHARED': '',
@@ -30,8 +30,8 @@ build_time_vars = {'ABIFLAGS': '',
            '-fwrapv -O3 -Wall '
            '--sysroot=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator16.2.sdk '
            '-mios-version-min=12.0 '
-           '-I/Users/alekseimuraveinik/Desktop/Python-Apple-support/merge/iOS/iphonesimulator/bzip2-1.0.8/include '
-           '-I/Users/alekseimuraveinik/Desktop/Python-Apple-support/merge/iOS/iphonesimulator/xz-5.2.6/include',
+           '-I/Users/alekseimuraveinik/projects/Python-Apple-support/merge/iOS/iphonesimulator/bzip2-1.0.8/include '
+           '-I/Users/alekseimuraveinik/projects/Python-Apple-support/merge/iOS/iphonesimulator/xz-5.2.6/include',
  'CFLAGSFORSHARED': '',
  'CFLAGS_ALIASING': '-fno-strict-aliasing',
  'CFLAGS_NODIST': '',
@@ -39,8 +39,8 @@ build_time_vars = {'ABIFLAGS': '',
                 'Makefile.pre.in',
  'CONFIGURE_CFLAGS': '--sysroot=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator16.2.sdk '
                      '-mios-version-min=12.0 '
-                     '-I/Users/alekseimuraveinik/Desktop/Python-Apple-support/merge/iOS/iphonesimulator/bzip2-1.0.8/include '
-                     '-I/Users/alekseimuraveinik/Desktop/Python-Apple-support/merge/iOS/iphonesimulator/xz-5.2.6/include',
+                     '-I/Users/alekseimuraveinik/projects/Python-Apple-support/merge/iOS/iphonesimulator/bzip2-1.0.8/include '
+                     '-I/Users/alekseimuraveinik/projects/Python-Apple-support/merge/iOS/iphonesimulator/xz-5.2.6/include',
  'CONFIGURE_CFLAGS_NODIST': '-std=c99 -Wextra -Wno-unused-result '
                             '-Wno-unused-parameter '
                             '-Wno-missing-field-initializers '
@@ -51,8 +51,8 @@ build_time_vars = {'ABIFLAGS': '',
  'CONFIGURE_LDFLAGS': '-isysroot '
                       '/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator16.2.sdk '
                       '-mios-version-min=12.0 '
-                      '-L/Users/alekseimuraveinik/Desktop/Python-Apple-support/merge/iOS/iphonesimulator/bzip2-1.0.8/lib '
-                      '-L/Users/alekseimuraveinik/Desktop/Python-Apple-support/merge/iOS/iphonesimulator/xz-5.2.6/lib',
+                      '-L/Users/alekseimuraveinik/projects/Python-Apple-support/merge/iOS/iphonesimulator/bzip2-1.0.8/lib '
+                      '-L/Users/alekseimuraveinik/projects/Python-Apple-support/merge/iOS/iphonesimulator/xz-5.2.6/lib',
  'CONFIGURE_LDFLAGS_NODIST': '',
  'CONFIG_ARGS': "'AR=xcrun --sdk iphonesimulator ar' 'CC=xcrun --sdk "
                 "iphonesimulator clang -target x86_64-apple-ios-simulator' "
@@ -61,39 +61,39 @@ build_time_vars = {'ABIFLAGS': '',
                 "iphonesimulator clang -target x86_64-apple-ios-simulator' "
                 "'CFLAGS=--sysroot=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator16.2.sdk "
                 '-mios-version-min=12.0 '
-                '-I/Users/alekseimuraveinik/Desktop/Python-Apple-support/merge/iOS/iphonesimulator/bzip2-1.0.8/include '
-                "-I/Users/alekseimuraveinik/Desktop/Python-Apple-support/merge/iOS/iphonesimulator/xz-5.2.6/include' "
+                '-I/Users/alekseimuraveinik/projects/Python-Apple-support/merge/iOS/iphonesimulator/bzip2-1.0.8/include '
+                "-I/Users/alekseimuraveinik/projects/Python-Apple-support/merge/iOS/iphonesimulator/xz-5.2.6/include' "
                 "'LDFLAGS=-isysroot "
                 '/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator16.2.sdk '
                 '-mios-version-min=12.0 '
-                '-L/Users/alekseimuraveinik/Desktop/Python-Apple-support/merge/iOS/iphonesimulator/bzip2-1.0.8/lib '
-                "-L/Users/alekseimuraveinik/Desktop/Python-Apple-support/merge/iOS/iphonesimulator/xz-5.2.6/lib' "
-                "'LIBFFI_INCLUDEDIR=/Users/alekseimuraveinik/Desktop/Python-Apple-support/merge/iOS/iphonesimulator/libffi-3.4.2/include' "
-                "'LIBFFI_LIBDIR=/Users/alekseimuraveinik/Desktop/Python-Apple-support/merge/iOS/iphonesimulator/libffi-3.4.2/lib' "
+                '-L/Users/alekseimuraveinik/projects/Python-Apple-support/merge/iOS/iphonesimulator/bzip2-1.0.8/lib '
+                "-L/Users/alekseimuraveinik/projects/Python-Apple-support/merge/iOS/iphonesimulator/xz-5.2.6/lib' "
+                "'LIBFFI_INCLUDEDIR=/Users/alekseimuraveinik/projects/Python-Apple-support/merge/iOS/iphonesimulator/libffi-3.4.2/include' "
+                "'LIBFFI_LIBDIR=/Users/alekseimuraveinik/projects/Python-Apple-support/merge/iOS/iphonesimulator/libffi-3.4.2/lib' "
                 "'LIBFFI_LIB=ffi' '--host=x86_64-apple-ios-simulator' "
-                "'--build=x86_64-apple-darwin' "
-                "'--prefix=/Users/alekseimuraveinik/Desktop/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14' "
+                "'--build=arm64-apple-darwin' "
+                "'--prefix=/Users/alekseimuraveinik/projects/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14' "
                 "'--enable-ipv6' "
-                "'--with-openssl=/Users/alekseimuraveinik/Desktop/Python-Apple-support/merge/iOS/iphonesimulator/openssl-3.0.5' "
+                "'--with-openssl=/Users/alekseimuraveinik/projects/Python-Apple-support/merge/iOS/iphonesimulator/openssl-3.0.5' "
                 "'--without-ensurepip' 'ac_cv_file__dev_ptmx=no' "
-                "'ac_cv_file__dev_ptc=no' 'build_alias=x86_64-apple-darwin' "
+                "'ac_cv_file__dev_ptc=no' 'build_alias=arm64-apple-darwin' "
                 "'host_alias=x86_64-apple-ios-simulator'",
- 'CONFINCLUDEDIR': '/Users/alekseimuraveinik/Desktop/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/include',
- 'CONFINCLUDEPY': '/Users/alekseimuraveinik/Desktop/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/include/python3.9',
+ 'CONFINCLUDEDIR': '/Users/alekseimuraveinik/projects/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/include',
+ 'CONFINCLUDEPY': '/Users/alekseimuraveinik/projects/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/include/python3.9',
  'COREPYTHONPATH': '',
- 'COVERAGE_INFO': '/Users/alekseimuraveinik/Desktop/Python-Apple-support/build/iOS/iphonesimulator.x86_64/python-3.9.14/coverage.info',
- 'COVERAGE_REPORT': '/Users/alekseimuraveinik/Desktop/Python-Apple-support/build/iOS/iphonesimulator.x86_64/python-3.9.14/lcov-report',
+ 'COVERAGE_INFO': '/Users/alekseimuraveinik/projects/Python-Apple-support/build/iOS/iphonesimulator.x86_64/python-3.9.14/coverage.info',
+ 'COVERAGE_REPORT': '/Users/alekseimuraveinik/projects/Python-Apple-support/build/iOS/iphonesimulator.x86_64/python-3.9.14/lcov-report',
  'COVERAGE_REPORT_OPTIONS': '--no-branch-coverage --title "CPython lcov '
                             'report"',
  'CPPFLAGS': '-I. -I./Include',
  'CXX': 'xcrun --sdk iphonesimulator clang -target x86_64-apple-ios-simulator',
- 'DESTDIRS': '/Users/alekseimuraveinik/Desktop/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14 '
-             '/Users/alekseimuraveinik/Desktop/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/lib '
-             '/Users/alekseimuraveinik/Desktop/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/lib/python3.9 '
-             '/Users/alekseimuraveinik/Desktop/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/lib/python3.9/lib-dynload',
- 'DESTLIB': '/Users/alekseimuraveinik/Desktop/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/lib/python3.9',
+ 'DESTDIRS': '/Users/alekseimuraveinik/projects/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14 '
+             '/Users/alekseimuraveinik/projects/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/lib '
+             '/Users/alekseimuraveinik/projects/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/lib/python3.9 '
+             '/Users/alekseimuraveinik/projects/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/lib/python3.9/lib-dynload',
+ 'DESTLIB': '/Users/alekseimuraveinik/projects/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/lib/python3.9',
  'DESTPATH': '',
- 'DESTSHARED': '/Users/alekseimuraveinik/Desktop/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/lib/python3.9/lib-dynload',
+ 'DESTSHARED': '/Users/alekseimuraveinik/projects/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/lib/python3.9/lib-dynload',
  'DFLAGS': '',
  'DIRMODE': 755,
  'DIST': 'README.rst ChangeLog configure configure.ac acconfig.h pyconfig.h.in '
@@ -557,12 +557,12 @@ build_time_vars = {'ABIFLAGS': '',
  'HAVE_ZLIB_COPY': 1,
  'HAVE__GETPTY': 0,
  'HOST_GNU_TYPE': 'x86_64-apple-ios-simulator',
- 'INCLDIRSTOMAKE': '/Users/alekseimuraveinik/Desktop/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/include '
-                   '/Users/alekseimuraveinik/Desktop/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/include '
-                   '/Users/alekseimuraveinik/Desktop/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/include/python3.9 '
-                   '/Users/alekseimuraveinik/Desktop/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/include/python3.9',
- 'INCLUDEDIR': '/Users/alekseimuraveinik/Desktop/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/include',
- 'INCLUDEPY': '/Users/alekseimuraveinik/Desktop/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/include/python3.9',
+ 'INCLDIRSTOMAKE': '/Users/alekseimuraveinik/projects/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/include '
+                   '/Users/alekseimuraveinik/projects/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/include '
+                   '/Users/alekseimuraveinik/projects/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/include/python3.9 '
+                   '/Users/alekseimuraveinik/projects/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/include/python3.9',
+ 'INCLUDEDIR': '/Users/alekseimuraveinik/projects/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/include',
+ 'INCLUDEPY': '/Users/alekseimuraveinik/projects/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/include/python3.9',
  'INSTALL': '/usr/bin/install -c',
  'INSTALL_DATA': '/usr/bin/install -c -m 644',
  'INSTALL_PROGRAM': '/usr/bin/install -c',
@@ -576,8 +576,8 @@ build_time_vars = {'ABIFLAGS': '',
  'LDFLAGS': '-isysroot '
             '/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator16.2.sdk '
             '-mios-version-min=12.0 '
-            '-L/Users/alekseimuraveinik/Desktop/Python-Apple-support/merge/iOS/iphonesimulator/bzip2-1.0.8/lib '
-            '-L/Users/alekseimuraveinik/Desktop/Python-Apple-support/merge/iOS/iphonesimulator/xz-5.2.6/lib',
+            '-L/Users/alekseimuraveinik/projects/Python-Apple-support/merge/iOS/iphonesimulator/bzip2-1.0.8/lib '
+            '-L/Users/alekseimuraveinik/projects/Python-Apple-support/merge/iOS/iphonesimulator/xz-5.2.6/lib',
  'LDFLAGS_NODIST': '',
  'LDLIBRARY': 'libpython3.9.a',
  'LDLIBRARYDIR': '',
@@ -586,20 +586,20 @@ build_time_vars = {'ABIFLAGS': '',
              '-isysroot '
              '/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator16.2.sdk '
              '-mios-version-min=12.0 '
-             '-L/Users/alekseimuraveinik/Desktop/Python-Apple-support/merge/iOS/iphonesimulator/bzip2-1.0.8/lib '
-             '-L/Users/alekseimuraveinik/Desktop/Python-Apple-support/merge/iOS/iphonesimulator/xz-5.2.6/lib',
+             '-L/Users/alekseimuraveinik/projects/Python-Apple-support/merge/iOS/iphonesimulator/bzip2-1.0.8/lib '
+             '-L/Users/alekseimuraveinik/projects/Python-Apple-support/merge/iOS/iphonesimulator/xz-5.2.6/lib',
  'LDVERSION': '3.9',
  'LIBC': '',
- 'LIBDEST': '/Users/alekseimuraveinik/Desktop/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/lib/python3.9',
- 'LIBDIR': '/Users/alekseimuraveinik/Desktop/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/lib',
- 'LIBFFI_INCLUDEDIR': '/Users/alekseimuraveinik/Desktop/Python-Apple-support/merge/iOS/iphonesimulator/libffi-3.4.2/include',
+ 'LIBDEST': '/Users/alekseimuraveinik/projects/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/lib/python3.9',
+ 'LIBDIR': '/Users/alekseimuraveinik/projects/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/lib',
+ 'LIBFFI_INCLUDEDIR': '/Users/alekseimuraveinik/projects/Python-Apple-support/merge/iOS/iphonesimulator/libffi-3.4.2/include',
  'LIBFFI_LIB': 'ffi',
- 'LIBFFI_LIBDIR': '/Users/alekseimuraveinik/Desktop/Python-Apple-support/merge/iOS/iphonesimulator/libffi-3.4.2/lib',
+ 'LIBFFI_LIBDIR': '/Users/alekseimuraveinik/projects/Python-Apple-support/merge/iOS/iphonesimulator/libffi-3.4.2/lib',
  'LIBM': '-lm',
  'LIBOBJDIR': 'Python/',
  'LIBOBJS': '',
- 'LIBPC': '/Users/alekseimuraveinik/Desktop/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/lib/pkgconfig',
- 'LIBPL': '/Users/alekseimuraveinik/Desktop/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/lib/python3.9/config-3.9-iphonesimulator',
+ 'LIBPC': '/Users/alekseimuraveinik/projects/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/lib/pkgconfig',
+ 'LIBPL': '/Users/alekseimuraveinik/projects/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/lib/python3.9/config-3.9-iphonesimulator',
  'LIBPYTHON': '',
  'LIBRARY': 'libpython3.9.a',
  'LIBRARY_OBJS': '\\',
@@ -618,14 +618,14 @@ build_time_vars = {'ABIFLAGS': '',
  'LOCALMODLIBS': '',
  'MACHDEP': 'ios',
  'MACHDEP_OBJS': '',
- 'MACHDESTLIB': '/Users/alekseimuraveinik/Desktop/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/lib/python3.9',
+ 'MACHDESTLIB': '/Users/alekseimuraveinik/projects/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/lib/python3.9',
  'MACOSX_DEPLOYMENT_TARGET': '',
  'MAINCC': 'xcrun --sdk iphonesimulator clang -target '
            'x86_64-apple-ios-simulator',
  'MAJOR_IN_MKDEV': 0,
  'MAJOR_IN_SYSMACROS': 0,
  'MAKESETUP': './Modules/makesetup',
- 'MANDIR': '/Users/alekseimuraveinik/Desktop/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/share/man',
+ 'MANDIR': '/Users/alekseimuraveinik/projects/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/share/man',
  'MKDIR_P': './install-sh -c -d',
  'MODBUILT_NAMES': 'posix  errno  pwd  _sre  _codecs  _weakref  _functools  '
                    '_operator  _collections  _abc  itertools  atexit  _signal  '
@@ -651,8 +651,8 @@ build_time_vars = {'ABIFLAGS': '',
  'MVWDELCH_IS_EXPRESSION': 0,
  'NO_AS_NEEDED': '',
  'OBJECT_OBJS': '\\',
- 'OPENSSL_INCLUDES': '-I/Users/alekseimuraveinik/Desktop/Python-Apple-support/merge/iOS/iphonesimulator/openssl-3.0.5/include',
- 'OPENSSL_LDFLAGS': '-L/Users/alekseimuraveinik/Desktop/Python-Apple-support/merge/iOS/iphonesimulator/openssl-3.0.5/lib',
+ 'OPENSSL_INCLUDES': '-I/Users/alekseimuraveinik/projects/Python-Apple-support/merge/iOS/iphonesimulator/openssl-3.0.5/include',
+ 'OPENSSL_LDFLAGS': '-L/Users/alekseimuraveinik/projects/Python-Apple-support/merge/iOS/iphonesimulator/openssl-3.0.5/lib',
  'OPENSSL_LIBS': '-lssl -lcrypto',
  'OPT': '-DNDEBUG -g -fwrapv -O3 -Wall',
  'OTHER_LIBTOOL_OPT': '',
@@ -684,10 +684,10 @@ build_time_vars = {'ABIFLAGS': '',
  'PYTHONFRAMEWORKINSTALLDIR': '',
  'PYTHONFRAMEWORKPREFIX': '',
  'PYTHONPATH': '',
- 'PYTHON_FOR_BUILD': '_PYTHON_PROJECT_BASE=/Users/alekseimuraveinik/Desktop/Python-Apple-support/build/iOS/iphonesimulator.x86_64/python-3.9.14 '
+ 'PYTHON_FOR_BUILD': '_PYTHON_PROJECT_BASE=/Users/alekseimuraveinik/projects/Python-Apple-support/build/iOS/iphonesimulator.x86_64/python-3.9.14 '
                      '_PYTHON_HOST_PLATFORM=$(_PYTHON_HOST_PLATFORM) '
                      'PYTHONPATH=$(shell test -f pybuilddir.txt && echo '
-                     '/Users/alekseimuraveinik/Desktop/Python-Apple-support/build/iOS/iphonesimulator.x86_64/python-3.9.14/`cat '
+                     '/Users/alekseimuraveinik/projects/Python-Apple-support/build/iOS/iphonesimulator.x86_64/python-3.9.14/`cat '
                      'pybuilddir.txt`:)./Lib '
                      '_PYTHON_SYSCONFIGDATA_NAME=_sysconfigdata__ios_iphonesimulator '
                      'python3.9',
@@ -698,8 +698,8 @@ build_time_vars = {'ABIFLAGS': '',
                              '-Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall '
                              '--sysroot=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator16.2.sdk '
                              '-mios-version-min=12.0 '
-                             '-I/Users/alekseimuraveinik/Desktop/Python-Apple-support/merge/iOS/iphonesimulator/bzip2-1.0.8/include '
-                             '-I/Users/alekseimuraveinik/Desktop/Python-Apple-support/merge/iOS/iphonesimulator/xz-5.2.6/include '
+                             '-I/Users/alekseimuraveinik/projects/Python-Apple-support/merge/iOS/iphonesimulator/bzip2-1.0.8/include '
+                             '-I/Users/alekseimuraveinik/projects/Python-Apple-support/merge/iOS/iphonesimulator/xz-5.2.6/include '
                              '-std=c99 -Wextra -Wno-unused-result '
                              '-Wno-unused-parameter '
                              '-Wno-missing-field-initializers '
@@ -711,8 +711,8 @@ build_time_vars = {'ABIFLAGS': '',
               '-g -fwrapv -O3 -Wall '
               '--sysroot=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator16.2.sdk '
               '-mios-version-min=12.0 '
-              '-I/Users/alekseimuraveinik/Desktop/Python-Apple-support/merge/iOS/iphonesimulator/bzip2-1.0.8/include '
-              '-I/Users/alekseimuraveinik/Desktop/Python-Apple-support/merge/iOS/iphonesimulator/xz-5.2.6/include',
+              '-I/Users/alekseimuraveinik/projects/Python-Apple-support/merge/iOS/iphonesimulator/bzip2-1.0.8/include '
+              '-I/Users/alekseimuraveinik/projects/Python-Apple-support/merge/iOS/iphonesimulator/xz-5.2.6/include',
  'PY_CFLAGS_NODIST': '-std=c99 -Wextra -Wno-unused-result '
                      '-Wno-unused-parameter -Wno-missing-field-initializers '
                      '-Wstrict-prototypes '
@@ -723,8 +723,8 @@ build_time_vars = {'ABIFLAGS': '',
                    '-DNDEBUG -g -fwrapv -O3 -Wall '
                    '--sysroot=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator16.2.sdk '
                    '-mios-version-min=12.0 '
-                   '-I/Users/alekseimuraveinik/Desktop/Python-Apple-support/merge/iOS/iphonesimulator/bzip2-1.0.8/include '
-                   '-I/Users/alekseimuraveinik/Desktop/Python-Apple-support/merge/iOS/iphonesimulator/xz-5.2.6/include '
+                   '-I/Users/alekseimuraveinik/projects/Python-Apple-support/merge/iOS/iphonesimulator/bzip2-1.0.8/include '
+                   '-I/Users/alekseimuraveinik/projects/Python-Apple-support/merge/iOS/iphonesimulator/xz-5.2.6/include '
                    '-std=c99 -Wextra -Wno-unused-result -Wno-unused-parameter '
                    '-Wno-missing-field-initializers -Wstrict-prototypes '
                    '-Werror=implicit-function-declaration -fvisibility=hidden  '
@@ -732,15 +732,15 @@ build_time_vars = {'ABIFLAGS': '',
  'PY_CORE_LDFLAGS': '-isysroot '
                     '/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator16.2.sdk '
                     '-mios-version-min=12.0 '
-                    '-L/Users/alekseimuraveinik/Desktop/Python-Apple-support/merge/iOS/iphonesimulator/bzip2-1.0.8/lib '
-                    '-L/Users/alekseimuraveinik/Desktop/Python-Apple-support/merge/iOS/iphonesimulator/xz-5.2.6/lib',
+                    '-L/Users/alekseimuraveinik/projects/Python-Apple-support/merge/iOS/iphonesimulator/bzip2-1.0.8/lib '
+                    '-L/Users/alekseimuraveinik/projects/Python-Apple-support/merge/iOS/iphonesimulator/xz-5.2.6/lib',
  'PY_CPPFLAGS': '-I. -I./Include',
  'PY_FORMAT_SIZE_T': '"z"',
  'PY_LDFLAGS': '-isysroot '
                '/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator16.2.sdk '
                '-mios-version-min=12.0 '
-               '-L/Users/alekseimuraveinik/Desktop/Python-Apple-support/merge/iOS/iphonesimulator/bzip2-1.0.8/lib '
-               '-L/Users/alekseimuraveinik/Desktop/Python-Apple-support/merge/iOS/iphonesimulator/xz-5.2.6/lib',
+               '-L/Users/alekseimuraveinik/projects/Python-Apple-support/merge/iOS/iphonesimulator/bzip2-1.0.8/lib '
+               '-L/Users/alekseimuraveinik/projects/Python-Apple-support/merge/iOS/iphonesimulator/xz-5.2.6/lib',
  'PY_LDFLAGS_NODIST': '',
  'PY_SSL_DEFAULT_CIPHERS': 1,
  'PY_SSL_DEFAULT_CIPHER_STRING': 0,
@@ -748,8 +748,8 @@ build_time_vars = {'ABIFLAGS': '',
                         '-DNDEBUG -g -fwrapv -O3 -Wall '
                         '--sysroot=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator16.2.sdk '
                         '-mios-version-min=12.0 '
-                        '-I/Users/alekseimuraveinik/Desktop/Python-Apple-support/merge/iOS/iphonesimulator/bzip2-1.0.8/include '
-                        '-I/Users/alekseimuraveinik/Desktop/Python-Apple-support/merge/iOS/iphonesimulator/xz-5.2.6/include '
+                        '-I/Users/alekseimuraveinik/projects/Python-Apple-support/merge/iOS/iphonesimulator/bzip2-1.0.8/include '
+                        '-I/Users/alekseimuraveinik/projects/Python-Apple-support/merge/iOS/iphonesimulator/xz-5.2.6/include '
                         '-std=c99 -Wextra -Wno-unused-result '
                         '-Wno-unused-parameter -Wno-missing-field-initializers '
                         '-Wstrict-prototypes '
@@ -765,7 +765,7 @@ build_time_vars = {'ABIFLAGS': '',
  'RESSRCDIR': 'Mac/Resources/framework',
  'RETSIGTYPE': 'void',
  'RUNSHARED': '',
- 'SCRIPTDIR': '/Users/alekseimuraveinik/Desktop/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/lib',
+ 'SCRIPTDIR': '/Users/alekseimuraveinik/projects/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/lib',
  'SETPGRP_HAVE_ARG': 0,
  'SHELL': '/bin/sh',
  'SHLIBS': '-ldl  -lm',
@@ -829,9 +829,9 @@ build_time_vars = {'ABIFLAGS': '',
  'WITH_VALGRIND': 0,
  'X87_DOUBLE_ROUNDING': 0,
  'XMLLIBSUBDIRS': 'xml xml/dom xml/etree xml/parsers xml/sax',
- 'abs_builddir': '/Users/alekseimuraveinik/Desktop/Python-Apple-support/build/iOS/iphonesimulator.x86_64/python-3.9.14',
- 'abs_srcdir': '/Users/alekseimuraveinik/Desktop/Python-Apple-support/build/iOS/iphonesimulator.x86_64/python-3.9.14',
- 'datarootdir': '/Users/alekseimuraveinik/Desktop/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/share',
- 'exec_prefix': '/Users/alekseimuraveinik/Desktop/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14',
- 'prefix': '/Users/alekseimuraveinik/Desktop/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14',
+ 'abs_builddir': '/Users/alekseimuraveinik/projects/Python-Apple-support/build/iOS/iphonesimulator.x86_64/python-3.9.14',
+ 'abs_srcdir': '/Users/alekseimuraveinik/projects/Python-Apple-support/build/iOS/iphonesimulator.x86_64/python-3.9.14',
+ 'datarootdir': '/Users/alekseimuraveinik/projects/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14/share',
+ 'exec_prefix': '/Users/alekseimuraveinik/projects/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14',
+ 'prefix': '/Users/alekseimuraveinik/projects/Python-Apple-support/install/iOS/iphonesimulator.x86_64/python-3.9.14',
  'srcdir': '.'}
