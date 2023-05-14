@@ -2,10 +2,11 @@ import Combine
 import FlatSeekerCore
 import Foundation
 import PythonRuntime
+import UIKit
 
 class ListScreenViewModel: ObservableObject {
     @Published private (set) var text: String = "Initializing"
-    @Published private (set) var photos: [URL] = []
+    @Published private (set) var photos: [UIImage] = []
     @Published var code: String = ""
     
     private var client: Client?
@@ -34,7 +35,10 @@ class ListScreenViewModel: ObservableObject {
             return
         }
         
+        let start = CFAbsoluteTimeGetCurrent()
         let messageGroups = client.getMessages(chatId: chatId, limit: 20)
+        let diff = CFAbsoluteTimeGetCurrent() - start
+        print("Took \(diff) seconds")
 
         guard let group = messageGroups.first else {
             assertionFailure("No message groups")
@@ -42,7 +46,7 @@ class ListScreenViewModel: ObservableObject {
         }
 
         text = group.message
-        photos = group.photos
+        photos = group.photos.map { UIImage(data: $0)! }
     }
 }
 

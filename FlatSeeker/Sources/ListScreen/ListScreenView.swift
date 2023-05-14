@@ -16,7 +16,7 @@ struct ListScreenView: View {
             ScrollView {
                 VStack(spacing: 10) {
                     ForEach(viewModel.photos, id: \.self) { url in
-                        AsyncImage(url: url)
+                        Image(uiImage: url)
                     }
                 }
             }
