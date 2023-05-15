@@ -7,18 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA0775FC2A1299DA00A7C36B /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0775FB2A1299DA00A7C36B /* Client.swift */; };
+		DA0775FE2A1299FD00A7C36B /* swift-telegram-messages.py in Resources */ = {isa = PBXBuildFile; fileRef = DA0775FD2A1299FD00A7C36B /* swift-telegram-messages.py */; };
+		DA0776012A129A5000A7C36B /* PythonRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = DA0776002A129A5000A7C36B /* PythonRuntime */; };
+		DA0776042A129B0600A7C36B /* Measure.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0776032A129B0600A7C36B /* Measure.swift */; };
 		DA0BC1EB2A0FE48B00C2196A /* pips in Resources */ = {isa = PBXBuildFile; fileRef = DA0BC1EA2A0FE48B00C2196A /* pips */; };
 		DA2555BE2A0EE1A3001D48DC /* FlatSeekerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2555BD2A0EE1A3001D48DC /* FlatSeekerApp.swift */; };
 		DA2555C22A0EE1A4001D48DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA2555C12A0EE1A4001D48DC /* Assets.xcassets */; };
 		DA2555C52A0EE1A4001D48DC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA2555C42A0EE1A4001D48DC /* Preview Assets.xcassets */; };
 		DA2555D02A0EE23C001D48DC /* ListScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2555CF2A0EE23C001D48DC /* ListScreenView.swift */; };
 		DA2555D22A0EE24A001D48DC /* ListScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2555D12A0EE24A001D48DC /* ListScreenViewModel.swift */; };
-		DA80977A2A0F23B3001021F8 /* FlatSeekerCore in Frameworks */ = {isa = PBXBuildFile; productRef = DA8097792A0F23B3001021F8 /* FlatSeekerCore */; };
 		DA82CDB62A0FDE0C00E4E228 /* python-stdlib in Resources */ = {isa = PBXBuildFile; fileRef = DA82CDB52A0FDE0C00E4E228 /* python-stdlib */; };
 		DAC7E5BE2A103E9000540B0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC7E5BD2A103E9000540B0C /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DA0775FB2A1299DA00A7C36B /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		DA0775FD2A1299FD00A7C36B /* swift-telegram-messages.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = "swift-telegram-messages.py"; sourceTree = "<group>"; };
+		DA0776032A129B0600A7C36B /* Measure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measure.swift; sourceTree = "<group>"; };
 		DA0BC1EA2A0FE48B00C2196A /* pips */ = {isa = PBXFileReference; lastKnownFileType = folder; path = pips; sourceTree = "<group>"; };
 		DA2555BA2A0EE1A3001D48DC /* FlatSeeker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlatSeeker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA2555BD2A0EE1A3001D48DC /* FlatSeekerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlatSeekerApp.swift; sourceTree = "<group>"; };
@@ -26,7 +32,6 @@
 		DA2555C42A0EE1A4001D48DC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DA2555CF2A0EE23C001D48DC /* ListScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListScreenView.swift; sourceTree = "<group>"; };
 		DA2555D12A0EE24A001D48DC /* ListScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListScreenViewModel.swift; sourceTree = "<group>"; };
-		DA8097782A0F23AA001021F8 /* FlatSeekerCore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = FlatSeekerCore; path = ../FlatSeekerCore; sourceTree = "<group>"; };
 		DA82CDB52A0FDE0C00E4E228 /* python-stdlib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "python-stdlib"; sourceTree = "<group>"; };
 		DAC7E5BD2A103E9000540B0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -36,17 +41,40 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA80977A2A0F23B3001021F8 /* FlatSeekerCore in Frameworks */,
+				DA0776012A129A5000A7C36B /* PythonRuntime in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DA0775F92A1299C400A7C36B /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				DA2555CE2A0EE227001D48DC /* ListScreen */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		DA0775FA2A1299CC00A7C36B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				DA0775FB2A1299DA00A7C36B /* Client.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		DA0776022A129AF800A7C36B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				DA0776032A129B0600A7C36B /* Measure.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		DA2555B12A0EE1A3001D48DC = {
 			isa = PBXGroup;
 			children = (
-				DA8097772A0F23AA001021F8 /* Packages */,
 				DA2555BC2A0EE1A3001D48DC /* FlatSeeker */,
 				DA2555BB2A0EE1A3001D48DC /* Products */,
 				DA82C5E02A0FDDF900E4E228 /* Resources */,
@@ -84,7 +112,9 @@
 			children = (
 				DAC7E5BD2A103E9000540B0C /* AppDelegate.swift */,
 				DA2555BD2A0EE1A3001D48DC /* FlatSeekerApp.swift */,
-				DA2555CE2A0EE227001D48DC /* ListScreen */,
+				DA0775F92A1299C400A7C36B /* Modules */,
+				DA0775FA2A1299CC00A7C36B /* Services */,
+				DA0776022A129AF800A7C36B /* Utils */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -98,17 +128,10 @@
 			path = ListScreen;
 			sourceTree = "<group>";
 		};
-		DA8097772A0F23AA001021F8 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				DA8097782A0F23AA001021F8 /* FlatSeekerCore */,
-			);
-			name = Packages;
-			sourceTree = "<group>";
-		};
 		DA82C5E02A0FDDF900E4E228 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DA0775FD2A1299FD00A7C36B /* swift-telegram-messages.py */,
 				DA0BC1EA2A0FE48B00C2196A /* pips */,
 				DA82CDB52A0FDE0C00E4E228 /* python-stdlib */,
 			);
@@ -132,7 +155,7 @@
 			);
 			name = FlatSeeker;
 			packageProductDependencies = (
-				DA8097792A0F23B3001021F8 /* FlatSeekerCore */,
+				DA0776002A129A5000A7C36B /* PythonRuntime */,
 			);
 			productName = FlatSeeker;
 			productReference = DA2555BA2A0EE1A3001D48DC /* FlatSeeker.app */;
@@ -163,6 +186,7 @@
 			);
 			mainGroup = DA2555B12A0EE1A3001D48DC;
 			packageReferences = (
+				DA0775FF2A129A5000A7C36B /* XCRemoteSwiftPackageReference "PythonRuntime" */,
 			);
 			productRefGroup = DA2555BB2A0EE1A3001D48DC /* Products */;
 			projectDirPath = "";
@@ -181,6 +205,7 @@
 				DA0BC1EB2A0FE48B00C2196A /* pips in Resources */,
 				DA2555C52A0EE1A4001D48DC /* Preview Assets.xcassets in Resources */,
 				DA2555C22A0EE1A4001D48DC /* Assets.xcassets in Resources */,
+				DA0775FE2A1299FD00A7C36B /* swift-telegram-messages.py in Resources */,
 				DA82CDB62A0FDE0C00E4E228 /* python-stdlib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -194,7 +219,9 @@
 			files = (
 				DAC7E5BE2A103E9000540B0C /* AppDelegate.swift in Sources */,
 				DA2555D22A0EE24A001D48DC /* ListScreenViewModel.swift in Sources */,
+				DA0776042A129B0600A7C36B /* Measure.swift in Sources */,
 				DA2555D02A0EE23C001D48DC /* ListScreenView.swift in Sources */,
+				DA0775FC2A1299DA00A7C36B /* Client.swift in Sources */,
 				DA2555BE2A0EE1A3001D48DC /* FlatSeekerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -409,10 +436,22 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		DA0775FF2A129A5000A7C36B /* XCRemoteSwiftPackageReference "PythonRuntime" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alekseimuraveinik/PythonRuntime.git";
+			requirement = {
+				kind = exactVersion;
+				version = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
-		DA8097792A0F23B3001021F8 /* FlatSeekerCore */ = {
+		DA0776002A129A5000A7C36B /* PythonRuntime */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = FlatSeekerCore;
+			package = DA0775FF2A129A5000A7C36B /* XCRemoteSwiftPackageReference "PythonRuntime" */;
+			productName = PythonRuntime;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
