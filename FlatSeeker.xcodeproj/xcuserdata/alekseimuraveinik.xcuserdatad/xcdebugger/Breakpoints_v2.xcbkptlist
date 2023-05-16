@@ -14,9 +14,9 @@
             filePath = "FlatSeeker/Sources/Modules/ListScreen/ListScreenViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "fetchMessages()"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "fetchMessages(client:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -30,9 +30,9 @@
             filePath = "FlatSeeker/Sources/Modules/ListScreen/ListScreenViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "fetchMessages()"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "fetchMessages(client:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -78,8 +78,8 @@
             filePath = "FlatSeeker/Sources/Services/Client.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "getMessages()"
             landmarkType = "7">
          </BreakpointContent>

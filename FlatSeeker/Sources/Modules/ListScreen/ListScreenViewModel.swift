@@ -9,20 +9,25 @@ class ListScreenViewModel: ObservableObject {
     @Published private (set) var photos: [UIImage] = []
     @Published private (set) var isLoading = false
     
-    private let client: Client
+    private var client: Client?
     
-    init(client: Client) {
+    init(client: Client?) {
         self.client = client
-    }
-    
-    func onAppear() {
-        isLoading = true
-        Task {
-            await fetchMessages()
+        if client == nil {
+            isLoading = false
+            text = "Не удалось авторизоватьтся"
         }
     }
     
-    private func fetchMessages() async {
+    func onAppear() {
+        guard let client else { return }
+        isLoading = true
+        Task {
+            await fetchMessages(client: client)
+        }
+    }
+    
+    private func fetchMessages(client: Client) async {
         let messageGroups = client.getMessages()
 
         if let group = messageGroups.first {

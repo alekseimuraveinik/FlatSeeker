@@ -3,7 +3,7 @@ import PythonRuntime
 import UIKit
 
 class AppDelegate: NSObject, UIApplicationDelegate {
-    var client: Client!
+    var client: Client?
     
     func application(
         _ application: UIApplication,
