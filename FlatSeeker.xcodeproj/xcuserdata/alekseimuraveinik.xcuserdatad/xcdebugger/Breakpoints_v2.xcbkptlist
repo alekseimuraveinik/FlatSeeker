@@ -71,15 +71,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8C590267-19AD-4963-8B36-5CE05F12FF9D"
+            uuid = "BF3AE456-B7E9-443D-A149-5DCB7356CEA9"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "FlatSeeker/Sources/Services/Client.swift"
+            filePath = "FlatSeeker/Sources/Services/TelegramClient.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "getMessages()"
             landmarkType = "7">
          </BreakpointContent>

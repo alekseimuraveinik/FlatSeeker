@@ -1,24 +1,20 @@
 import Foundation
 import PythonKit
 
-class Client {
+class TelegramClient {
     private let script: PythonObject
     private let client: PythonObject
     
-    init?() {
-        let scriptName = "swift-telegram-messages"
-        
-        let scriptURL = Bundle.main.url(forResource: scriptName, withExtension: "py")!
+    init?(config: TelegramClientConfig) {
+        let scriptURL = config.scriptURL
+        let scriptName = String(scriptURL.lastPathComponent.split(separator: ".")[0])
         let scriptDirectory = scriptURL.deletingLastPathComponent().path
 
         let sys = Python.import("sys")
         sys.path.append(scriptDirectory)
         
-        let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let sessionPath = documents.appendingPathComponent("session").path
-
         script = Python.import(scriptName)
-        client = script.start_client(sessionPath)
+        client = script.start_client(config.sessionPath)
         
         if client == Python.None {
             return nil
@@ -43,21 +39,14 @@ class Client {
         }
         
         let message = String(textMessage.message)!
-        let urls = Array(script.download_photos(photoMessages))
         
-        let dataArray = urls.map { pythonBytes in
-            PythonBytes(pythonBytes)!.withUnsafeBytes({ unsafeRawBufferPointer in
-                Data(unsafeRawBufferPointer)
-            })
-        }
+        let images = script.download_photos(photoMessages)
         
         return [
-            MessageGroup(message: message, photos: dataArray)
+            MessageGroup(
+                message: message,
+                photos: images.data
+            )
         ]
     }
-}
-
-struct MessageGroup {
-    let message: String
-    let photos: [Data]
 }

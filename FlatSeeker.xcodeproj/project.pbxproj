@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DA0775FC2A1299DA00A7C36B /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0775FB2A1299DA00A7C36B /* Client.swift */; };
+		DA0775FC2A1299DA00A7C36B /* TelegramClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0775FB2A1299DA00A7C36B /* TelegramClient.swift */; };
 		DA0775FE2A1299FD00A7C36B /* swift-telegram-messages.py in Resources */ = {isa = PBXBuildFile; fileRef = DA0775FD2A1299FD00A7C36B /* swift-telegram-messages.py */; };
 		DA0776012A129A5000A7C36B /* PythonRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = DA0776002A129A5000A7C36B /* PythonRuntime */; };
 		DA0776042A129B0600A7C36B /* Measure.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0776032A129B0600A7C36B /* Measure.swift */; };
@@ -19,10 +19,14 @@
 		DA2555D22A0EE24A001D48DC /* ListScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2555D12A0EE24A001D48DC /* ListScreenViewModel.swift */; };
 		DA82CDB62A0FDE0C00E4E228 /* python-stdlib in Resources */ = {isa = PBXBuildFile; fileRef = DA82CDB52A0FDE0C00E4E228 /* python-stdlib */; };
 		DAC7E5BE2A103E9000540B0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC7E5BD2A103E9000540B0C /* AppDelegate.swift */; };
+		DAF105452A13FDAA0022303D /* PythonBytes+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF105442A13FDAA0022303D /* PythonBytes+Data.swift */; };
+		DAF105492A13FF8D0022303D /* MessageGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF105482A13FF8D0022303D /* MessageGroup.swift */; };
+		DAF1054B2A1401E20022303D /* Data+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF1054A2A1401E20022303D /* Data+UIImage.swift */; };
+		DAF1054D2A1402FA0022303D /* TelegramClientConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF1054C2A1402FA0022303D /* TelegramClientConfig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		DA0775FB2A1299DA00A7C36B /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		DA0775FB2A1299DA00A7C36B /* TelegramClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelegramClient.swift; sourceTree = "<group>"; };
 		DA0775FD2A1299FD00A7C36B /* swift-telegram-messages.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = "swift-telegram-messages.py"; sourceTree = "<group>"; };
 		DA0776032A129B0600A7C36B /* Measure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measure.swift; sourceTree = "<group>"; };
 		DA0BC1EA2A0FE48B00C2196A /* pips */ = {isa = PBXFileReference; lastKnownFileType = folder; path = pips; sourceTree = "<group>"; };
@@ -34,6 +38,10 @@
 		DA2555D12A0EE24A001D48DC /* ListScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListScreenViewModel.swift; sourceTree = "<group>"; };
 		DA82CDB52A0FDE0C00E4E228 /* python-stdlib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "python-stdlib"; sourceTree = "<group>"; };
 		DAC7E5BD2A103E9000540B0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DAF105442A13FDAA0022303D /* PythonBytes+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PythonBytes+Data.swift"; sourceTree = "<group>"; };
+		DAF105482A13FF8D0022303D /* MessageGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageGroup.swift; sourceTree = "<group>"; };
+		DAF1054A2A1401E20022303D /* Data+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+UIImage.swift"; sourceTree = "<group>"; };
+		DAF1054C2A1402FA0022303D /* TelegramClientConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelegramClientConfig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +67,8 @@
 		DA0775FA2A1299CC00A7C36B /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				DA0775FB2A1299DA00A7C36B /* Client.swift */,
+				DAF1054C2A1402FA0022303D /* TelegramClientConfig.swift */,
+				DA0775FB2A1299DA00A7C36B /* TelegramClient.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -68,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				DA0776032A129B0600A7C36B /* Measure.swift */,
+				DAF105462A13FE120022303D /* Extensions */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -113,6 +123,7 @@
 				DAC7E5BD2A103E9000540B0C /* AppDelegate.swift */,
 				DA2555BD2A0EE1A3001D48DC /* FlatSeekerApp.swift */,
 				DA0775F92A1299C400A7C36B /* Modules */,
+				DAF105472A13FF810022303D /* Model */,
 				DA0775FA2A1299CC00A7C36B /* Services */,
 				DA0776022A129AF800A7C36B /* Utils */,
 			);
@@ -136,6 +147,23 @@
 				DA82CDB52A0FDE0C00E4E228 /* python-stdlib */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		DAF105462A13FE120022303D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DAF105442A13FDAA0022303D /* PythonBytes+Data.swift */,
+				DAF1054A2A1401E20022303D /* Data+UIImage.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		DAF105472A13FF810022303D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DAF105482A13FF8D0022303D /* MessageGroup.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,11 +246,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAC7E5BE2A103E9000540B0C /* AppDelegate.swift in Sources */,
+				DAF1054D2A1402FA0022303D /* TelegramClientConfig.swift in Sources */,
+				DAF105452A13FDAA0022303D /* PythonBytes+Data.swift in Sources */,
 				DA2555D22A0EE24A001D48DC /* ListScreenViewModel.swift in Sources */,
 				DA0776042A129B0600A7C36B /* Measure.swift in Sources */,
 				DA2555D02A0EE23C001D48DC /* ListScreenView.swift in Sources */,
-				DA0775FC2A1299DA00A7C36B /* Client.swift in Sources */,
+				DAF1054B2A1401E20022303D /* Data+UIImage.swift in Sources */,
+				DA0775FC2A1299DA00A7C36B /* TelegramClient.swift in Sources */,
 				DA2555BE2A0EE1A3001D48DC /* FlatSeekerApp.swift in Sources */,
+				DAF105492A13FF8D0022303D /* MessageGroup.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

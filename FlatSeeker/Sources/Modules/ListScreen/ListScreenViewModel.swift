@@ -9,9 +9,9 @@ class ListScreenViewModel: ObservableObject {
     @Published private (set) var photos: [UIImage] = []
     @Published private (set) var isLoading = false
     
-    private var client: Client?
+    private var client: TelegramClient?
     
-    init(client: Client?) {
+    init(client: TelegramClient?) {
         self.client = client
         if client == nil {
             isLoading = false
@@ -27,14 +27,14 @@ class ListScreenViewModel: ObservableObject {
         }
     }
     
-    private func fetchMessages(client: Client) async {
+    private func fetchMessages(client: TelegramClient) async {
         let messageGroups = client.getMessages()
 
         if let group = messageGroups.first {
             await MainActor.run {
                 isLoading = false
                 text = group.message
-                photos = group.photos.map { UIImage(data: $0)! }
+                photos = group.photos.uiImages
             }
         }
     }
