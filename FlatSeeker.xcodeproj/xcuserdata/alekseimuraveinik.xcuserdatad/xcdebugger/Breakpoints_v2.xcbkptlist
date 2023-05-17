@@ -7,96 +7,33 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "4E021120-7E88-4004-9593-D8A942463D10"
+            uuid = "498DF551-46D1-4B0E-9901-C3532DE6928D"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FlatSeeker/Sources/Services/TelegramClient.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "loadFirstImage(groupId:)"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "loadFullImages(pythonMessageGroups:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "10C0F157-AC8E-4155-B513-850F48016E3A"
+            uuid = "106D0EB8-F1C8-4B69-B675-FFBE985E4E10"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FlatSeeker/Sources/Services/TelegramClient.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "loadFirstImage(groupId:)"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "loadFullImages(pythonMessageGroups:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "58D3D356-BFA0-4E16-8CA1-4E91604D33B8"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "FlatSeeker/Sources/Services/TelegramClient.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "loadFirstImage(groupId:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "58D3D356-BFA0-4E16-8CA1-4E91604D33B8 - 17690ca1ab931824"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "FlatSeeker.TelegramClient.loadFirstImage(groupId: Swift.Int) -&gt; Combine.AnyPublisher&lt;Swift.Array&lt;Foundation.Data&gt;, Swift.Never&gt;"
-                  moduleName = "FlatSeeker"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/alekseimuraveinik/projects/FlatSeeker/FlatSeeker/Sources/Services/TelegramClient.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "64"
-                  endingLineNumber = "64"
-                  offsetFromSymbolStart = "488">
-               </Location>
-               <Location
-                  uuid = "58D3D356-BFA0-4E16-8CA1-4E91604D33B8 - 17690ca1ab931824"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "FlatSeeker.TelegramClient.loadFirstImage(groupId: Swift.Int) -&gt; Combine.AnyPublisher&lt;Swift.Array&lt;Foundation.Data&gt;, Swift.Never&gt;"
-                  moduleName = "FlatSeeker"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/alekseimuraveinik/projects/FlatSeeker/FlatSeeker/Sources/Services/TelegramClient.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "64"
-                  endingLineNumber = "64"
-                  offsetFromSymbolStart = "508">
-               </Location>
-               <Location
-                  uuid = "58D3D356-BFA0-4E16-8CA1-4E91604D33B8 - d8f5574c188fae8"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 ((Swift.Result&lt;Swift.Array&lt;Foundation.Data&gt;, Swift.Never&gt;) -&gt; ()) -&gt; () in FlatSeeker.TelegramClient.loadFirstImage(groupId: Swift.Int) -&gt; Combine.AnyPublisher&lt;Swift.Array&lt;Foundation.Data&gt;, Swift.Never&gt;"
-                  moduleName = "FlatSeeker"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/alekseimuraveinik/projects/FlatSeeker/FlatSeeker/Sources/Services/TelegramClient.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "65"
-                  endingLineNumber = "65"
-                  offsetFromSymbolStart = "328">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

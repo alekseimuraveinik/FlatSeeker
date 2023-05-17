@@ -13,15 +13,9 @@ struct PagerView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .clipped()
-                        .overlay {
-                            if viewModel.uiImages.count == 1 {
-                                ProgressView()
-                            }
-                        }
                 }
             }
             .tabViewStyle(PageTabViewStyle())
-            .transition(.opacity)
         }
     }
 }

@@ -21,7 +21,7 @@ extension PythonObject {
         Array(self).data
     }
     
-    var bytes: PythonBytes {
-        PythonBytes(self)!
+    var bytes: PythonBytes? {
+        PythonBytes(self)
     }
 }

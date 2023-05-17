@@ -59,15 +59,19 @@ class MessageGroup:
     def __init__(self, grouped_id, messages):
         self.grouped_id = grouped_id
         self.messages = messages
-        self.text_message = next((x.message for x in messages if x.message != ''), '')
-        self.price = parse_price(self.text_message)
+        self.text_message = next((x for x in messages if x.message != ''), None)
+        if self.text_message:
+            text = self.text_message.message
+        else:
+            text = ''
+        self.price = parse_price(text)
         if self.price != '' and int(self.price) == 0:
             self.price = ''
-        self.district = parse_district(self.text_message).capitalize()
+        self.district = parse_district(text).capitalize()
 
 
 class Client:
-    limit = 20
+    limit = 50
     least_recent_message_id = None
     remaining_messages = []
 
@@ -91,7 +95,7 @@ class Client:
         message_groups = [MessageGroup(key, list(result)) for key, result in grouped_messages]
         message_groups = list(
             filter(
-                lambda group: group.text_message != '',
+                lambda group: group.text_message is not None and group.text_message.message != '',
                 message_groups
             )
         )
@@ -104,7 +108,7 @@ class Client:
 
 
 async def _download_image(message):
-    return await message.download_media(file=bytes)
+    return message.grouped_id, await message.download_media(file=bytes, thumb=message.photo.sizes[1])
 
 
 def download_images(messages):
@@ -114,8 +118,15 @@ def download_images(messages):
     return image_bytes_array
 
 
-def download_small_image(message):
-    return message.download_media(file=bytes, thumb=message.photo.sizes[1])
+async def _download_small_image(message):
+    return await message.download_media(file=bytes, thumb=message.photo.sizes[0])
+
+
+def download_small_images(messages):
+    tasks = [_download_small_image(message) for message in messages]
+    loop = asyncio.get_event_loop()
+    image_bytes_array = loop.run_until_complete(asyncio.gather(*tasks))
+    return image_bytes_array
 
 
 def main():

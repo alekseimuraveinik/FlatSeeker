@@ -9,14 +9,13 @@ class ListScreenViewModel: ObservableObject {
     @Published var price: String?
     @Published var pageViewModel: PagerViewModel
     
-    private var isLoading = false
     private var client: TelegramClient
     private var messageGroups = [MessageGroup]()
-    private var index = 0
+    private var index = -1
     
     init(client: TelegramClient) {
         self.client = client
-        self.pageViewModel = .init(client: client, groupId: 0)
+        self.pageViewModel = .init(thumbnail: .init(), client: client, groupId: 0)
     }
     
     func onAppear() {
@@ -26,30 +25,23 @@ class ListScreenViewModel: ObservableObject {
     }
     
     func onNext() {
-        Task {
-            index += 1
-            if index > messageGroups.count - 2 {
+        if index >= messageGroups.count - 5 {
+            Task {
                 await fetchMessages()
-            } else {
-                await displayMessages()
             }
         }
         
+        Task {
+            await displayMessages()
+        }
     }
     
-    private func fetchMessages(preventive: Bool = false) async {
-        if isLoading {
-            return
-        }
-        isLoading = true
-        
+    private func fetchMessages() async {
         let messageGroups = client.getMessages()
+        guard !messageGroups.isEmpty else { return }
         await MainActor.run {
             self.messageGroups = self.messageGroups + messageGroups
-            isLoading = false
-            if !preventive {
-                displayMessages()
-            }
+            displayMessages()
         }
     }
     
@@ -62,23 +54,20 @@ class ListScreenViewModel: ObservableObject {
             return
         }
         
+        if index >= messageGroups.count - 1 {
+            return
+        }
+        index += 1
+        
         let group = messageGroups[index]
         text = group.textMessage
         district = group.district
         price = group.price
         
-        let loadingFinished = { [weak self, index, messageGroups] in
-            if index > messageGroups.count - 2 {
-                Task {
-                    await self?.fetchMessages(preventive: true)
-                }
-            }
-        }
-        
         pageViewModel = PagerViewModel(
+            thumbnail: UIImage(data: group.thumbnail),
             client: client,
-            groupId: group.id,
-            loadingFinished: loadingFinished
+            groupId: group.id
         )
     }
 }
