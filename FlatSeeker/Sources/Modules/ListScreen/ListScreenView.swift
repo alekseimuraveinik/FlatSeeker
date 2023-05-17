@@ -4,36 +4,49 @@ struct ListScreenView: View {
     @StateObject var viewModel: ListScreenViewModel
     
     var body: some View {
-        ScrollView(.vertical) {
-            VStack(spacing: 20) {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 10) {
-                        ForEach(viewModel.photos, id: \.self) { url in
-                            Image(uiImage: url)
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(
-                                    width: UIScreen.main.bounds.width - 60,
-                                    height: UIScreen.main.bounds.height / 2
-                                )
-                                .clipped()
-                                .cornerRadius(20)
-                        }
-                    }
-                    .padding(.horizontal, 20)
+        VStack(spacing: 20) {
+            ScrollView(.vertical) {
+                VStack(alignment: .leading, spacing: 20) {
+                    PageView(images: $viewModel.photos)
+                        .frame(
+                            width: UIScreen.main.bounds.width,
+                            height: UIScreen.main.bounds.height / 2
+                        )
+                        .padding(.top, 20)
+                    
+                    Text(viewModel.text)
+                        .padding(.horizontal, 20)
+                    
+                    Spacer()
                 }
-                .padding(.top, 20)
-                
-                ProgressView()
-                    .opacity(viewModel.isLoading ? 1 : 0)
-                
-                Text(viewModel.text)
-                    .padding(.top, viewModel.isLoading ? 0 : -20)
-                
-                Spacer()
+            }
+            
+            Button(action: viewModel.onNext) {
+                Text("Следующая квартира")
+                    .foregroundColor(Color.white)
+                    .padding(20)
+                    .frame(height: 48)
+                    .background(
+                        Color.blue
+                            .cornerRadius(16)
+                    )
             }
         }
         .padding(.bottom, 20)
+        .overlay(
+            ZStack {
+                Color.black
+                    .opacity(0.3)
+                
+                VStack(spacing: 20) {
+                    ProgressView()
+                    Text("Загрузка квартир")
+                }
+                .padding(20)
+                .background(Color.white.cornerRadius(20).ignoresSafeArea())
+            }
+            .opacity(viewModel.isLoading ? 1 : 0)
+        )
         .onAppear(perform: viewModel.onAppear)
     }
 }

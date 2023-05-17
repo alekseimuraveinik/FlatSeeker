@@ -17,6 +17,7 @@
 		DA2555C52A0EE1A4001D48DC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA2555C42A0EE1A4001D48DC /* Preview Assets.xcassets */; };
 		DA2555D02A0EE23C001D48DC /* ListScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2555CF2A0EE23C001D48DC /* ListScreenView.swift */; };
 		DA2555D22A0EE24A001D48DC /* ListScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2555D12A0EE24A001D48DC /* ListScreenViewModel.swift */; };
+		DA3092F42A14BD5B00E1E1B1 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3092F32A14BD5B00E1E1B1 /* PageView.swift */; };
 		DA82CDB62A0FDE0C00E4E228 /* python-stdlib in Resources */ = {isa = PBXBuildFile; fileRef = DA82CDB52A0FDE0C00E4E228 /* python-stdlib */; };
 		DAC7E5BE2A103E9000540B0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC7E5BD2A103E9000540B0C /* AppDelegate.swift */; };
 		DAF105452A13FDAA0022303D /* PythonBytes+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF105442A13FDAA0022303D /* PythonBytes+Data.swift */; };
@@ -36,6 +37,7 @@
 		DA2555C42A0EE1A4001D48DC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DA2555CF2A0EE23C001D48DC /* ListScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListScreenView.swift; sourceTree = "<group>"; };
 		DA2555D12A0EE24A001D48DC /* ListScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListScreenViewModel.swift; sourceTree = "<group>"; };
+		DA3092F32A14BD5B00E1E1B1 /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
 		DA82CDB52A0FDE0C00E4E228 /* python-stdlib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "python-stdlib"; sourceTree = "<group>"; };
 		DAC7E5BD2A103E9000540B0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAF105442A13FDAA0022303D /* PythonBytes+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PythonBytes+Data.swift"; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				DAC7E5BD2A103E9000540B0C /* AppDelegate.swift */,
 				DA2555BD2A0EE1A3001D48DC /* FlatSeekerApp.swift */,
 				DA0775F92A1299C400A7C36B /* Modules */,
+				DA3092F22A14BD4000E1E1B1 /* Views */,
 				DAF105472A13FF810022303D /* Model */,
 				DA0775FA2A1299CC00A7C36B /* Services */,
 				DA0776022A129AF800A7C36B /* Utils */,
@@ -137,6 +140,14 @@
 				DA2555D12A0EE24A001D48DC /* ListScreenViewModel.swift */,
 			);
 			path = ListScreen;
+			sourceTree = "<group>";
+		};
+		DA3092F22A14BD4000E1E1B1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DA3092F32A14BD5B00E1E1B1 /* PageView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		DA82C5E02A0FDDF900E4E228 /* Resources */ = {
@@ -253,6 +264,7 @@
 				DA2555D02A0EE23C001D48DC /* ListScreenView.swift in Sources */,
 				DAF1054B2A1401E20022303D /* Data+UIImage.swift in Sources */,
 				DA0775FC2A1299DA00A7C36B /* TelegramClient.swift in Sources */,
+				DA3092F42A14BD5B00E1E1B1 /* PageView.swift in Sources */,
 				DA2555BE2A0EE1A3001D48DC /* FlatSeekerApp.swift in Sources */,
 				DAF105492A13FF8D0022303D /* MessageGroup.swift in Sources */,
 			);

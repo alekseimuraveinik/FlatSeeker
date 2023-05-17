@@ -3,7 +3,7 @@ import PythonRuntime
 import UIKit
 
 class AppDelegate: NSObject, UIApplicationDelegate {
-    var client: TelegramClient?
+    var client: TelegramClient!
     
     func application(
         _ application: UIApplication,
