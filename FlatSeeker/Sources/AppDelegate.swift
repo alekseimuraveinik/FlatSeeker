@@ -33,7 +33,12 @@ private extension AppDelegate {
         client = .init(
             config: TelegramClientConfig(
                 scriptURL: scriptURL,
-                sessionPath: documentDirectoryURL.appendingPathComponent("session").path
+                sessionPath: documentDirectoryURL.appendingPathComponent("session").path,
+                apiId: 15845540,
+                apiHash: "4cb8ba1d05d513ed32a86f62fcd0e499",
+                phoneNumber: "+995555993502",
+                codeRequestURL: "http://localhost:8080",
+                channelId: -1001793067559
             )
         )
     }

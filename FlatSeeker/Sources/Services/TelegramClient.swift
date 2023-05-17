@@ -2,6 +2,16 @@ import Combine
 import Foundation
 import PythonKit
 
+struct TelegramClientConfig {
+    let scriptURL: URL
+    let sessionPath: String
+    let apiId: Int
+    let apiHash: String
+    let phoneNumber: String
+    let codeRequestURL: String
+    let channelId: Int
+}
+
 class TelegramClient {
     private let script: PythonObject
     private let client: PythonObject
@@ -19,11 +29,11 @@ class TelegramClient {
         script = Python.import(scriptName)
         client = script.Client(
             config.sessionPath,
-            15845540,
-            "4cb8ba1d05d513ed32a86f62fcd0e499",
-            "+995555993502",
-            "http://localhost:8080",
-            -1001793067559
+            config.apiId,
+            config.apiHash,
+            config.phoneNumber,
+            config.codeRequestURL,
+            config.channelId
         )
     }
     

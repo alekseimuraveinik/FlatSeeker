@@ -23,7 +23,6 @@
 		DAF105452A13FDAA0022303D /* PythonBytes+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF105442A13FDAA0022303D /* PythonBytes+Data.swift */; };
 		DAF105492A13FF8D0022303D /* MessageGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF105482A13FF8D0022303D /* MessageGroup.swift */; };
 		DAF1054B2A1401E20022303D /* Data+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF1054A2A1401E20022303D /* Data+UIImage.swift */; };
-		DAF1054D2A1402FA0022303D /* TelegramClientConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF1054C2A1402FA0022303D /* TelegramClientConfig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,7 +42,6 @@
 		DAF105442A13FDAA0022303D /* PythonBytes+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PythonBytes+Data.swift"; sourceTree = "<group>"; };
 		DAF105482A13FF8D0022303D /* MessageGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageGroup.swift; sourceTree = "<group>"; };
 		DAF1054A2A1401E20022303D /* Data+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+UIImage.swift"; sourceTree = "<group>"; };
-		DAF1054C2A1402FA0022303D /* TelegramClientConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelegramClientConfig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +68,6 @@
 			isa = PBXGroup;
 			children = (
 				DAF105482A13FF8D0022303D /* MessageGroup.swift */,
-				DAF1054C2A1402FA0022303D /* TelegramClientConfig.swift */,
 				DA0775FB2A1299DA00A7C36B /* TelegramClient.swift */,
 			);
 			path = Services;
@@ -241,7 +238,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAC7E5BE2A103E9000540B0C /* AppDelegate.swift in Sources */,
-				DAF1054D2A1402FA0022303D /* TelegramClientConfig.swift in Sources */,
 				DAF105452A13FDAA0022303D /* PythonBytes+Data.swift in Sources */,
 				DA2555D22A0EE24A001D48DC /* ListScreenViewModel.swift in Sources */,
 				DA0776042A129B0600A7C36B /* Measure.swift in Sources */,
