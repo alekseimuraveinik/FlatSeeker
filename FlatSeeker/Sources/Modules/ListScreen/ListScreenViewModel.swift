@@ -5,6 +5,8 @@ import UIKit
 
 class ListScreenViewModel: ObservableObject {
     @Published var text = ""
+    @Published var district: String?
+    @Published var price: String?
     @Published var pageViewModel: PagerViewModel
     
     private var isLoading = false
@@ -19,7 +21,7 @@ class ListScreenViewModel: ObservableObject {
     
     func onAppear() {
         Task {
-            await fetchMessages(client: client)
+            await fetchMessages()
         }
     }
     
@@ -27,7 +29,7 @@ class ListScreenViewModel: ObservableObject {
         Task {
             index += 1
             if index > messageGroups.count - 1 {
-                await fetchMessages(client: client)
+                await fetchMessages()
             } else {
                 await displayMessages()
             }
@@ -35,7 +37,7 @@ class ListScreenViewModel: ObservableObject {
         
     }
     
-    private func fetchMessages(client: TelegramClient) async {
+    private func fetchMessages() async {
         if isLoading {
             return
         }
@@ -52,11 +54,16 @@ class ListScreenViewModel: ObservableObject {
     @MainActor
     private func displayMessages() {
         if messageGroups.isEmpty {
+            Task {
+                await fetchMessages()
+            }
             return
         }
         
         let group = messageGroups[index]
         text = group.textMessage
+        district = group.district
+        price = group.price
         pageViewModel = PagerViewModel(client: client, groupId: group.id)
     }
 }

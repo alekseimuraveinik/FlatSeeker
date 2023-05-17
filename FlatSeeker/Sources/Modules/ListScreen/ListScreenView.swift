@@ -14,8 +14,16 @@ struct ListScreenView: View {
                         )
                         .padding(.top, 20)
                     
-                    Text(viewModel.text)
-                        .padding(.horizontal, 20)
+                    VStack(alignment: .leading) {
+                        if let district = viewModel.district, let price = viewModel.price {
+                            Text("Район: \(district)")
+                            Text("Цена: $\(price)")
+                        }
+                        
+                        Text(viewModel.text)
+                            .padding(.top, 20)
+                    }
+                    .padding(.horizontal, 20)
                     
                     Spacer()
                 }

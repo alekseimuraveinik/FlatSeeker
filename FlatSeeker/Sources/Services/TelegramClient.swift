@@ -47,14 +47,12 @@ class TelegramClient {
         }
         
         return pythonMessageGroups.compactMap { group in
-            String(group.text_message).flatMap { text in
-                Int(group.grouped_id).flatMap { groupId in
-                    MessageGroup(
-                        id: groupId,
-                        textMessage: text
-                    )
-                }
-            }
+            MessageGroup(
+                id: Int(group.grouped_id)!,
+                textMessage: String(group.text_message)!,
+                district: String(group.district)!,
+                price: String(group.price)!
+            )
         }
     }
     
