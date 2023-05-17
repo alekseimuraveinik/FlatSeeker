@@ -2,11 +2,10 @@ import Combine
 import Foundation
 import PythonRuntime
 import UIKit
-import SwiftUI
 
 class ListScreenViewModel: ObservableObject {
     @Published var text = ""
-    @Published var pageViewModel: PageViewModel
+    @Published var pageViewModel: PagerViewModel
     
     private var isLoading = false
     private var client: TelegramClient
@@ -15,7 +14,7 @@ class ListScreenViewModel: ObservableObject {
     
     init(client: TelegramClient) {
         self.client = client
-        self.pageViewModel = .init(client: client, imageIds: [])
+        self.pageViewModel = .init(client: client, groupId: 0)
     }
     
     func onAppear() {
@@ -58,9 +57,6 @@ class ListScreenViewModel: ObservableObject {
         
         let group = messageGroups[index]
         text = group.textMessage
-        withAnimation {
-            pageViewModel = PageViewModel(client: client, imageIds: group.imageIds)
-        }
-        
+        pageViewModel = PagerViewModel(client: client, groupId: group.id)
     }
 }

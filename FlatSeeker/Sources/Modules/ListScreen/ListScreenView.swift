@@ -7,13 +7,12 @@ struct ListScreenView: View {
         VStack(spacing: 20) {
             ScrollView(.vertical) {
                 VStack(alignment: .leading, spacing: 20) {
-                    PageView(viewModel: viewModel.pageViewModel)
+                    PagerView(viewModel: viewModel.pageViewModel)
                         .frame(
                             width: UIScreen.main.bounds.width,
                             height: UIScreen.main.bounds.height / 2
                         )
                         .padding(.top, 20)
-                        .transition(.opacity)
                     
                     Text(viewModel.text)
                         .padding(.horizontal, 20)

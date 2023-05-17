@@ -1,12 +1,12 @@
 import Combine
 import SwiftUI
 
-class PageViewModel: ObservableObject {
+class PagerViewModel: ObservableObject {
     @Published var uiImages = [UIImage]()
     private var cancellable: AnyCancellable?
     
-    init(client: TelegramClient, imageIds: [Int]) {
-        cancellable = client.loadImages(imageIds: imageIds)
+    init(client: TelegramClient, groupId: Int) {
+        cancellable = client.loadImages(groupId: groupId)
             .map(\.uiImages)
             .receive(on: RunLoop.main)
             .sink { [weak self] uiImages in
@@ -18,8 +18,8 @@ class PageViewModel: ObservableObject {
 }
 
 
-struct PageView: View {
-    @ObservedObject var viewModel: PageViewModel
+struct PagerView: View {
+    @ObservedObject var viewModel: PagerViewModel
     
     var body: some View {
         if viewModel.uiImages.isEmpty {
