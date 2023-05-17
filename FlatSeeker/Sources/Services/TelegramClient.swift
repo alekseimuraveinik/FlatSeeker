@@ -25,33 +25,16 @@ class TelegramClient {
     }
     
     func getMessages() -> [MessageGroup] {
-        let pythonMessages = client.get_messages()
-        let messages = Array(pythonMessages).filter { $0.grouped_id != Python.None }
+        let pythonMessageGroups = client.get_message_groups()
+        let messageGroups = Array(pythonMessageGroups)
         
-        let dict = Dictionary(grouping: messages) { message in
-            message.grouped_id
-        }
-        
-        let messageGroups = dict.compactMap { _, messages in
-            if messages.contains(where: { $0.message != "" }) {
-                return messages
+        return messageGroups.compactMap { group in
+            String(group.text_message).flatMap {
+                MessageGroup(
+                    message: $0,
+                    photos: group.images.data.reversed()
+                )
             }
-            return nil
-        }
-        
-        return messageGroups.compactMap { photoMessages in
-            guard let textMessage = photoMessages.first(where: { $0.message != "" }) else {
-                return nil
-            }
-            
-            let images = script.download_photos(photoMessages)
-            return String(textMessage.message)
-                .flatMap {
-                    MessageGroup(
-                        message: $0,
-                        photos: images.data.reversed()
-                    )
-                }
         }
     }
 }

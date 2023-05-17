@@ -4,6 +4,20 @@ import requests
 from itertools import groupby
 
 
+class ImagedMessageGroup:
+    def __init__(self, grouped_id, text_message, images):
+        self.grouped_id = grouped_id
+        self.text_message = text_message
+        self.images = images
+
+
+class MessageGroup:
+    def __init__(self, grouped_id, messages):
+        self.grouped_id = grouped_id
+        self.text_message = next((x.message for x in messages if x.message != ''), '')
+        self.messages = messages
+
+
 class Client:
     limit = 20
     least_recent_message_id = None
@@ -17,30 +31,43 @@ class Client:
             code_callback=lambda: requests.get(code_request_url).json()
         )
 
-    def get_messages(self):
+    def get_message_groups(self):
         if self.least_recent_message_id:
             messages = self.client.get_messages(self.chat_id, limit=self.limit, max_id=self.least_recent_message_id)
         else:
             messages = self.client.get_messages(self.chat_id, limit=self.limit)
         self.least_recent_message_id = messages[-1].id
 
-        messages = list(filter(lambda x: x.grouped_id != None, messages))
-        grouped = [list(result) for key, result in groupby(messages, key=lambda x: x.grouped_id)]
-        groups = grouped[0:-1]
+        messages = self.remaining_messages + list(filter(lambda x: x.grouped_id != None, messages))
+        message_groups = [
+            MessageGroup(key, list(result)) for key, result in groupby(messages, key=lambda x: x.grouped_id)
+        ]
+        groups = message_groups[0:-1]
 
-        messages = [item for sublist in groups for item in sublist]
+        self.remaining_messages = message_groups[-1].messages
 
-        messages_to_return = self.remaining_messages + messages
-        self.remaining_messages = grouped[-1]
-        return messages_to_return
+        actual_messages = [message for group in groups for message in group.messages]
+        images = download_images(actual_messages)
+        images_dict = {k: list(map(lambda x: x[1], v)) for k, v in groupby(images, key=lambda x: x[0])}
+
+        return list(
+            map(
+                lambda group: ImagedMessageGroup(
+                    group.grouped_id,
+                    group.text_message,
+                    images_dict[group.grouped_id]
+                ),
+                groups
+            )
+        )
 
 
-async def _download_photo(message):
-    return await message.download_media(file=bytes)
+async def _download_image(message):
+    return message.grouped_id, await message.download_media(file=bytes)
 
 
-def download_photos(messages):
-    tasks = [_download_photo(message) for message in messages]
+def download_images(messages):
+    tasks = [_download_image(message) for message in messages]
     loop = asyncio.get_event_loop()
     image_bytes_array = loop.run_until_complete(asyncio.gather(*tasks))
     return image_bytes_array
