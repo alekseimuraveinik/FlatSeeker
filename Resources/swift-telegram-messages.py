@@ -63,7 +63,7 @@ class MessageGroup:
         self.price = parse_price(self.text_message)
         if self.price != '' and int(self.price) == 0:
             self.price = ''
-        self.district = parse_district(self.text_message)
+        self.district = parse_district(self.text_message).capitalize()
 
 
 class Client:
