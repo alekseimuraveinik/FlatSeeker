@@ -20,4 +20,8 @@ extension PythonObject {
     var data: [Data] {
         Array(self).data
     }
+    
+    var bytes: PythonBytes {
+        PythonBytes(self)!
+    }
 }

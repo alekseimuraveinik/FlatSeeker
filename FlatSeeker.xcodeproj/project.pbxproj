@@ -69,6 +69,7 @@
 		DA0775FA2A1299CC00A7C36B /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				DAF105482A13FF8D0022303D /* MessageGroup.swift */,
 				DAF1054C2A1402FA0022303D /* TelegramClientConfig.swift */,
 				DA0775FB2A1299DA00A7C36B /* TelegramClient.swift */,
 			);
@@ -125,8 +126,6 @@
 				DAC7E5BD2A103E9000540B0C /* AppDelegate.swift */,
 				DA2555BD2A0EE1A3001D48DC /* FlatSeekerApp.swift */,
 				DA0775F92A1299C400A7C36B /* Modules */,
-				DA3092F22A14BD4000E1E1B1 /* Views */,
-				DAF105472A13FF810022303D /* Model */,
 				DA0775FA2A1299CC00A7C36B /* Services */,
 				DA0776022A129AF800A7C36B /* Utils */,
 			);
@@ -136,18 +135,11 @@
 		DA2555CE2A0EE227001D48DC /* ListScreen */ = {
 			isa = PBXGroup;
 			children = (
-				DA2555CF2A0EE23C001D48DC /* ListScreenView.swift */,
 				DA2555D12A0EE24A001D48DC /* ListScreenViewModel.swift */,
-			);
-			path = ListScreen;
-			sourceTree = "<group>";
-		};
-		DA3092F22A14BD4000E1E1B1 /* Views */ = {
-			isa = PBXGroup;
-			children = (
+				DA2555CF2A0EE23C001D48DC /* ListScreenView.swift */,
 				DA3092F32A14BD5B00E1E1B1 /* PageView.swift */,
 			);
-			path = Views;
+			path = ListScreen;
 			sourceTree = "<group>";
 		};
 		DA82C5E02A0FDDF900E4E228 /* Resources */ = {
@@ -167,14 +159,6 @@
 				DAF1054A2A1401E20022303D /* Data+UIImage.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		DAF105472A13FF810022303D /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				DAF105482A13FF8D0022303D /* MessageGroup.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

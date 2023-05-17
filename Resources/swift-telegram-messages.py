@@ -4,13 +4,6 @@ import requests
 from itertools import groupby
 
 
-class ImagedMessageGroup:
-    def __init__(self, grouped_id, text_message, images):
-        self.grouped_id = grouped_id
-        self.text_message = text_message
-        self.images = images
-
-
 class MessageGroup:
     def __init__(self, grouped_id, messages):
         self.grouped_id = grouped_id
@@ -39,31 +32,16 @@ class Client:
         self.least_recent_message_id = messages[-1].id
 
         messages = self.remaining_messages + list(filter(lambda x: x.grouped_id != None, messages))
-        message_groups = [
-            MessageGroup(key, list(result)) for key, result in groupby(messages, key=lambda x: x.grouped_id)
-        ]
-        groups = message_groups[0:-1]
+        grouped_messages = groupby(messages, key=lambda x: x.grouped_id)
+        message_groups = [MessageGroup(key, list(result)) for key, result in grouped_messages]
+        message_groups = list(filter(lambda group: group.text_message != '', message_groups))
 
         self.remaining_messages = message_groups[-1].messages
-
-        actual_messages = [message for group in groups for message in group.messages]
-        images = download_images(actual_messages)
-        images_dict = {k: list(map(lambda x: x[1], v)) for k, v in groupby(images, key=lambda x: x[0])}
-
-        return list(
-            map(
-                lambda group: ImagedMessageGroup(
-                    group.grouped_id,
-                    group.text_message,
-                    images_dict[group.grouped_id]
-                ),
-                groups
-            )
-        )
+        return message_groups[0:-1]
 
 
 async def _download_image(message):
-    return message.grouped_id, await message.download_media(file=bytes)
+    return await message.download_media(file=bytes)
 
 
 def download_images(messages):
@@ -71,6 +49,10 @@ def download_images(messages):
     loop = asyncio.get_event_loop()
     image_bytes_array = loop.run_until_complete(asyncio.gather(*tasks))
     return image_bytes_array
+
+
+def download_image(message):
+    return message.download_media(file=bytes)
 
 
 def main():
