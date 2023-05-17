@@ -61,6 +61,8 @@ struct ListView: View {
                             ListItemView(viewModel: listItemViewModel)
                         }
                     }
+                    
+                    Color.clear.onAppear(perform: viewModel.onAppear)
                 }
                 .padding(.horizontal, 20)
                 .padding(.vertical, 20)
