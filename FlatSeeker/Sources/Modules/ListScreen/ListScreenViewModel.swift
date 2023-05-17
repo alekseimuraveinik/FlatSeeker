@@ -28,7 +28,7 @@ class ListScreenViewModel: ObservableObject {
     func onNext() {
         Task {
             index += 1
-            if index > messageGroups.count - 1 {
+            if index > messageGroups.count - 2 {
                 await fetchMessages()
             } else {
                 await displayMessages()
@@ -37,7 +37,7 @@ class ListScreenViewModel: ObservableObject {
         
     }
     
-    private func fetchMessages() async {
+    private func fetchMessages(preventive: Bool = false) async {
         if isLoading {
             return
         }
@@ -47,7 +47,9 @@ class ListScreenViewModel: ObservableObject {
         await MainActor.run {
             self.messageGroups = self.messageGroups + messageGroups
             isLoading = false
-            displayMessages()
+            if !preventive {
+                displayMessages()
+            }
         }
     }
     
@@ -64,6 +66,19 @@ class ListScreenViewModel: ObservableObject {
         text = group.textMessage
         district = group.district
         price = group.price
-        pageViewModel = PagerViewModel(client: client, groupId: group.id)
+        
+        let loadingFinished = { [weak self, index, messageGroups] in
+            if index > messageGroups.count - 2 {
+                Task {
+                    await self?.fetchMessages(preventive: true)
+                }
+            }
+        }
+        
+        pageViewModel = PagerViewModel(
+            client: client,
+            groupId: group.id,
+            loadingFinished: loadingFinished
+        )
     }
 }

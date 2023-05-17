@@ -15,8 +15,11 @@ struct ListScreenView: View {
                         .padding(.top, 20)
                     
                     VStack(alignment: .leading) {
-                        if let district = viewModel.district, let price = viewModel.price {
+                        if let district = viewModel.district {
                             Text("Район: \(district)")
+                        }
+                        
+                        if let price = viewModel.price {
                             Text("Цена: $\(price)")
                         }
                         

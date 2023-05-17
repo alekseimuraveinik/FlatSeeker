@@ -1,22 +1,4 @@
-import Combine
 import SwiftUI
-
-class PagerViewModel: ObservableObject {
-    @Published var uiImages = [UIImage]()
-    private var cancellable: AnyCancellable?
-    
-    init(client: TelegramClient, groupId: Int) {
-        cancellable = client.loadImages(groupId: groupId)
-            .map(\.uiImages)
-            .receive(on: RunLoop.main)
-            .sink { [weak self] uiImages in
-                withAnimation {
-                    self?.uiImages = uiImages
-                }
-            }
-    }
-}
-
 
 struct PagerView: View {
     @ObservedObject var viewModel: PagerViewModel
@@ -31,6 +13,11 @@ struct PagerView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .clipped()
+                        .overlay {
+                            if viewModel.uiImages.count == 1 {
+                                ProgressView()
+                            }
+                        }
                 }
             }
             .tabViewStyle(PageTabViewStyle())

@@ -114,8 +114,8 @@ def download_images(messages):
     return image_bytes_array
 
 
-def download_image(message):
-    return message.download_media(file=bytes)
+def download_small_image(message):
+    return message.download_media(file=bytes, thumb=message.photo.sizes[1])
 
 
 def main():

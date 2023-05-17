@@ -47,13 +47,29 @@ class TelegramClient {
         }
         
         return pythonMessageGroups.compactMap { group in
-            MessageGroup(
+            let district = String(group.district)!
+            let price = String(group.price)!
+            return MessageGroup(
                 id: Int(group.grouped_id)!,
                 textMessage: String(group.text_message)!,
-                district: String(group.district)!,
-                price: String(group.price)!
+                district: district.isEmpty ? nil : district,
+                price: price.isEmpty ? nil : price
             )
         }
+    }
+    
+    func loadFirstImage(groupId: Int) -> AnyPublisher<[Data], Never> {
+        guard messageGroups[groupId] != nil, let first = messageGroups[groupId]?[-1] else {
+            return Just([]).eraseToAnyPublisher()
+        }
+        
+        return Future { [script] promise in
+            DispatchQueue.global().async {
+                let imageData = script.download_small_image(first).bytes.data
+                promise(.success([imageData]))
+            }
+        }
+        .eraseToAnyPublisher()
     }
     
     func loadImages(groupId: Int) -> AnyPublisher<[Data], Never> {
