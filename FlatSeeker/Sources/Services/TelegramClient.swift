@@ -84,18 +84,20 @@ class TelegramClient {
             .eraseToAnyPublisher()
     }
     
-    func loadBestImages(groupId: Int) async {
-        let (id, imageData) = await interactor.execute { python, getValue, asyncCall in
-            let client = getValue(.client)
-            let group = client.download_images(groupId)
-            let id = Int(group.grouped_id)!
-            let images = Array(group.images)
-            return (id, Array(images.compactMap(\.bytes?.data).reversed()))
-        }
-        imagesAccessQueue.async { [images] in
-            var mutable = images.value
-            mutable[id] = imageData
-            images.send(mutable)
+    func loadBestImages(groupId: Int) {
+        Task {
+            let (id, imageData) = await interactor.execute { python, getValue, asyncCall in
+                let client = getValue(.client)
+                let group = client.download_images(groupId)
+                let id = Int(group.grouped_id)!
+                let images = Array(group.images)
+                return (id, Array(images.compactMap(\.bytes?.data).reversed()))
+            }
+            imagesAccessQueue.async { [images] in
+                var mutable = images.value
+                mutable[id] = imageData
+                images.send(mutable)
+            }
         }
     }
 }

@@ -24,9 +24,7 @@ class CarouselViewModel: ObservableObject {
     func loadBestImages() {
         guard !bestImagesLoaded else { return }
         bestImagesLoaded = true
-        Task {
-            await client.loadBestImages(groupId: groupId)
-        }
+        client.loadBestImages(groupId: groupId)
     }
 }
 
