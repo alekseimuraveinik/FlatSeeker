@@ -17,6 +17,8 @@
 		DA2555C52A0EE1A4001D48DC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA2555C42A0EE1A4001D48DC /* Preview Assets.xcassets */; };
 		DA2555D02A0EE23C001D48DC /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2555CF2A0EE23C001D48DC /* DetailsView.swift */; };
 		DA3DA4312A16410F008F0C5A /* PythonInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3DA4302A16410F008F0C5A /* PythonInteractor.swift */; };
+		DA3DA4342A168AEC008F0C5A /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3DA4332A168AEC008F0C5A /* CarouselView.swift */; };
+		DA3DA4362A168B37008F0C5A /* ListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3DA4352A168B37008F0C5A /* ListItemView.swift */; };
 		DA6170212A152AFF00F616F0 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6170202A152AFF00F616F0 /* ListView.swift */; };
 		DA82CDB62A0FDE0C00E4E228 /* python-stdlib in Resources */ = {isa = PBXBuildFile; fileRef = DA82CDB52A0FDE0C00E4E228 /* python-stdlib */; };
 		DAC7E5BE2A103E9000540B0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC7E5BD2A103E9000540B0C /* AppDelegate.swift */; };
@@ -36,6 +38,8 @@
 		DA2555C42A0EE1A4001D48DC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DA2555CF2A0EE23C001D48DC /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		DA3DA4302A16410F008F0C5A /* PythonInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PythonInteractor.swift; sourceTree = "<group>"; };
+		DA3DA4332A168AEC008F0C5A /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
+		DA3DA4352A168B37008F0C5A /* ListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemView.swift; sourceTree = "<group>"; };
 		DA6170202A152AFF00F616F0 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		DA82CDB52A0FDE0C00E4E228 /* python-stdlib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "python-stdlib"; sourceTree = "<group>"; };
 		DAC7E5BD2A103E9000540B0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +65,7 @@
 			children = (
 				DA61701F2A152AF700F616F0 /* List */,
 				DA2555CE2A0EE227001D48DC /* Details */,
+				DA3DA4322A168ADE008F0C5A /* Carousel */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -139,10 +144,19 @@
 			path = Details;
 			sourceTree = "<group>";
 		};
+		DA3DA4322A168ADE008F0C5A /* Carousel */ = {
+			isa = PBXGroup;
+			children = (
+				DA3DA4332A168AEC008F0C5A /* CarouselView.swift */,
+			);
+			path = Carousel;
+			sourceTree = "<group>";
+		};
 		DA61701F2A152AF700F616F0 /* List */ = {
 			isa = PBXGroup;
 			children = (
 				DA6170202A152AFF00F616F0 /* ListView.swift */,
+				DA3DA4352A168B37008F0C5A /* ListItemView.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -245,8 +259,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA3DA4362A168B37008F0C5A /* ListItemView.swift in Sources */,
 				DAC7E5BE2A103E9000540B0C /* AppDelegate.swift in Sources */,
 				DAF105452A13FDAA0022303D /* PythonBytes+Data.swift in Sources */,
+				DA3DA4342A168AEC008F0C5A /* CarouselView.swift in Sources */,
 				DA0776042A129B0600A7C36B /* Measure.swift in Sources */,
 				DA2555D02A0EE23C001D48DC /* DetailsView.swift in Sources */,
 				DAF1054B2A1401E20022303D /* Data+UIImage.swift in Sources */,

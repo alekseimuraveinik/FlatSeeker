@@ -74,6 +74,7 @@ class TelegramClient {
     func loadImages(groupId: Int) -> AnyPublisher<[Data], Never> {
         imagesDict
             .compactMap { $0[groupId] }
+            .removeDuplicates()
             .eraseToAnyPublisher()
     }
 }

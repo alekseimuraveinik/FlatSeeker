@@ -77,8 +77,7 @@ class ImageGroup:
 
 
 class Client:
-    limit = 10
-    # least_recent_message_id = 778433
+    limit = 5
     least_recent_message_id = None
     remaining_messages = []
 
@@ -167,7 +166,7 @@ def main():
         try:
             message_groups = client.get_message_groups()
             for group in message_groups:
-                print(group.grouped_id, group.messages[0].id, group.messages[-1].id, len(group.messages), group.district, group.price)
+                print(group.district, group.price)
             input()
         except KeyboardInterrupt:
             client.client.disconnect()
