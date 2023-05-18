@@ -16,22 +16,7 @@ class ListViewModel: ObservableObject {
     
     private func fetchMessages() async {
         let messageGroups = await client.getMessages()
-        guard !messageGroups.isEmpty else { return }
-        await MainActor.run {
-            self.messageGroups = self.messageGroups + messageGroups.map { group in
-                let imagesViewModel = ListItemImagesViewModel(
-                    thumbnail: UIImage(data: group.thumbnail),
-                    client: client,
-                    groupId: group.id
-                )
-                return (group, imagesViewModel)
-            }
-            displayMessages()
-        }
-    }
-    
-    @MainActor
-    private func displayMessages() {
+        
         if messageGroups.isEmpty {
             Task {
                 await fetchMessages()
@@ -39,7 +24,19 @@ class ListViewModel: ObservableObject {
             return
         }
         
-        self.messageGroups = messageGroups
+        await displayMessages(messageGroups: messageGroups)
+    }
+    
+    @MainActor
+    private func displayMessages(messageGroups: [MessageGroup]) {
+        self.messageGroups = self.messageGroups + messageGroups.map { group in
+            let imagesViewModel = ListItemImagesViewModel(
+                thumbnail: UIImage(data: group.thumbnail),
+                client: client,
+                groupId: group.id
+            )
+            return (group, imagesViewModel)
+        }
     }
 }
 
@@ -70,13 +67,6 @@ struct ListView: View {
         }
         .onAppear(perform: viewModel.onAppear)
     }
-}
-
-protocol ViewModel {
-    var text: String { get }
-    var district: String? { get }
-    var price: String? { get }
-    var imagesViewModel: ListItemImagesViewModel { get }
 }
 
 struct ListItemViewModel {

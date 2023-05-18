@@ -36,7 +36,7 @@ class PythonInteractor<StoredObjectKey: Hashable> {
         _ action: @escaping (PythonInterface, GetStoredValue, (@escaping () -> Void) -> Void) -> T
     ) async -> T {
         await withUnsafeContinuation { continuation in
-            serialQueue.async { [unowned self] in
+            serialQueue.async {
                 let result = action(
                     Python,
                     { self.storage[$0]! },
@@ -56,7 +56,7 @@ class PythonInteractor<StoredObjectKey: Hashable> {
         _ action: @escaping (PythonObject, GetStoredValue) -> T
     ) async -> T {
         await withUnsafeContinuation { continuation in
-            serialQueue.async { [unowned self] in
+            serialQueue.async {
                 let result = action(object, { self.storage[$0]! })
                 continuation.resume(with: .success(result))
             }

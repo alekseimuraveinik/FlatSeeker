@@ -77,10 +77,9 @@ class ImageGroup:
 
 
 class Client:
-    limit = 50
+    limit = 10
     least_recent_message_id = None
     remaining_messages = []
-    message_groups = dict()
 
     def __init__(self, session_path, api_id, api_hash, phone_number, code_request_url, chat_id):
         self.chat_id = chat_id
@@ -97,7 +96,13 @@ class Client:
             messages = self.client.get_messages(self.chat_id, limit=self.limit)
         self.least_recent_message_id = messages[-1].id
 
-        messages = self.remaining_messages + list(filter(lambda x: x.grouped_id is not None and x.photo is not None, messages))
+        messages = self.remaining_messages + list(
+            filter(
+                lambda x: x.grouped_id is not None and x.photo is not None,
+                messages
+            )
+        )
+
         grouped_messages = groupby(messages, key=lambda x: x.grouped_id)
         message_groups = [MessageGroup(key, list(result)) for key, result in grouped_messages]
         message_groups = list(
@@ -111,20 +116,18 @@ class Client:
             return []
 
         self.remaining_messages = message_groups[-1].messages
-        message_groups_to_return = message_groups[0:-1]
-        for group in message_groups_to_return:
-            self.message_groups[group.grouped_id] = group
-
-        return message_groups_to_return
+        return message_groups[0:-1]
 
 
-async def _download_image(message):
+async def _download_image(message, best):
+    if best:
+        return message.grouped_id, await message.download_media(file=bytes)
     return message.grouped_id, await message.download_media(file=bytes, thumb=message.photo.sizes[1])
 
 
-def download_images(message_groups):
+def download_images(message_groups, best=False):
     messages = [message for group in message_groups for message in group.messages]
-    tasks = [_download_image(message) for message in messages]
+    tasks = [_download_image(message, best) for message in messages]
     loop = asyncio.get_event_loop()
     image_bytes_array = loop.run_until_complete(asyncio.gather(*tasks))
     grouped_messages = groupby(image_bytes_array, key=lambda x: x[0])
@@ -157,10 +160,12 @@ def main():
     while True:
         try:
             message_groups = client.get_message_groups()
+            print(list(map(lambda x: len(x.messages), message_groups)))
             for group in message_groups:
-                print(group.price, group.district)
+                print(group.text_message.message, '\n')
             input()
         except KeyboardInterrupt:
+            client.client.disconnect()
             break
 
 
