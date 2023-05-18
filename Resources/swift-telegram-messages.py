@@ -78,6 +78,7 @@ class ImageGroup:
 
 class Client:
     limit = 10
+    # least_recent_message_id = 778433
     least_recent_message_id = None
     remaining_messages = []
 
@@ -96,27 +97,32 @@ class Client:
             messages = self.client.get_messages(self.chat_id, limit=self.limit)
         self.least_recent_message_id = messages[-1].id
 
-        messages = self.remaining_messages + list(
+        messages = list(
             filter(
                 lambda x: x.grouped_id is not None and x.photo is not None,
                 messages
             )
         )
 
+        messages = self.remaining_messages + messages
+
         grouped_messages = groupby(messages, key=lambda x: x.grouped_id)
         message_groups = [MessageGroup(key, list(result)) for key, result in grouped_messages]
+
+        if len(message_groups) < 2:
+            self.remaining_messages = messages
+            return []
+
+        self.remaining_messages = message_groups[-1].messages
+
+        message_groups = message_groups[0:-1]
         message_groups = list(
             filter(
                 lambda group: group.text_message is not None and group.text_message.message != '',
                 message_groups
             )
         )
-
-        if len(message_groups) == 0:
-            return []
-
-        self.remaining_messages = message_groups[-1].messages
-        return message_groups[0:-1]
+        return message_groups
 
 
 async def _download_image(message, best):
@@ -160,9 +166,8 @@ def main():
     while True:
         try:
             message_groups = client.get_message_groups()
-            print(list(map(lambda x: len(x.messages), message_groups)))
             for group in message_groups:
-                print(group.text_message.message, '\n')
+                print(group.grouped_id, group.messages[0].id, group.messages[-1].id, len(group.messages), group.district, group.price)
             input()
         except KeyboardInterrupt:
             client.client.disconnect()
