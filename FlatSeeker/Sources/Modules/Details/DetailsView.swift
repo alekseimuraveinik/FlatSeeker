@@ -13,5 +13,6 @@ struct DetailsView: View {
             .padding(.horizontal, 20)
             .padding(.bottom, 20)
         }
+        .onAppear(perform: viewModel.loadBestImages)
     }
 }

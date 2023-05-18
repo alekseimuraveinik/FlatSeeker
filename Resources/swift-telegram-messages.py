@@ -80,6 +80,7 @@ class Client:
     limit = 5
     least_recent_message_id = None
     remaining_messages = []
+    message_groups = {}
 
     def __init__(self, session_path, api_id, api_hash, phone_number, code_request_url, chat_id):
         self.chat_id = chat_id
@@ -121,7 +122,15 @@ class Client:
                 message_groups
             )
         )
+
+        for group in message_groups:
+            self.message_groups[group.grouped_id] = group
+
         return message_groups
+
+    def download_images(self, grouped_id):
+        message_group = self.message_groups[grouped_id]
+        return download_images([message_group], True)
 
 
 async def _download_image(message, best):

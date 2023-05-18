@@ -14,6 +14,10 @@ struct ListItemViewModel: Identifiable {
         price = group.price
         self.carouselViewModel = carouselViewModel
     }
+    
+    func loadBestImages() {
+        carouselViewModel.loadBestImages()
+    }
 }
 
 struct ListItemView: View {
