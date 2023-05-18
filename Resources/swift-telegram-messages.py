@@ -4,6 +4,7 @@ import requests
 from itertools import groupby
 import re
 from telethon import utils
+import aiohttp
 
 
 districts = [
@@ -173,12 +174,69 @@ def main():
     while True:
         try:
             message_groups = client.get_message_groups()
-            for group in message_groups:
-                print(group.district, group.price)
-            input()
+            if len(message_groups) != 0:
+                messages = message_groups[0].messages
+                loop = asyncio.get_event_loop()
+                urls = loop.run_until_complete(get_image_urls(messages))
+                for url in urls:
+                    print(url)
+                input()
         except KeyboardInterrupt:
             client.client.disconnect()
             break
+
+
+photo_pattern = re.compile(r"background-image:url\('(.*?\.jpg)'\)")
+headers = {
+    "Host": "t.me",
+    "Connection": "keep-alive",
+    "Cache-Control": "max-age=0",
+    "sec-ch-ua": '"Google Chrome";v="113", "Chromium";v="113", "Not-A.Brand";v="24"',
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "macOS",
+    "Upgrade-Insecure-Requests": "1",
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+    "Sec-Fetch-Site": "none",
+    "Sec-Fetch-Mode": "navigate",
+    "Sec-Fetch-User": "?1",
+    "Sec-Fetch-Dest": "document",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8",
+    "Cookie": "stel_ssid=5676ae759e7c041e13_12211778403092897585; stel_on=1; stel_dt=-240"
+}
+
+
+async def get_image_urls(messages):
+    urls = list(
+        map(
+            lambda message: 'https://t.me/tbilisi_arendaa/' + str(message.id) + '?embed=1&mode=tme&single=1',
+            messages
+        )
+    )
+    async with aiohttp.ClientSession() as session:
+        session.headers
+        urls = await fetch_all(session, urls)
+        return urls
+
+
+async def fetch_all(s, urls):
+    tasks = []
+    for url in urls:
+        task = asyncio.create_task(fetch(s, url))
+        tasks.append(task)
+    res = await asyncio.gather(*tasks)
+    return res
+
+
+async def fetch(s, url):
+    async with s.get(url, headers=headers) as r:
+        if r.status != 200:
+            r.raise_for_status()
+        text = await r.text()
+        matches = re.search(r"background-image:url\('(https://cdn4\S+?\.jpg)", text)
+        text = matches.group(1)
+        return text
 
 
 if __name__ == "__main__":
