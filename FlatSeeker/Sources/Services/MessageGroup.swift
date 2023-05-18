@@ -6,4 +6,5 @@ struct MessageGroup {
     let district: String?
     let price: String?
     let thumbnail: Data
+    let images: [URL]
 }

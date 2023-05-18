@@ -45,60 +45,37 @@ class TelegramClient {
         await interactor.execute { [images, imagesAccessQueue] python, getValue, asyncCall in
             let script = getValue(.script)
             let pythonMessageGroups = getValue(.client).get_message_groups()
-            asyncCall {
-                let imageGroups = script.download_images(pythonMessageGroups)
-                let entries = imageGroups.map { group in
-                    let id = Int(group.grouped_id)!
-                    let images = Array(group.images)
-                    return (id, Array(images.compactMap(\.bytes?.data).reversed()))
-                }
-                imagesAccessQueue.async {
-                    var mutable = images.value
-                    for entry in entries {
-                        mutable[entry.0] = entry.1
-                    }
-                    images.send(mutable)
-                }
-            }
-//            let thumbnails = getValue(.script).download_small_images(pythonMessageGroups.map { $0.text_message })
+//            asyncCall {
+//                let imageGroups = script.download_images(pythonMessageGroups)
+//                let entries = imageGroups.map { group in
+//                    let id = Int(group.grouped_id)!
+//                    let images = Array(group.images)
+//                    return (id, Array(images.compactMap(\.bytes?.data).reversed()))
+//                }
+//                imagesAccessQueue.async {
+//                    var mutable = images.value
+//                    for entry in entries {
+//                        mutable[entry.0] = entry.1
+//                    }
+//                    images.send(mutable)
+//                }
+//            }
             return pythonMessageGroups
                 .enumerated()
                 .map { index, group in
                     let district = String(group.district)!
                     let price = String(group.price)!
                     let thumbnail = group.thumbnail.bytes?.data ?? Data()
+                    let images = Array(group.images).map { URL(string: String($0)!)! }
                     return MessageGroup(
                         id: Int(group.grouped_id)!,
                         textMessage: String(group.text_message.message)!,
                         district: district.isEmpty ? nil : district,
                         price: price.isEmpty ? nil : price,
-                        thumbnail: thumbnail
+                        thumbnail: thumbnail,
+                        images: images.reversed()
                     )
                 }
-        }
-    }
-    
-    func loadImages(groupId: Int) -> AnyPublisher<[Data], Never> {
-        images
-            .compactMap { $0[groupId] }
-            .removeDuplicates()
-            .eraseToAnyPublisher()
-    }
-    
-    func loadBestImages(groupId: Int) {
-        Task {
-            let (id, imageData) = await interactor.execute { python, getValue, asyncCall in
-                let client = getValue(.client)
-                let group = client.download_images(groupId)
-                let id = Int(group.grouped_id)!
-                let images = Array(group.images)
-                return (id, Array(images.compactMap(\.bytes?.data).reversed()))
-            }
-            imagesAccessQueue.async { [images] in
-                var mutable = images.value
-                mutable[id] = imageData
-                images.send(mutable)
-            }
         }
     }
 }

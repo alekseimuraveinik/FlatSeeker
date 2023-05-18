@@ -58,10 +58,11 @@ def parse_district(text):
 
 
 class MessageGroup:
-    def __init__(self, grouped_id, messages):
+    def __init__(self, grouped_id, zipped):
+        self.messages = list(map(lambda x: x[0], zipped.copy()))
+        self.images = list(map(lambda x: x[1], zipped))
         self.grouped_id = grouped_id
-        self.messages = messages
-        self.text_message = next((x for x in messages if x.message != ''), None)
+        self.text_message = next((x for x in self.messages if x.message != ''), None)
         if self.text_message:
             text = self.text_message.message
             self.thumbnail = utils.stripped_photo_to_jpg(self.text_message.photo.sizes[0].bytes)
@@ -71,6 +72,7 @@ class MessageGroup:
         if self.price != '' and int(self.price) == 0:
             self.price = ''
         self.district = parse_district(text).capitalize()
+
 
 
 class ImageGroup:
@@ -83,7 +85,6 @@ class Client:
     limit = 5
     least_recent_message_id = None
     remaining_messages = []
-    message_groups = {}
 
     def __init__(self, session_path, api_id, api_hash, phone_number, code_request_url, chat_id):
         self.chat_id = chat_id
@@ -109,8 +110,17 @@ class Client:
 
         messages = self.remaining_messages + messages
 
-        grouped_messages = groupby(messages, key=lambda x: x.grouped_id)
-        message_groups = [MessageGroup(key, list(result)) for key, result in grouped_messages]
+        loop = asyncio.get_event_loop()
+        images = loop.run_until_complete(get_image_urls(messages))
+
+        zipped = list(zip(messages, images))
+        grouped_messages = groupby(zipped, key=lambda x: x[0].grouped_id)
+        message_groups = [
+            MessageGroup(
+                key,
+                list(result)
+            ) for key, result in grouped_messages
+        ]
 
         if len(message_groups) < 2:
             self.remaining_messages = messages
@@ -126,37 +136,7 @@ class Client:
             )
         )
 
-        for group in message_groups:
-            self.message_groups[group.grouped_id] = group
-
         return message_groups
-
-    def download_images(self, grouped_id):
-        group = self.message_groups[grouped_id]
-        messages = [message for message in group.messages]
-        tasks = [_download_plain_image(message) for message in messages]
-        loop = asyncio.get_event_loop()
-        image_bytes_array = loop.run_until_complete(asyncio.gather(*tasks))
-        return ImageGroup(grouped_id, image_bytes_array)
-
-
-async def _download_plain_image(message):
-    return await message.download_media(file=bytes)
-
-
-async def _download_image(message, best):
-    if best:
-        return message.grouped_id, await message.download_media(file=bytes)
-    return message.grouped_id, await message.download_media(file=bytes, thumb=message.photo.sizes[1])
-
-
-def download_images(message_groups, best=False):
-    messages = [message for group in message_groups for message in group.messages]
-    tasks = [_download_image(message, best) for message in messages]
-    loop = asyncio.get_event_loop()
-    image_bytes_array = loop.run_until_complete(asyncio.gather(*tasks))
-    grouped_messages = groupby(image_bytes_array, key=lambda x: x[0])
-    return [ImageGroup(grouped_id, list(map(lambda x: x[1], images))) for grouped_id, images in grouped_messages]
 
 
 def main():
@@ -175,12 +155,10 @@ def main():
         try:
             message_groups = client.get_message_groups()
             if len(message_groups) != 0:
-                messages = message_groups[0].messages
-                loop = asyncio.get_event_loop()
-                urls = loop.run_until_complete(get_image_urls(messages))
+                urls = message_groups[0].images
                 for url in urls:
                     print(url)
-                input()
+            input()
         except KeyboardInterrupt:
             client.client.disconnect()
             break
@@ -207,26 +185,19 @@ headers = {
 }
 
 
+image_url_template = 'https://t.me/tbilisi_arendaa/{}?embed=1&mode=tme&single=1'
+
+
 async def get_image_urls(messages):
     urls = list(
         map(
-            lambda message: 'https://t.me/tbilisi_arendaa/' + str(message.id) + '?embed=1&mode=tme&single=1',
+            lambda message: image_url_template.format(str(message.id)),
             messages
         )
     )
     async with aiohttp.ClientSession() as session:
-        session.headers
-        urls = await fetch_all(session, urls)
-        return urls
-
-
-async def fetch_all(s, urls):
-    tasks = []
-    for url in urls:
-        task = asyncio.create_task(fetch(s, url))
-        tasks.append(task)
-    res = await asyncio.gather(*tasks)
-    return res
+        tasks = [fetch(session, url) for url in urls]
+        return await asyncio.gather(*tasks)
 
 
 async def fetch(s, url):

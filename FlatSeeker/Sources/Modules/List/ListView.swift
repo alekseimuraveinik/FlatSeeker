@@ -32,8 +32,7 @@ class ListViewModel: ObservableObject {
         self.items = self.items + messageGroups.map { group in
             let carouselViewModel = CarouselViewModel(
                 thumbnail: UIImage(data: group.thumbnail),
-                client: client,
-                groupId: group.id
+                images: group.images
             )
             return ListItemViewModel(group: group, carouselViewModel: carouselViewModel)
         }
