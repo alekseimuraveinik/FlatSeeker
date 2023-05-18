@@ -3,6 +3,7 @@ import asyncio
 import requests
 from itertools import groupby
 import re
+from telethon import utils
 
 
 districts = [
@@ -62,6 +63,7 @@ class MessageGroup:
         self.text_message = next((x for x in messages if x.message != ''), None)
         if self.text_message:
             text = self.text_message.message
+            self.thumbnail = utils.stripped_photo_to_jpg(self.text_message.photo.sizes[0].bytes)
         else:
             text = ''
         self.price = parse_price(text)
@@ -154,17 +156,6 @@ def download_images(message_groups, best=False):
     image_bytes_array = loop.run_until_complete(asyncio.gather(*tasks))
     grouped_messages = groupby(image_bytes_array, key=lambda x: x[0])
     return [ImageGroup(grouped_id, list(map(lambda x: x[1], images))) for grouped_id, images in grouped_messages]
-
-
-async def _download_small_image(message):
-    return await message.download_media(file=bytes, thumb=0)
-
-
-def download_small_images(messages):
-    tasks = [_download_small_image(message) for message in messages]
-    loop = asyncio.get_event_loop()
-    image_bytes_array = loop.run_until_complete(asyncio.gather(*tasks))
-    return image_bytes_array
 
 
 def main():

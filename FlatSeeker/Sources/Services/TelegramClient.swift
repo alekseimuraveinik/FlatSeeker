@@ -60,18 +60,19 @@ class TelegramClient {
                     images.send(mutable)
                 }
             }
-            let thumbnails = getValue(.script).download_small_images(pythonMessageGroups.map { $0.text_message })
+//            let thumbnails = getValue(.script).download_small_images(pythonMessageGroups.map { $0.text_message })
             return pythonMessageGroups
                 .enumerated()
                 .map { index, group in
                     let district = String(group.district)!
                     let price = String(group.price)!
+                    let thumbnail = group.thumbnail.bytes?.data ?? Data()
                     return MessageGroup(
                         id: Int(group.grouped_id)!,
                         textMessage: String(group.text_message.message)!,
                         district: district.isEmpty ? nil : district,
                         price: price.isEmpty ? nil : price,
-                        thumbnail: thumbnails[index].bytes?.data ?? Data()
+                        thumbnail: thumbnail
                     )
                 }
         }
