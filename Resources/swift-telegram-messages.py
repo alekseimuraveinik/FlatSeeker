@@ -82,7 +82,7 @@ class ImageGroup:
 
 
 class Client:
-    limit = 5
+    limit = 100
     least_recent_message_id = None
     remaining_messages = []
 

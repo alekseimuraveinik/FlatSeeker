@@ -1,7 +1,7 @@
 import SwiftUI
 
 class ListViewModel: ObservableObject {
-    @Published var items = [ListItemViewModel]()
+    @Published var items = [(Int, ListItemViewModel)]()
     private let client: TelegramClient
     
     init(client: TelegramClient) {
@@ -29,12 +29,13 @@ class ListViewModel: ObservableObject {
     
     @MainActor
     private func displayMessages(messageGroups: [MessageGroup]) {
-        self.items = self.items + messageGroups.map { group in
+        let count = self.items.count
+        self.items = self.items + messageGroups.enumerated().map { index, group in
             let carouselViewModel = CarouselViewModel(
                 thumbnail: UIImage(data: group.thumbnail),
                 images: group.images
             )
-            return ListItemViewModel(group: group, carouselViewModel: carouselViewModel)
+            return (index + count, ListItemViewModel(group: group, carouselViewModel: carouselViewModel))
         }
     }
 }
@@ -46,7 +47,7 @@ struct ListView: View {
         NavigationView {
             ScrollView {
                 LazyVStack(spacing: 40) {
-                    ForEach(viewModel.items) { itemViewModel in
+                    ForEach(viewModel.items, id: \.0) { index, itemViewModel in
                         ListItemView(viewModel: itemViewModel)
                             .overlay(alignment: .bottomTrailing) {
                                 NavigationLink {
@@ -55,14 +56,32 @@ struct ListView: View {
                                     Text("Подробнее")
                                 }
                             }
+                            .onAppear {
+                                if viewModel.items.count - index == 10 {
+                                    viewModel.onAppear()
+                                }
+                            }
                     }
-                    
-                    Color.clear.onAppear(perform: viewModel.onAppear)
                 }
                 .padding(.horizontal, 20)
                 .padding(.vertical, 20)
             }
         }
         .onAppear(perform: viewModel.onAppear)
+    }
+}
+
+extension View {
+    /// Applies the given transform if the given condition evaluates to `true`.
+    /// - Parameters:
+    ///   - condition: The condition to evaluate.
+    ///   - transform: The transform to apply to the source `View`.
+    /// - Returns: Either the original `View` or the modified `View` if the condition is `true`.
+    @ViewBuilder func `if`<Content: View>(_ condition: Bool, transform: (Self) -> Content) -> some View {
+        if condition {
+            transform(self)
+        } else {
+            self
+        }
     }
 }

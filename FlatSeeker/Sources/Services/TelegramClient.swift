@@ -42,24 +42,9 @@ class TelegramClient {
     }
     
     func getMessages() async -> [MessageGroup] {
-        await interactor.execute { [images, imagesAccessQueue] python, getValue, asyncCall in
-            let script = getValue(.script)
-            let pythonMessageGroups = getValue(.client).get_message_groups()
-//            asyncCall {
-//                let imageGroups = script.download_images(pythonMessageGroups)
-//                let entries = imageGroups.map { group in
-//                    let id = Int(group.grouped_id)!
-//                    let images = Array(group.images)
-//                    return (id, Array(images.compactMap(\.bytes?.data).reversed()))
-//                }
-//                imagesAccessQueue.async {
-//                    var mutable = images.value
-//                    for entry in entries {
-//                        mutable[entry.0] = entry.1
-//                    }
-//                    images.send(mutable)
-//                }
-//            }
+        await interactor.execute { _, getValue, _ in
+            let client = getValue(.client)
+            let pythonMessageGroups = client.get_message_groups()
             return pythonMessageGroups
                 .enumerated()
                 .map { index, group in
