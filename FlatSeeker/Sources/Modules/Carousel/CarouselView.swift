@@ -39,10 +39,13 @@ struct CarouselView: View {
         } else {
             TabView {
                 ForEach(viewModel.uiImages, id: \.self) { uiImage in
-                    Image(uiImage: uiImage)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .clipped()
+                    GeometryReader { geometry in
+                        Image(uiImage: uiImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: geometry.size.width, height: geometry.size.height)
+                            .clipped()
+                    }
                 }
             }
             .tabViewStyle(PageTabViewStyle())

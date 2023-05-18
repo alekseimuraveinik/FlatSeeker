@@ -129,8 +129,16 @@ class Client:
         return message_groups
 
     def download_images(self, grouped_id):
-        message_group = self.message_groups[grouped_id]
-        return download_images([message_group], True)
+        group = self.message_groups[grouped_id]
+        messages = [message for message in group.messages]
+        tasks = [_download_plain_image(message) for message in messages]
+        loop = asyncio.get_event_loop()
+        image_bytes_array = loop.run_until_complete(asyncio.gather(*tasks))
+        return ImageGroup(grouped_id, image_bytes_array)
+
+
+async def _download_plain_image(message):
+    return await message.download_media(file=bytes)
 
 
 async def _download_image(message, best):

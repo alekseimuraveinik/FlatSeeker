@@ -85,20 +85,16 @@ class TelegramClient {
     }
     
     func loadBestImages(groupId: Int) async {
-        let entries = await interactor.execute { python, getValue, asyncCall in
+        let (id, imageData) = await interactor.execute { python, getValue, asyncCall in
             let client = getValue(.client)
-            let imageGroups = client.download_images(groupId)
-            return imageGroups.map { group in
-                let id = Int(group.grouped_id)!
-                let images = Array(group.images)
-                return (id, Array(images.compactMap(\.bytes?.data).reversed()))
-            }
+            let group = client.download_images(groupId)
+            let id = Int(group.grouped_id)!
+            let images = Array(group.images)
+            return (id, Array(images.compactMap(\.bytes?.data).reversed()))
         }
         imagesAccessQueue.async { [images] in
             var mutable = images.value
-            for entry in entries {
-                mutable[entry.0] = entry.1
-            }
+            mutable[id] = imageData
             images.send(mutable)
         }
     }
