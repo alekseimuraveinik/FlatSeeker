@@ -70,10 +70,17 @@ class MessageGroup:
         self.district = parse_district(text).capitalize()
 
 
+class ImageGroup:
+    def __init__(self, grouped_id, images):
+        self.grouped_id = grouped_id
+        self.images = images
+
+
 class Client:
     limit = 50
     least_recent_message_id = None
     remaining_messages = []
+    message_groups = dict()
 
     def __init__(self, session_path, api_id, api_hash, phone_number, code_request_url, chat_id):
         self.chat_id = chat_id
@@ -90,7 +97,7 @@ class Client:
             messages = self.client.get_messages(self.chat_id, limit=self.limit)
         self.least_recent_message_id = messages[-1].id
 
-        messages = self.remaining_messages + list(filter(lambda x: x.grouped_id != None, messages))
+        messages = self.remaining_messages + list(filter(lambda x: x.grouped_id is not None and x.photo is not None, messages))
         grouped_messages = groupby(messages, key=lambda x: x.grouped_id)
         message_groups = [MessageGroup(key, list(result)) for key, result in grouped_messages]
         message_groups = list(
@@ -104,22 +111,28 @@ class Client:
             return []
 
         self.remaining_messages = message_groups[-1].messages
-        return message_groups[0:-1]
+        message_groups_to_return = message_groups[0:-1]
+        for group in message_groups_to_return:
+            self.message_groups[group.grouped_id] = group
+
+        return message_groups_to_return
 
 
 async def _download_image(message):
     return message.grouped_id, await message.download_media(file=bytes, thumb=message.photo.sizes[1])
 
 
-def download_images(messages):
+def download_images(message_groups):
+    messages = [message for group in message_groups for message in group.messages]
     tasks = [_download_image(message) for message in messages]
     loop = asyncio.get_event_loop()
     image_bytes_array = loop.run_until_complete(asyncio.gather(*tasks))
-    return image_bytes_array
+    grouped_messages = groupby(image_bytes_array, key=lambda x: x[0])
+    return [ImageGroup(grouped_id, list(map(lambda x: x[1], images))) for grouped_id, images in grouped_messages]
 
 
 async def _download_small_image(message):
-    return await message.download_media(file=bytes, thumb=message.photo.sizes[0])
+    return await message.download_media(file=bytes, thumb=0)
 
 
 def download_small_images(messages):

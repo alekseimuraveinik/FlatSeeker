@@ -19,10 +19,7 @@ enum TelegramClientStorageKey {
 
 class TelegramClient {
     private let interactor: PythonInteractor<TelegramClientStorageKey>
-    
-    private var messageGroups = [Int: PythonObject]()
-    private let images = CurrentValueSubject<[(Int, Data)], Never>([])
-    private var loadingCancellable: AnyCancellable?
+    private let imagesDict = CurrentValueSubject<[Int: [Data]], Never>([:])
     
     init(config: TelegramClientConfig) {
         let scriptURL = config.scriptURL
@@ -44,35 +41,18 @@ class TelegramClient {
     }
     
     func getMessages() async -> [MessageGroup] {
-        await interactor.execute { python, getValue, asyncCall in
+        await interactor.execute { [imagesDict] python, getValue, asyncCall in
+            let script = getValue(.script)
             let pythonMessageGroups = getValue(.client).get_message_groups()
             asyncCall {
-                Task {
-                    self.messageGroups = await self.interactor.isolate(pythonMessageGroups) { pythonMessageGroups, getValue in
-                        pythonMessageGroups.reduce(into: self.messageGroups) { dict, group in
-                            if let groupId = Int(group.grouped_id) {
-                                dict[groupId] = group.messages
-                            }
-                        }
-                    }
+                let imageGroups = script.download_images(pythonMessageGroups)
+                var imagesDictMutable = imagesDict.value
+                for group in imageGroups {
+                    let id = Int(group.grouped_id)!
+                    let images = Array(group.images)
+                    imagesDictMutable[id] = images.compactMap(\.bytes?.data).reversed()
                 }
-            }
-            asyncCall {
-                Task {
-                    let imageData = await self.interactor.isolate(pythonMessageGroups) { pythonMessageGroups, getValue in
-                        let script = getValue(.script)
-                        let messages = pythonMessageGroups.reduce([]) { total, group in
-                            total + group.messages
-                        }
-                        return script.download_images(messages).compactMap { tuple in
-                            tuple[1].bytes.flatMap { bytes in
-                                (Int(tuple[0])!, bytes.data)
-                            }
-                        }
-                    }
-                    let previousValue = self.images.value
-                    self.images.send(previousValue + imageData)
-                }
+                imagesDict.send(imagesDictMutable)
             }
             let thumbnails = getValue(.script).download_small_images(pythonMessageGroups.map { $0.text_message })
             return pythonMessageGroups
@@ -92,11 +72,8 @@ class TelegramClient {
     }
     
     func loadImages(groupId: Int) -> AnyPublisher<[Data], Never> {
-        images
-            .map { pairs in
-                pairs.filter { $0.0 == groupId}.map { $0.1 }
-            }
-            .filter { !$0.isEmpty }
+        imagesDict
+            .compactMap { $0[groupId] }
             .eraseToAnyPublisher()
     }
 }
