@@ -15,7 +15,7 @@ class ListViewModel: ObservableObject {
     }
     
     private func fetchMessages() async {
-        let messageGroups = client.getMessages()
+        let messageGroups = await client.getMessages()
         guard !messageGroups.isEmpty else { return }
         await MainActor.run {
             self.messageGroups = self.messageGroups + messageGroups.map { group in
