@@ -50,7 +50,10 @@ def parse_price(text):
     for price_pattern in price_patterns:
         match = re.search(price_pattern, text)
         if match:
-            return match.group(1)
+            value = match.group(1)
+            if int(value) == 0:
+                return ''
+            return value
     return ''
 
 
@@ -68,26 +71,18 @@ def parse_district(text):
 
 class MessageGroup:
     def __init__(self, grouped_id, zipped):
+        self.grouped_id = grouped_id
         self.messages = list(map(lambda x: x[0], zipped.copy()))
         self.images = list(map(lambda x: x[1], zipped))
-        self.grouped_id = grouped_id
-        self.text_message = next((x for x in self.messages if x.message != ''), None)
-        if self.text_message:
-            text = self.text_message.message
-            self.thumbnail = utils.stripped_photo_to_jpg(self.text_message.photo.sizes[0].bytes)
+
+        text_message = next((x for x in self.messages if x.message != ''), None)
+        if text_message:
+            self.text = text_message.message
+            self.price = parse_price(self.text)
+            self.district = parse_district(self.text).capitalize()
+            self.thumbnail = utils.stripped_photo_to_jpg(text_message.photo.sizes[0].bytes)
         else:
-            text = ''
-        self.price = parse_price(text)
-        if self.price != '' and int(self.price) == 0:
-            self.price = ''
-        self.district = parse_district(text).capitalize()
-
-
-
-class ImageGroup:
-    def __init__(self, grouped_id, images):
-        self.grouped_id = grouped_id
-        self.images = images
+            self.text = None
 
 
 class Client:
@@ -124,12 +119,7 @@ class Client:
 
         zipped = list(zip(messages, images))
         grouped_messages = groupby(zipped, key=lambda x: x[0].grouped_id)
-        message_groups = [
-            MessageGroup(
-                key,
-                list(result)
-            ) for key, result in grouped_messages
-        ]
+        message_groups = [MessageGroup(key, list(result)) for key, result in grouped_messages]
 
         if len(message_groups) < 2:
             self.remaining_messages = messages
@@ -137,10 +127,10 @@ class Client:
 
         self.remaining_messages = message_groups[-1].messages
 
-        message_groups = message_groups[0:-1]
+        message_groups = list(sorted(message_groups, key=lambda x: x.grouped_id, reverse=True))[0:-1]
         message_groups = list(
             filter(
-                lambda group: group.text_message is not None and group.text_message.message != '',
+                lambda group: group.text is not None and group.text != '',
                 message_groups
             )
         )
@@ -164,10 +154,9 @@ def main():
         try:
             message_groups = client.get_message_groups()
             if len(message_groups) != 0:
-                urls = message_groups[0].images
-                for url in urls:
-                    print(url)
-            input()
+                for group in message_groups:
+                    print('Images:', len(group.images), '|', group.district, group.price)
+                input()
         except KeyboardInterrupt:
             client.client.disconnect()
             break

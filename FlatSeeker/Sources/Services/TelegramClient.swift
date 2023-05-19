@@ -53,8 +53,7 @@ class TelegramClient {
                     let thumbnail = group.thumbnail.bytes?.data ?? Data()
                     let images = Array(group.images).map { URL(string: String($0)!)! }
                     return MessageGroup(
-                        id: Int(group.grouped_id)!,
-                        textMessage: String(group.text_message.message)!,
+                        textMessage: String(group.text)!,
                         district: district.isEmpty ? nil : district,
                         price: price.isEmpty ? nil : price,
                         thumbnail: thumbnail,

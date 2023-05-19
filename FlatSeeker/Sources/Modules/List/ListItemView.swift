@@ -1,14 +1,12 @@
 import SwiftUI
 
-struct ListItemViewModel: Identifiable {
-    let id: Int
+struct ListItemViewModel {
     let text: String
     let district: String?
     let price: String?
     let carouselViewModel: CarouselViewModel
     
     init(group: MessageGroup, carouselViewModel: CarouselViewModel) {
-        id = group.id
         text = group.textMessage
         district = group.district
         price = group.price
