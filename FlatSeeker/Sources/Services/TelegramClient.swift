@@ -42,7 +42,7 @@ class TelegramClient {
     }
     
     func getMessages() async -> [MessageGroup] {
-        let groups = await interactor.execute { _, getValue, _ in
+        let groups = await interactor.execute { _, getValue in
             let client = getValue(.client)
             let pythonMessageGroups = client.get_message_groups()
             return pythonMessageGroups

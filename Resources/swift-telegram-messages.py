@@ -1,8 +1,8 @@
 from telethon import TelegramClient, sync
-import requests
 from itertools import groupby
 import re
 from telethon import utils
+from requests import get
 
 
 districts = [
@@ -93,7 +93,7 @@ class Client:
         self.client = TelegramClient(session_path, api_id, api_hash)
         self.client.start(
             phone=lambda: phone_number,
-            code_callback=lambda: requests.get(code_request_url).json()
+            code_callback=lambda: get(code_request_url).json()
         )
 
     def get_message_groups(self):
