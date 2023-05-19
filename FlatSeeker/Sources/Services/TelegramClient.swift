@@ -17,11 +17,9 @@ enum TelegramClientStorageKey: CaseIterable {
     case client
 }
 
-class TelegramClient {
-    private let interactor: PythonInteractor<TelegramClientStorageKey>
-    
+class TelegramClient: PythonInteractor<TelegramClientStorageKey> {
     init(proof: PythonRuntime.Proof, config: TelegramClientConfig) {
-        interactor = PythonInteractor(proof: proof, scriptURL: config.scriptURL) { script, key in
+        super.init(proof: proof, scriptURL: config.scriptURL) { script, key in
             switch key {
                 case .client:
                     return script.Client(
@@ -37,7 +35,7 @@ class TelegramClient {
     }
     
     func getGroups() async -> [(Int, String, String?, String?, [(Int, Data)])] {
-        await interactor.execute(accessing: .client) { client in
+        await execute(accessing: .client) { client in
             client.get_message_groups().compactMap { group in
                 guard let id = Int(group.grouped_id),
                       let text = String(group.text)
