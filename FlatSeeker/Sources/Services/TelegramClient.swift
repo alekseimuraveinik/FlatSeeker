@@ -46,20 +46,11 @@ class TelegramClient {
             let client = getValue(.client)
             let pythonMessageGroups = client.get_message_groups()
             return pythonMessageGroups
-                .enumerated()
-                .map { index, group in
+                .map { group in
                     let text = String(group.text)!
                     let district = String(group.district)!
                     let price = String(group.price)!
                     let thumbnail = group.thumbnail.bytes?.data ?? Data()
-//                    let images = Array(group.images).map { URL(string: String($0)!)! }
-//                    return MessageGroup(
-//                        textMessage: String(group.text)!,
-//                        district: district.isEmpty ? nil : district,
-//                        price: price.isEmpty ? nil : price,
-//                        thumbnail: thumbnail,
-//                        images: images.reversed()
-//                    )
                     let messageIds = Array(group.image_ids).map { Int($0)! }
                     return (text, district, price, thumbnail, messageIds)
                 }
@@ -68,7 +59,6 @@ class TelegramClient {
         return await withTaskGroup(of: (Int, MessageGroup).self) { taskGroup in
             for (groupIndex, group) in groups.enumerated() {
                 let (text, district, price, thumbnail, messageIds) = group
-                print(district, price, messageIds.count)
                 
                 taskGroup.addTask {
                     let urls = await withTaskGroup(of: (Int, URL).self) { taskGroup in

@@ -1,10 +1,8 @@
 from telethon import TelegramClient, sync
-import asyncio
 import requests
 from itertools import groupby
 import re
 from telethon import utils
-import aiohttp
 
 
 districts = [
@@ -70,11 +68,10 @@ def parse_district(text):
 
 
 class MessageGroup:
-    def __init__(self, grouped_id, zipped):
+    def __init__(self, grouped_id, messages):
         self.grouped_id = grouped_id
-        self.messages = list(map(lambda x: x[0], zipped.copy()))
-        self.images = list(map(lambda x: x[1], zipped))
-        self.image_ids = list(map(lambda x: x.id, self.messages.copy()))
+        self.messages = messages
+        self.image_ids = list(map(lambda x: x.id, messages))
 
         text_message = next((x for x in self.messages if x.message != ''), None)
         if text_message:
@@ -115,11 +112,7 @@ class Client:
 
         messages = self.remaining_messages + messages
 
-        loop = asyncio.get_event_loop()
-        images = loop.run_until_complete(get_image_urls(messages))
-
-        zipped = list(zip(messages, images))
-        grouped_messages = groupby(zipped, key=lambda x: x[0].grouped_id)
+        grouped_messages = groupby(messages, key=lambda x: x.grouped_id)
         message_groups = [MessageGroup(key, list(result)) for key, result in grouped_messages]
 
         if len(message_groups) < 2:
@@ -161,52 +154,6 @@ def main():
         except KeyboardInterrupt:
             client.client.disconnect()
             break
-
-
-photo_pattern = re.compile(r"background-image:url\('(.*?\.jpg)'\)")
-headers = {
-    "Host": "t.me",
-    "Connection": "keep-alive",
-    "Cache-Control": "max-age=0",
-    "sec-ch-ua": '"Google Chrome";v="113", "Chromium";v="113", "Not-A.Brand";v="24"',
-    "sec-ch-ua-mobile": "?0",
-    "sec-ch-ua-platform": "macOS",
-    "Upgrade-Insecure-Requests": "1",
-    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36",
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-    "Sec-Fetch-Site": "none",
-    "Sec-Fetch-Mode": "navigate",
-    "Sec-Fetch-User": "?1",
-    "Sec-Fetch-Dest": "document",
-    "Accept-Encoding": "gzip, deflate, br",
-    "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8",
-    "Cookie": "stel_ssid=5676ae759e7c041e13_12211778403092897585; stel_on=1; stel_dt=-240"
-}
-
-
-image_url_template = 'https://t.me/tbilisi_arendaa/{}?embed=1&mode=tme&single=1'
-
-
-async def get_image_urls(messages):
-    urls = list(
-        map(
-            lambda message: image_url_template.format(str(message.id)),
-            messages
-        )
-    )
-    async with aiohttp.ClientSession() as session:
-        tasks = [fetch(session, url) for url in urls]
-        return await asyncio.gather(*tasks)
-
-
-async def fetch(s, url):
-    async with s.get(url, headers=headers) as r:
-        if r.status != 200:
-            r.raise_for_status()
-        text = await r.text()
-        matches = re.search(r"background-image:url\('(https://cdn4\S+?\.jpg)", text)
-        text = matches.group(1)
-        return text
 
 
 if __name__ == "__main__":
