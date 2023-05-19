@@ -12,8 +12,7 @@ struct TelegramClientConfig {
     let channelId: Int
 }
 
-enum TelegramClientStorageKey {
-    case script
+enum TelegramClientStorageKey: CaseIterable {
     case client
 }
 
@@ -22,21 +21,18 @@ class TelegramClient {
     private let photoURLFetcher = PhotoURLFetcher()
     
     init(config: TelegramClientConfig) {
-        let scriptURL = config.scriptURL
-        let scriptName = String(scriptURL.lastPathComponent.split(separator: ".")[0])
-
-        interactor = PythonInteractor(script: scriptURL) { storage, python in
-            let script = python.import(scriptName)
-            let client = script.Client(
-                config.sessionPath,
-                config.apiId,
-                config.apiHash,
-                config.phoneNumber,
-                config.codeRequestURL,
-                config.channelId
-            )
-            storage[.script] = script
-            storage[.client] = client
+        interactor = PythonInteractor(scriptURL: config.scriptURL) { script, key in
+            switch key {
+                case .client:
+                    return script.Client(
+                        config.sessionPath,
+                        config.apiId,
+                        config.apiHash,
+                        config.phoneNumber,
+                        config.codeRequestURL,
+                        config.channelId
+                    )
+            }
         }
     }
     
@@ -67,10 +63,8 @@ class TelegramClient {
     }
     
     private func getGroups() async -> [(Int, String, Data, [Int])] {
-        await interactor.execute { _, getValue in
-            let client = getValue(.client)
-            let pythonMessageGroups = client.get_message_groups()
-            return pythonMessageGroups.compactMap { group in
+        await interactor.execute(accessing: .client) { client in
+            client.get_message_groups().compactMap { group in
                 guard let id = Int(group.grouped_id),
                       let text = String(group.text),
                       let thumbnail = PythonBytes(group.thumbnail)?.data
