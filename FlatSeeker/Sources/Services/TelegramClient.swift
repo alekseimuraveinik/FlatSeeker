@@ -48,9 +48,10 @@ class TelegramClient {
                 let price = String(group.price)
                 let district = String(group.district)
                 let images = Array(group.images).compactMap { tuple in
-                    let messageId = Int(tuple[0])
-                    let thumbnail = PythonBytes(tuple[1])?.data
-                    return (messageId!, thumbnail!)
+                    if let messageId = Int(tuple[0]), let thumbnail = PythonBytes(tuple[1])?.data {
+                        return (messageId, thumbnail)
+                    }
+                    return nil
                 }
                 return (id, text, price, district, images)
             }

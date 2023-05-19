@@ -32,24 +32,34 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
     ) -> Bool {
-        if let telegramClientConfig = makeTelegramClientConfig() {
-            container = Container(
-                proof: initializePython(),
-                telegramClientConfig: telegramClientConfig,
-                photoURLFetcherConfig: makePhotoURLFetcherConfig()
-            )
-            return true
+        guard let proof = initializePython() else {
+            assertionFailure("Unable to initialize Python")
+            return false
         }
-        assertionFailure("Unable to create TelegramClientConfig")
-        return false
+        
+        guard let telegramClientConfig = makeTelegramClientConfig() else {
+            assertionFailure("Unable to create TelegramClientConfig")
+            return false
+        }
+        
+        container = Container(
+            proof: proof,
+            telegramClientConfig: telegramClientConfig,
+            photoURLFetcherConfig: makePhotoURLFetcherConfig()
+        )
+        return true
     }
 }
 
 // MARK: - Private
 private extension AppDelegate {
-    func initializePython() -> PythonRuntime.Proof {
-        let stdLibURL = Bundle.main.url(forResource: "python-stdlib", withExtension: nil)!
-        let pipsURL = Bundle.main.url(forResource: "pips", withExtension: nil)!
+    func initializePython() -> PythonRuntime.Proof? {
+        guard let stdLibURL = Bundle.main.url(forResource: "python-stdlib", withExtension: nil),
+           let pipsURL = Bundle.main.url(forResource: "pips", withExtension: nil)
+        else {
+            return nil
+        }
+        
         return PythonRuntime.initialize(stdLibURL: stdLibURL, pipsURL: pipsURL)
     }
     
