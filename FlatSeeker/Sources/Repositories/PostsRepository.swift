@@ -1,8 +1,7 @@
-import UIKit
+import Foundation
 
-struct PostImage: Identifiable {
-    let id: Int
-    let thumbnail: UIImage
+struct PostImage {
+    let thumbnail: Data
     let imageURL: URL
 }
 
@@ -37,14 +36,7 @@ class PostsRepository {
                         district: district?.capitalizedWords,
                         images: zip(images.map(\.1), urls)
                             .reversed()
-                            .enumerated()
-                            .map { index, image in
-                                PostImage(
-                                    id: index,
-                                    thumbnail: UIImage(data: image.0) ?? UIImage(),
-                                    imageURL: image.1
-                                )
-                            }
+                            .map(PostImage.init)
                     )
                 }
             }

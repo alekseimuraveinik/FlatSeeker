@@ -1,11 +1,23 @@
 import Combine
 import SwiftUI
 
+struct CarouselImage: Identifiable {
+    let id: Int
+    let thumbnail: UIImage
+    let imageURL: URL
+}
+
 class CarouselViewModel: ObservableObject {
-    @Published var images: [PostImage]
+    @Published var images: [CarouselImage]
     
     init(images: [PostImage]) {
-        self.images = images
+        self.images = images.enumerated().map { index, image in
+            CarouselImage(
+                id: index,
+                thumbnail: UIImage(data: image.thumbnail) ?? UIImage(),
+                imageURL: image.imageURL
+            )
+        }
     }
 }
 
