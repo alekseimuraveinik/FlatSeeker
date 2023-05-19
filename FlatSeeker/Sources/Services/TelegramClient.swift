@@ -1,6 +1,7 @@
 import Combine
 import Foundation
 import PythonKit
+import PythonRuntime
 
 struct TelegramClientConfig {
     let scriptURL: URL
@@ -20,8 +21,8 @@ class TelegramClient {
     private let interactor: PythonInteractor<TelegramClientStorageKey>
     private let photoURLFetcher = PhotoURLFetcher()
     
-    init(config: TelegramClientConfig) {
-        interactor = PythonInteractor(scriptURL: config.scriptURL) { script, key in
+    init(proof: PythonRuntime.Proof, config: TelegramClientConfig) {
+        interactor = PythonInteractor(proof: proof, scriptURL: config.scriptURL) { script, key in
             switch key {
                 case .client:
                     return script.Client(

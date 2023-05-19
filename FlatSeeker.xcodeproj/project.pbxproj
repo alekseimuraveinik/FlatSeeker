@@ -9,24 +9,22 @@
 /* Begin PBXBuildFile section */
 		DA0775FC2A1299DA00A7C36B /* TelegramClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0775FB2A1299DA00A7C36B /* TelegramClient.swift */; };
 		DA0775FE2A1299FD00A7C36B /* swift-telegram-messages.py in Resources */ = {isa = PBXBuildFile; fileRef = DA0775FD2A1299FD00A7C36B /* swift-telegram-messages.py */; };
-		DA0776012A129A5000A7C36B /* PythonRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = DA0776002A129A5000A7C36B /* PythonRuntime */; };
 		DA0776042A129B0600A7C36B /* Measure.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0776032A129B0600A7C36B /* Measure.swift */; };
 		DA0BC1EB2A0FE48B00C2196A /* pips in Resources */ = {isa = PBXBuildFile; fileRef = DA0BC1EA2A0FE48B00C2196A /* pips */; };
 		DA2555BE2A0EE1A3001D48DC /* FlatSeekerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2555BD2A0EE1A3001D48DC /* FlatSeekerApp.swift */; };
 		DA2555C22A0EE1A4001D48DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA2555C12A0EE1A4001D48DC /* Assets.xcassets */; };
 		DA2555C52A0EE1A4001D48DC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA2555C42A0EE1A4001D48DC /* Preview Assets.xcassets */; };
 		DA2555D02A0EE23C001D48DC /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2555CF2A0EE23C001D48DC /* DetailsView.swift */; };
-		DA3DA4312A16410F008F0C5A /* PythonInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3DA4302A16410F008F0C5A /* PythonInteractor.swift */; };
 		DA3DA4342A168AEC008F0C5A /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3DA4332A168AEC008F0C5A /* CarouselView.swift */; };
 		DA3DA4362A168B37008F0C5A /* ListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3DA4352A168B37008F0C5A /* ListItemView.swift */; };
 		DA6170212A152AFF00F616F0 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6170202A152AFF00F616F0 /* ListView.swift */; };
 		DA7387242A182973006914F1 /* PostsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7387232A182973006914F1 /* PostsRepository.swift */; };
 		DA7387262A18314F006914F1 /* String+capitalizedWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7387252A18314F006914F1 /* String+capitalizedWords.swift */; };
+		DA7387292A1832FB006914F1 /* PythonRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = DA7387282A1832FB006914F1 /* PythonRuntime */; };
 		DA82CDB62A0FDE0C00E4E228 /* python-stdlib in Resources */ = {isa = PBXBuildFile; fileRef = DA82CDB52A0FDE0C00E4E228 /* python-stdlib */; };
 		DAC7E5BE2A103E9000540B0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC7E5BD2A103E9000540B0C /* AppDelegate.swift */; };
 		DADA3CF72A17AA700006F740 /* PhotoURLFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADA3CF62A17AA700006F740 /* PhotoURLFetcher.swift */; };
 		DADA3CF92A17B84C0006F740 /* URLSession+utf8String.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADA3CF82A17B84C0006F740 /* URLSession+utf8String.swift */; };
-		DADA3CFB2A17BF7B0006F740 /* PythonBytes+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADA3CFA2A17BF7B0006F740 /* PythonBytes+Data.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,7 +37,6 @@
 		DA2555C12A0EE1A4001D48DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA2555C42A0EE1A4001D48DC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DA2555CF2A0EE23C001D48DC /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
-		DA3DA4302A16410F008F0C5A /* PythonInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PythonInteractor.swift; sourceTree = "<group>"; };
 		DA3DA4332A168AEC008F0C5A /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
 		DA3DA4352A168B37008F0C5A /* ListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemView.swift; sourceTree = "<group>"; };
 		DA6170202A152AFF00F616F0 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
@@ -49,7 +46,6 @@
 		DAC7E5BD2A103E9000540B0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DADA3CF62A17AA700006F740 /* PhotoURLFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoURLFetcher.swift; sourceTree = "<group>"; };
 		DADA3CF82A17B84C0006F740 /* URLSession+utf8String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+utf8String.swift"; sourceTree = "<group>"; };
-		DADA3CFA2A17BF7B0006F740 /* PythonBytes+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PythonBytes+Data.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA0776012A129A5000A7C36B /* PythonRuntime in Frameworks */,
+				DA7387292A1832FB006914F1 /* PythonRuntime in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,7 +74,6 @@
 			isa = PBXGroup;
 			children = (
 				DA0775FB2A1299DA00A7C36B /* TelegramClient.swift */,
-				DA3DA4302A16410F008F0C5A /* PythonInteractor.swift */,
 				DADA3CF62A17AA700006F740 /* PhotoURLFetcher.swift */,
 			);
 			path = Services;
@@ -188,7 +183,6 @@
 			isa = PBXGroup;
 			children = (
 				DADA3CF82A17B84C0006F740 /* URLSession+utf8String.swift */,
-				DADA3CFA2A17BF7B0006F740 /* PythonBytes+Data.swift */,
 				DA7387252A18314F006914F1 /* String+capitalizedWords.swift */,
 			);
 			path = Extensions;
@@ -211,7 +205,7 @@
 			);
 			name = FlatSeeker;
 			packageProductDependencies = (
-				DA0776002A129A5000A7C36B /* PythonRuntime */,
+				DA7387282A1832FB006914F1 /* PythonRuntime */,
 			);
 			productName = FlatSeeker;
 			productReference = DA2555BA2A0EE1A3001D48DC /* FlatSeeker.app */;
@@ -242,7 +236,7 @@
 			);
 			mainGroup = DA2555B12A0EE1A3001D48DC;
 			packageReferences = (
-				DA0775FF2A129A5000A7C36B /* XCRemoteSwiftPackageReference "PythonRuntime" */,
+				DA7387272A1832FB006914F1 /* XCRemoteSwiftPackageReference "PythonRuntime" */,
 			);
 			productRefGroup = DA2555BB2A0EE1A3001D48DC /* Products */;
 			projectDirPath = "";
@@ -282,11 +276,9 @@
 				DADA3CF92A17B84C0006F740 /* URLSession+utf8String.swift in Sources */,
 				DA0775FC2A1299DA00A7C36B /* TelegramClient.swift in Sources */,
 				DA6170212A152AFF00F616F0 /* ListView.swift in Sources */,
-				DADA3CFB2A17BF7B0006F740 /* PythonBytes+Data.swift in Sources */,
 				DADA3CF72A17AA700006F740 /* PhotoURLFetcher.swift in Sources */,
 				DA7387262A18314F006914F1 /* String+capitalizedWords.swift in Sources */,
 				DA2555BE2A0EE1A3001D48DC /* FlatSeekerApp.swift in Sources */,
-				DA3DA4312A16410F008F0C5A /* PythonInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,20 +493,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		DA0775FF2A129A5000A7C36B /* XCRemoteSwiftPackageReference "PythonRuntime" */ = {
+		DA7387272A1832FB006914F1 /* XCRemoteSwiftPackageReference "PythonRuntime" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/alekseimuraveinik/PythonRuntime.git";
 			requirement = {
-				kind = exactVersion;
-				version = 1.0.0;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		DA0776002A129A5000A7C36B /* PythonRuntime */ = {
+		DA7387282A1832FB006914F1 /* PythonRuntime */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DA0775FF2A129A5000A7C36B /* XCRemoteSwiftPackageReference "PythonRuntime" */;
+			package = DA7387272A1832FB006914F1 /* XCRemoteSwiftPackageReference "PythonRuntime" */;
 			productName = PythonRuntime;
 		};
 /* End XCSwiftPackageProductDependency section */
