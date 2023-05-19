@@ -83,7 +83,6 @@
 			isa = PBXGroup;
 			children = (
 				DA0776032A129B0600A7C36B /* Measure.swift */,
-				DAF105462A13FE120022303D /* Extensions */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -131,6 +130,7 @@
 				DA0775F92A1299C400A7C36B /* Modules */,
 				DA7387222A182964006914F1 /* Repositories */,
 				DA0775FA2A1299CC00A7C36B /* Services */,
+				DAF105462A13FE120022303D /* Extensions */,
 				DA0776022A129AF800A7C36B /* Utils */,
 			);
 			path = Sources;

@@ -7,9 +7,13 @@ class Container {
     private let photoURLFetcher: PhotoURLFetcher
     private let postsRepository: PostsRepository
     
-    init(proof: PythonRuntime.Proof, telegramClientConfig: TelegramClientConfig) {
+    init(
+        proof: PythonRuntime.Proof,
+        telegramClientConfig: TelegramClientConfig,
+        photoURLFetcherConfig: PhotoURLFetcherConfig
+    ) {
         self.telegramClient = TelegramClient(proof: proof, config: telegramClientConfig)
-        self.photoURLFetcher = PhotoURLFetcher()
+        self.photoURLFetcher = PhotoURLFetcher(config: photoURLFetcherConfig)
         self.postsRepository = PostsRepository(
             telegramClient: telegramClient,
             photoURLFetcher: photoURLFetcher
@@ -28,9 +32,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
     ) -> Bool {
-        let proof = initializePython()
-        if let config = makeTelegramClientConfig() {
-            container = Container(proof: proof, telegramClientConfig: config)
+        if let telegramClientConfig = makeTelegramClientConfig() {
+            container = Container(
+                proof: initializePython(),
+                telegramClientConfig: telegramClientConfig,
+                photoURLFetcherConfig: makePhotoURLFetcherConfig()
+            )
             return true
         }
         assertionFailure("Unable to create TelegramClientConfig")
@@ -61,6 +68,13 @@ private extension AppDelegate {
             phoneNumber: "+995555993502",
             codeRequestURL: "http://localhost:8080",
             channelId: -1001793067559
+        )
+    }
+    
+    func makePhotoURLFetcherConfig() -> PhotoURLFetcherConfig {
+        PhotoURLFetcherConfig(
+            makeWebPageURL: { URL(string: "https://t.me/tbilisi_arendaa/\($0)?embed=1&mode=tme&single=1") },
+            targetURLRegex: /background-image:url\('(.*?\.jpg)'\)/
         )
     }
 }

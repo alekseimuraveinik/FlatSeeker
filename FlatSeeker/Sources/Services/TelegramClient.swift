@@ -19,7 +19,6 @@ enum TelegramClientStorageKey: CaseIterable {
 
 class TelegramClient {
     private let interactor: PythonInteractor<TelegramClientStorageKey>
-    private let photoURLFetcher = PhotoURLFetcher()
     
     init(proof: PythonRuntime.Proof, config: TelegramClientConfig) {
         interactor = PythonInteractor(proof: proof, scriptURL: config.scriptURL) { script, key in
