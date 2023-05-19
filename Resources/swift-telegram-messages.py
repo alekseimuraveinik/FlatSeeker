@@ -74,6 +74,7 @@ class MessageGroup:
         self.grouped_id = grouped_id
         self.messages = list(map(lambda x: x[0], zipped.copy()))
         self.images = list(map(lambda x: x[1], zipped))
+        self.image_ids = list(map(lambda x: x.id, self.messages.copy()))
 
         text_message = next((x for x in self.messages if x.message != ''), None)
         if text_message:
