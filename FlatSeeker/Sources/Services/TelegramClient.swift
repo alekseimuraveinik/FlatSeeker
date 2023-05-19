@@ -82,8 +82,8 @@ class TelegramClient {
                         groupIndex,
                         MessageGroup(
                             textMessage: text,
-                            district: district,
-                            price: price,
+                            district: district.isEmpty ? nil : district,
+                            price: price.isEmpty ? nil : price,
                             thumbnail: thumbnail,
                             images: urls
                         )
