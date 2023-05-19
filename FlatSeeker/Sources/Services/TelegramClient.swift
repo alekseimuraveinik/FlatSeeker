@@ -19,8 +19,7 @@ enum TelegramClientStorageKey {
 
 class TelegramClient {
     private let interactor: PythonInteractor<TelegramClientStorageKey>
-    private let images = CurrentValueSubject<[Int: [Data]], Never>([:])
-    private let imagesAccessQueue = DispatchQueue(label: "imagesAccessQueue")
+    private let photoURLFetcher = PhotoURLFetcher()
     
     init(config: TelegramClientConfig) {
         let scriptURL = config.scriptURL
@@ -56,28 +55,12 @@ class TelegramClient {
                 }
         }
         
-        return await withTaskGroup(of: (Int, MessageGroup).self) { taskGroup in
+        return await withTaskGroup(of: (Int, MessageGroup).self) { [photoURLFetcher] taskGroup in
             for (groupIndex, group) in groups.enumerated() {
                 let (text, district, price, thumbnail, messageIds) = group
                 
                 taskGroup.addTask {
-                    let urls = await withTaskGroup(of: (Int, URL).self) { taskGroup in
-                        for messageId in messageIds {
-                            taskGroup.addTask {
-                                let url = URL(string: "https://t.me/tbilisi_arendaa/\(messageId)?embed=1&mode=tme&single=1")!
-                                let (data, _) = try! await URLSession.shared.data(from: url)
-                                let string = String(data: data, encoding: .utf8)!
-                                
-                                let urlString = try! urlRegex.firstMatch(in: string)!.1
-                                
-                                return (messageId, URL(string: String(urlString))!)
-                            }
-                        }
-                        let result = await taskGroup.reduce(into: []) { result, url in
-                            result.append(url)
-                        }
-                        return result.sorted(by: { $0.0 < $1.0 }).map(\.1)
-                    }
+                    let urls = await photoURLFetcher.fetchURLs(messageIds: messageIds)
                     return (
                         groupIndex,
                         MessageGroup(
@@ -99,6 +82,3 @@ class TelegramClient {
         }
     }
 }
-
-
-private let urlRegex = /background-image:url\('(.*?\.jpg)'\)/
