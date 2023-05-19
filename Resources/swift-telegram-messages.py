@@ -71,14 +71,18 @@ class MessageGroup:
     def __init__(self, grouped_id, messages):
         self.grouped_id = grouped_id
         self.messages = messages
-        self.image_ids = list(map(lambda x: x.id, messages))
+        self.images = list(
+            map(
+                lambda x: (x.id, utils.stripped_photo_to_jpg(x.photo.sizes[0].bytes)),
+                messages
+            )
+        )
 
         text_message = next((x for x in self.messages if x.message != ''), None)
         if text_message:
             self.text = text_message.message
             self.price = parse_price(self.text)
             self.district = parse_district(self.text)
-            self.thumbnail = utils.stripped_photo_to_jpg(text_message.photo.sizes[0].bytes)
         else:
             self.text = None
 

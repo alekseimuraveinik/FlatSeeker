@@ -1,12 +1,17 @@
-import Foundation
+import UIKit
+
+struct PostImage: Identifiable {
+    let id: Int
+    let thumbnail: UIImage
+    let imageURL: URL
+}
 
 struct Post {
     let id: Int
     let text: String
     let price: String?
     let district: String?
-    let thumbnail: Data
-    let images: [URL]
+    let images: [PostImage]
 }
 
 class PostsRepository {
@@ -22,16 +27,24 @@ class PostsRepository {
         let groups = await telegramClient.getGroups()
         
         let posts = await withTaskGroup(of: Post.self) { [photoURLFetcher] taskGroup in
-            for (id, text, price, district, thumbnail, messageIds) in groups {
+            for (id, text, price, district, images) in groups {
                 taskGroup.addTask {
-                    let urls = await photoURLFetcher.fetchURLs(messageIds: messageIds)
+                    let urls = await photoURLFetcher.fetchURLs(messageIds: images.map(\.0))
                     return Post(
                         id: id,
                         text: text,
                         price: price,
                         district: district?.capitalizedWords,
-                        thumbnail: thumbnail,
-                        images: urls
+                        images: zip(images.map(\.1), urls)
+                            .reversed()
+                            .enumerated()
+                            .map { index, image in
+                                PostImage(
+                                    id: index,
+                                    thumbnail: UIImage(data: image.0) ?? UIImage(),
+                                    imageURL: image.1
+                                )
+                            }
                     )
                 }
             }

@@ -41,7 +41,7 @@ class PhotoURLFetcher {
             
             return result
                 .compactMap { $0 }
-                .sorted(by: { $0.0 < $1.0 })
+                .sorted(by: { $0.0 > $1.0 })
                 .map(\.1)
         }
     }

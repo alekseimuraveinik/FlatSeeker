@@ -2,12 +2,10 @@ import Combine
 import SwiftUI
 
 class CarouselViewModel: ObservableObject {
-    let thumbnail: UIImage?
-    @Published var images: [(Int, URL)]
+    @Published var images: [PostImage]
     
-    init(thumbnail: UIImage?, images: [URL]) {
-        self.thumbnail = thumbnail
-        self.images = Array(images.enumerated())
+    init(images: [PostImage]) {
+        self.images = images
     }
 }
 
@@ -16,16 +14,12 @@ struct CarouselView: View {
     
     var body: some View {
         TabView {
-            ForEach(viewModel.images, id: \.0) { index, url in
+            ForEach(viewModel.images) { image in
                 GeometryReader { geometry in
-                    AsyncImage(url: url) { image in
+                    AsyncImage(url: image.imageURL) { image in
                         resizedImage(image, geometry: geometry)
                     } placeholder: {
-                        if let thumbnail = viewModel.thumbnail, index == .zero {
-                            resizedImage(Image(uiImage: thumbnail), geometry: geometry)
-                        } else {
-                            ProgressView()
-                        }
+                        resizedImage(Image(uiImage: image.thumbnail), geometry: geometry)
                     }
                 }
             }

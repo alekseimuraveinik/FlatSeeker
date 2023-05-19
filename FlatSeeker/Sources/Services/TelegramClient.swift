@@ -36,20 +36,23 @@ class TelegramClient {
         }
     }
     
-    func getGroups() async -> [(Int, String, String?, String?, Data, [Int])] {
+    func getGroups() async -> [(Int, String, String?, String?, [(Int, Data)])] {
         await interactor.execute(accessing: .client) { client in
             client.get_message_groups().compactMap { group in
                 guard let id = Int(group.grouped_id),
-                      let text = String(group.text),
-                      let thumbnail = PythonBytes(group.thumbnail)?.data
+                      let text = String(group.text)
                 else {
                     return nil
                 }
                 
                 let price = String(group.price)
                 let district = String(group.district)
-                let messageIds = Array(group.image_ids).compactMap { Int($0) }
-                return (id, text, price, district, thumbnail, messageIds)
+                let images = Array(group.images).compactMap { tuple in
+                    let messageId = Int(tuple[0])
+                    let thumbnail = PythonBytes(tuple[1])?.data
+                    return (messageId!, thumbnail!)
+                }
+                return (id, text, price, district, images)
             }
         }
     }

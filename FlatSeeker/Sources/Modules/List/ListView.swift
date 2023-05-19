@@ -27,10 +27,7 @@ class ListViewModel: ObservableObject {
         let totalItems = items + posts.map { post in
             ListItemViewModel(
                 post: post,
-                carouselViewModel: CarouselViewModel(
-                    thumbnail: UIImage(data: post.thumbnail),
-                    images: post.images
-                )
+                carouselViewModel: CarouselViewModel(images: post.images)
             )
         }
         messagesFetchingItemId = totalItems[max(totalItems.count - 10, 0)].id
