@@ -24,9 +24,8 @@
 		DAC7E5BE2A103E9000540B0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC7E5BD2A103E9000540B0C /* AppDelegate.swift */; };
 		DADA3CF72A17AA700006F740 /* PhotoURLFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADA3CF62A17AA700006F740 /* PhotoURLFetcher.swift */; };
 		DADA3CF92A17B84C0006F740 /* URLSession+utf8String.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADA3CF82A17B84C0006F740 /* URLSession+utf8String.swift */; };
-		DAF105452A13FDAA0022303D /* PythonBytes+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF105442A13FDAA0022303D /* PythonBytes+Data.swift */; };
-		DAF105492A13FF8D0022303D /* MessageGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF105482A13FF8D0022303D /* MessageGroup.swift */; };
-		DAF1054B2A1401E20022303D /* Data+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF1054A2A1401E20022303D /* Data+UIImage.swift */; };
+		DADA3CFB2A17BF7B0006F740 /* PythonBytes+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADA3CFA2A17BF7B0006F740 /* PythonBytes+Data.swift */; };
+		DAF105492A13FF8D0022303D /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF105482A13FF8D0022303D /* Post.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,9 +46,8 @@
 		DAC7E5BD2A103E9000540B0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DADA3CF62A17AA700006F740 /* PhotoURLFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoURLFetcher.swift; sourceTree = "<group>"; };
 		DADA3CF82A17B84C0006F740 /* URLSession+utf8String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+utf8String.swift"; sourceTree = "<group>"; };
-		DAF105442A13FDAA0022303D /* PythonBytes+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PythonBytes+Data.swift"; sourceTree = "<group>"; };
-		DAF105482A13FF8D0022303D /* MessageGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageGroup.swift; sourceTree = "<group>"; };
-		DAF1054A2A1401E20022303D /* Data+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+UIImage.swift"; sourceTree = "<group>"; };
+		DADA3CFA2A17BF7B0006F740 /* PythonBytes+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PythonBytes+Data.swift"; sourceTree = "<group>"; };
+		DAF105482A13FF8D0022303D /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +75,7 @@
 		DA0775FA2A1299CC00A7C36B /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				DAF105482A13FF8D0022303D /* MessageGroup.swift */,
+				DAF105482A13FF8D0022303D /* Post.swift */,
 				DA0775FB2A1299DA00A7C36B /* TelegramClient.swift */,
 				DA3DA4302A16410F008F0C5A /* PythonInteractor.swift */,
 				DADA3CF62A17AA700006F740 /* PhotoURLFetcher.swift */,
@@ -179,9 +177,8 @@
 		DAF105462A13FE120022303D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				DAF105442A13FDAA0022303D /* PythonBytes+Data.swift */,
-				DAF1054A2A1401E20022303D /* Data+UIImage.swift */,
 				DADA3CF82A17B84C0006F740 /* URLSession+utf8String.swift */,
+				DADA3CFA2A17BF7B0006F740 /* PythonBytes+Data.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -267,18 +264,17 @@
 			files = (
 				DA3DA4362A168B37008F0C5A /* ListItemView.swift in Sources */,
 				DAC7E5BE2A103E9000540B0C /* AppDelegate.swift in Sources */,
-				DAF105452A13FDAA0022303D /* PythonBytes+Data.swift in Sources */,
 				DA3DA4342A168AEC008F0C5A /* CarouselView.swift in Sources */,
 				DA0776042A129B0600A7C36B /* Measure.swift in Sources */,
 				DA2555D02A0EE23C001D48DC /* DetailsView.swift in Sources */,
 				DADA3CF92A17B84C0006F740 /* URLSession+utf8String.swift in Sources */,
-				DAF1054B2A1401E20022303D /* Data+UIImage.swift in Sources */,
 				DA0775FC2A1299DA00A7C36B /* TelegramClient.swift in Sources */,
 				DA6170212A152AFF00F616F0 /* ListView.swift in Sources */,
+				DADA3CFB2A17BF7B0006F740 /* PythonBytes+Data.swift in Sources */,
 				DADA3CF72A17AA700006F740 /* PhotoURLFetcher.swift in Sources */,
 				DA2555BE2A0EE1A3001D48DC /* FlatSeekerApp.swift in Sources */,
 				DA3DA4312A16410F008F0C5A /* PythonInteractor.swift in Sources */,
-				DAF105492A13FF8D0022303D /* MessageGroup.swift in Sources */,
+				DAF105492A13FF8D0022303D /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

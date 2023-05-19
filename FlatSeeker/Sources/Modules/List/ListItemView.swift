@@ -6,7 +6,7 @@ struct ListItemViewModel {
     let price: String?
     let carouselViewModel: CarouselViewModel
     
-    init(group: MessageGroup, carouselViewModel: CarouselViewModel) {
+    init(group: Post, carouselViewModel: CarouselViewModel) {
         text = group.textMessage
         district = group.district
         price = group.price

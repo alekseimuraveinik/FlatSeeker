@@ -8,20 +8,3 @@ extension PythonBytes {
         }
     }
 }
-
-extension Array where Element == PythonObject {
-    var data: [Data] {
-        compactMap(PythonBytes.init)
-            .map(\.data)
-    }
-}
-
-extension PythonObject {
-    var data: [Data] {
-        Array(self).data
-    }
-    
-    var bytes: PythonBytes? {
-        PythonBytes(self)
-    }
-}

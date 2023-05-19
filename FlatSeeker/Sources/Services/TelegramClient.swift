@@ -40,36 +40,20 @@ class TelegramClient {
         }
     }
     
-    func getMessages() async -> [MessageGroup] {
-        let groups = await interactor.execute { _, getValue in
-            let client = getValue(.client)
-            let pythonMessageGroups = client.get_message_groups()
-            return pythonMessageGroups
-                .map { group in
-                    let text = String(group.text)!
-                    let district = String(group.district)!
-                    let price = String(group.price)!
-                    let thumbnail = group.thumbnail.bytes?.data ?? Data()
-                    let messageIds = Array(group.image_ids).map { Int($0)! }
-                    return (text, district, price, thumbnail, messageIds)
-                }
-        }
+    func getPosts() async -> [Post] {
+        let groups = await getGroups()
         
-        return await withTaskGroup(of: (Int, MessageGroup).self) { [photoURLFetcher] taskGroup in
-            for (groupIndex, group) in groups.enumerated() {
-                let (text, district, price, thumbnail, messageIds) = group
-                
+        return await withTaskGroup(of: Post.self) { [photoURLFetcher] taskGroup in
+            for (id, text, thumbnail, messageIds) in groups {
                 taskGroup.addTask {
                     let urls = await photoURLFetcher.fetchURLs(messageIds: messageIds)
-                    return (
-                        groupIndex,
-                        MessageGroup(
-                            textMessage: text,
-                            district: district.isEmpty ? nil : district,
-                            price: price.isEmpty ? nil : price,
-                            thumbnail: thumbnail,
-                            images: urls
-                        )
+                    return Post(
+                        id: id,
+                        textMessage: text,
+                        district: nil,
+                        price: nil,
+                        thumbnail: thumbnail,
+                        images: urls
                     )
                 }
             }
@@ -78,7 +62,25 @@ class TelegramClient {
                 result.append(group)
             }
             
-            return result.sorted(by: { $0.0 < $1.0 }).map(\.1)
+            return result.sorted(by: { $0.id > $1.id })
+        }
+    }
+    
+    private func getGroups() async -> [(Int, String, Data, [Int])] {
+        await interactor.execute { _, getValue in
+            let client = getValue(.client)
+            let pythonMessageGroups = client.get_message_groups()
+            return pythonMessageGroups.compactMap { group in
+                guard let id = Int(group.grouped_id),
+                      let text = String(group.text),
+                      let thumbnail = PythonBytes(group.thumbnail)?.data
+                else {
+                    return nil
+                }
+                
+                let messageIds = Array(group.image_ids).compactMap { Int($0) }
+                return (id, text, thumbnail, messageIds)
+            }
         }
     }
 }

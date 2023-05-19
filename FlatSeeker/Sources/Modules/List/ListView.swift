@@ -15,7 +15,7 @@ class ListViewModel: ObservableObject {
     }
     
     private func fetchMessages() async {
-        let messageGroups = await client.getMessages()
+        let messageGroups = await client.getPosts()
         
         if messageGroups.isEmpty {
             Task {
@@ -28,7 +28,7 @@ class ListViewModel: ObservableObject {
     }
     
     @MainActor
-    private func displayMessages(messageGroups: [MessageGroup]) {
+    private func displayMessages(messageGroups: [Post]) {
         let count = self.items.count
         self.items = self.items + messageGroups.enumerated().map { index, group in
             let carouselViewModel = CarouselViewModel(

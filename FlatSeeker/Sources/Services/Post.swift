@@ -1,6 +1,7 @@
 import Foundation
 
-struct MessageGroup {
+struct Post {
+    let id: Int
     let textMessage: String
     let district: String?
     let price: String?
