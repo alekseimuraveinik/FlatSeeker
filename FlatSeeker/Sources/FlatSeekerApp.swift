@@ -13,7 +13,7 @@ struct FlatSeekerApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ListView(viewModel: .init(client: appDelegate.client))
+            ListView(viewModel: appDelegate.container.makeListViewModel())
         }
     }
 }

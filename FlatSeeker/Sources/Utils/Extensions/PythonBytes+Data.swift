@@ -1,7 +1,7 @@
 import Foundation
 import PythonKit
 
-extension PythonBytes {
+public extension PythonBytes {
     var data: Data {
         withUnsafeBytes { pointer in
             Data(pointer)

@@ -52,7 +52,7 @@ def parse_price(text):
             if int(value) == 0:
                 return ''
             return value
-    return ''
+    return None
 
 
 def parse_district(text):
@@ -64,7 +64,7 @@ def parse_district(text):
                 return match.group(1)
             except:
                 return text[match.start():match.end()]
-    return ''
+    return None
 
 
 class MessageGroup:
@@ -77,7 +77,7 @@ class MessageGroup:
         if text_message:
             self.text = text_message.message
             self.price = parse_price(self.text)
-            self.district = parse_district(self.text).capitalize()
+            self.district = parse_district(self.text)
             self.thumbnail = utils.stripped_photo_to_jpg(text_message.photo.sizes[0].bytes)
         else:
             self.text = None

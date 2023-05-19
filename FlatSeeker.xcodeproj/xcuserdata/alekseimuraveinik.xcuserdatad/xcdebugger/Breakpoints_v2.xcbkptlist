@@ -3,4 +3,69 @@
    uuid = "184652AB-312B-4C40-B1B0-0FA66E7C1D88"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4F9B14C3-D5B1-43D2-96A1-47195D5B33A6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FlatSeeker/Sources/Modules/List/ListView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "fetchPosts()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "4F9B14C3-D5B1-43D2-96A1-47195D5B33A6 - 25567a9951fe276c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FlatSeeker.ListViewModel.fetchMessages() -&gt; ()"
+                  moduleName = "FlatSeeker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alekseimuraveinik/projects/FlatSeeker/FlatSeeker/Sources/Modules/List/ListView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  uuid = "4F9B14C3-D5B1-43D2-96A1-47195D5B33A6 - b496f24914fe24b4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable () async -&gt; () in FlatSeeker.ListViewModel.fetchMessages() -&gt; ()"
+                  moduleName = "FlatSeeker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alekseimuraveinik/projects/FlatSeeker/FlatSeeker/Sources/Modules/List/ListView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "4F9B14C3-D5B1-43D2-96A1-47195D5B33A6 - 1f71558501b16ad5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #1 @Sendable () async -&gt; () in FlatSeeker.ListViewModel.fetchMessages() -&gt; ()"
+                  moduleName = "FlatSeeker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alekseimuraveinik/projects/FlatSeeker/FlatSeeker/Sources/Modules/List/ListView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "52">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

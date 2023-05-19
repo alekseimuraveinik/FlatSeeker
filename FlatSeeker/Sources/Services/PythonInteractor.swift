@@ -1,11 +1,11 @@
 import Foundation
 import PythonKit
 
-class PythonInteractor<StoredObjectKey: Hashable & CaseIterable> {
+public class PythonInteractor<StoredObjectKey: Hashable & CaseIterable> {
     private let serialQueue = DispatchQueue(label: "pythonInteractorQueue", qos: .background)
     private var storage = [StoredObjectKey: PythonObject]()
     
-    init(
+    public init(
         scriptURL: URL,
         initializeStorage: @escaping (PythonObject, StoredObjectKey) -> PythonObject
     ) {
@@ -23,7 +23,7 @@ class PythonInteractor<StoredObjectKey: Hashable & CaseIterable> {
         }
     }
     
-    func execute<T>(
+    public func execute<T>(
         accessing value: StoredObjectKey,
         _ action: @escaping (PythonObject) -> T
     ) async -> T {

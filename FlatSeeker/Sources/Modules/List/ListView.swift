@@ -1,42 +1,40 @@
 import SwiftUI
 
 class ListViewModel: ObservableObject {
-    @Published var items = [(Int, ListItemViewModel)]()
-    private let client: TelegramClient
+    @Published private(set) var items = [ListItemViewModel]()
+    private let postsRepository: PostsRepository
+    private var messagesFetchingItemId: Int?
     
-    init(client: TelegramClient) {
-        self.client = client
+    init(postsRepository: PostsRepository) {
+        self.postsRepository = postsRepository
     }
     
-    func onAppear() {
+    func didDisplayItem(id: Int) {
+        if id == messagesFetchingItemId {
+            fetchPosts()
+        }
+    }
+    
+    func fetchPosts() {
         Task {
-            await fetchMessages()
+            let posts = await postsRepository.getPosts()
+            await displayPosts(posts: posts)
         }
-    }
-    
-    private func fetchMessages() async {
-        let messageGroups = await client.getPosts()
-        
-        if messageGroups.isEmpty {
-            Task {
-                await fetchMessages()
-            }
-            return
-        }
-        
-        await displayMessages(messageGroups: messageGroups)
     }
     
     @MainActor
-    private func displayMessages(messageGroups: [Post]) {
-        let count = self.items.count
-        self.items = self.items + messageGroups.enumerated().map { index, group in
-            let carouselViewModel = CarouselViewModel(
-                thumbnail: UIImage(data: group.thumbnail),
-                images: group.images
+    private func displayPosts(posts: [Post]) {
+        let totalItems = items + posts.map { post in
+            ListItemViewModel(
+                post: post,
+                carouselViewModel: CarouselViewModel(
+                    thumbnail: UIImage(data: post.thumbnail),
+                    images: post.images
+                )
             )
-            return (index + count, ListItemViewModel(group: group, carouselViewModel: carouselViewModel))
         }
+        messagesFetchingItemId = totalItems[max(totalItems.count - 10, 0)].id
+        items = totalItems
     }
 }
 
@@ -47,7 +45,7 @@ struct ListView: View {
         NavigationView {
             ScrollView {
                 LazyVStack(spacing: 40) {
-                    ForEach(viewModel.items, id: \.0) { index, itemViewModel in
+                    ForEach(viewModel.items, id: \.id) { itemViewModel in
                         ListItemView(viewModel: itemViewModel)
                             .overlay(alignment: .bottomTrailing) {
                                 NavigationLink {
@@ -57,9 +55,7 @@ struct ListView: View {
                                 }
                             }
                             .onAppear {
-                                if viewModel.items.count - index == 10 {
-                                    viewModel.onAppear()
-                                }
+                                viewModel.didDisplayItem(id: itemViewModel.id)
                             }
                     }
                 }
@@ -67,6 +63,6 @@ struct ListView: View {
                 .padding(.vertical, 20)
             }
         }
-        .onAppear(perform: viewModel.onAppear)
+        .onAppear(perform: viewModel.fetchPosts)
     }
 }

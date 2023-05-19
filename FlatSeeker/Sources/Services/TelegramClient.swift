@@ -36,33 +36,7 @@ class TelegramClient {
         }
     }
     
-    func getPosts() async -> [Post] {
-        let groups = await getGroups()
-        
-        return await withTaskGroup(of: Post.self) { [photoURLFetcher] taskGroup in
-            for (id, text, thumbnail, messageIds) in groups {
-                taskGroup.addTask {
-                    let urls = await photoURLFetcher.fetchURLs(messageIds: messageIds)
-                    return Post(
-                        id: id,
-                        textMessage: text,
-                        district: nil,
-                        price: nil,
-                        thumbnail: thumbnail,
-                        images: urls
-                    )
-                }
-            }
-            
-            let result = await taskGroup.reduce(into: []) { result, group in
-                result.append(group)
-            }
-            
-            return result.sorted(by: { $0.id > $1.id })
-        }
-    }
-    
-    private func getGroups() async -> [(Int, String, Data, [Int])] {
+    func getGroups() async -> [(Int, String, String?, String?, Data, [Int])] {
         await interactor.execute(accessing: .client) { client in
             client.get_message_groups().compactMap { group in
                 guard let id = Int(group.grouped_id),
@@ -72,8 +46,10 @@ class TelegramClient {
                     return nil
                 }
                 
+                let price = String(group.price)
+                let district = String(group.district)
                 let messageIds = Array(group.image_ids).compactMap { Int($0) }
-                return (id, text, thumbnail, messageIds)
+                return (id, text, price, district, thumbnail, messageIds)
             }
         }
     }
