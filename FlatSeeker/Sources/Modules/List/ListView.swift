@@ -3,16 +3,9 @@ import SwiftUI
 class ListViewModel: ObservableObject {
     @Published private(set) var items = [ListItemViewModel]()
     private let postsRepository: PostsRepository
-    private var messagesFetchingItemId: Int?
     
     init(postsRepository: PostsRepository) {
         self.postsRepository = postsRepository
-    }
-    
-    func didDisplayItem(id: Int) {
-        if id == messagesFetchingItemId {
-            fetchPosts()
-        }
     }
     
     func fetchPosts() {
@@ -24,13 +17,14 @@ class ListViewModel: ObservableObject {
     
     @MainActor
     private func displayPosts(posts: [Post]) {
-        let totalItems = items + posts.map { post in
+        let count = items.count
+        let totalItems = items + posts.enumerated().map { index, post in
             ListItemViewModel(
+                index: count + index,
                 post: post,
                 carouselViewModel: CarouselViewModel(images: post.images)
             )
         }
-        messagesFetchingItemId = totalItems[max(totalItems.count - 10, 0)].id
         items = totalItems
     }
 }
@@ -52,8 +46,14 @@ struct ListView: View {
                                 }
                             }
                             .onAppear {
-                                viewModel.didDisplayItem(id: itemViewModel.id)
+                                if viewModel.items.count - itemViewModel.index == 10 {
+                                    viewModel.fetchPosts()
+                                }
                             }
+                    }
+                    
+                    if !viewModel.items.isEmpty {
+                        Color.clear.onAppear(perform: viewModel.fetchPosts)
                     }
                 }
                 .padding(.horizontal, 20)

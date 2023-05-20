@@ -1,13 +1,15 @@
 import SwiftUI
 
 class ListItemViewModel {
+    let index: Int
     let id: Int
     let text: String
     let district: String?
     let price: String?
     let carouselViewModel: CarouselViewModel
     
-    init(post: Post, carouselViewModel: CarouselViewModel) {
+    init(index: Int, post: Post, carouselViewModel: CarouselViewModel) {
+        self.index = index
         id = post.id
         text = post.text
         district = post.district
