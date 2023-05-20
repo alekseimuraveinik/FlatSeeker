@@ -1,70 +1,7 @@
 from telethon import TelegramClient, sync
 from itertools import groupby
-import re
 from telethon import utils
 from requests import get
-
-
-districts = [
-    'ваке-сабуртало',
-    'ваке',
-    'сабуртало',
-    'диди дигоми',
-    'дигоми',
-    'исани',
-    'исаны',
-    'сололаки',
-    'надзаладеви',
-    'авлабари',
-    'глдани',
-    'дидубе',
-    'чугурети',
-    'мтацминда',
-    'cанзона',
-    'ортачала',
-    'церетели',
-    'вера',
-    'вазисубани',
-    'варкетили',
-    'батуми',
-    'ортчала',
-    'мардженешвили',
-    'марджанишвили',
-]
-
-district_patterns = list(map(lambda name: re.compile(name), districts)) + [
-    re.compile(r'Район {0,2}#([а-яА-Я]+)'),
-    re.compile(r'Район {0,2}:? {0,2}([а-яА-Я]+)')
-]
-
-price_patterns = [
-    re.compile(r'\$[  ]{0,3}(\d{3,4})'),
-    re.compile(r'(\d{3,4})[  ]{0,3}[$💰💵]'),
-    re.compile(r'(\d{3,4})[  ]{0,3}долларов')
-]
-
-
-def parse_price(text):
-    for price_pattern in price_patterns:
-        match = re.search(price_pattern, text)
-        if match:
-            value = match.group(1)
-            if int(value) == 0:
-                return ''
-            return value
-    return None
-
-
-def parse_district(text):
-    text = text.lower()
-    for district_pattern in district_patterns:
-        match = re.search(district_pattern, text)
-        if match:
-            try:
-                return match.group(1)
-            except:
-                return text[match.start():match.end()]
-    return None
 
 
 class MessageGroup:
@@ -78,13 +15,7 @@ class MessageGroup:
             )
         )
 
-        text_message = next((x for x in self.messages if x.message != ''), None)
-        if text_message:
-            self.text = text_message.message
-            self.price = parse_price(self.text)
-            self.district = parse_district(self.text)
-        else:
-            self.text = None
+        self.text= next((x.message for x in self.messages if x.message != ''), None)
 
 
 class Client:

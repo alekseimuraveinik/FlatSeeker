@@ -21,6 +21,8 @@
 		DA7387242A182973006914F1 /* PostsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7387232A182973006914F1 /* PostsRepository.swift */; };
 		DA7387262A18314F006914F1 /* String+capitalizedWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7387252A18314F006914F1 /* String+capitalizedWords.swift */; };
 		DA7387292A1832FB006914F1 /* PythonRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = DA7387282A1832FB006914F1 /* PythonRuntime */; };
+		DA73872D2A18410A006914F1 /* DistrictParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA73872C2A18410A006914F1 /* DistrictParser.swift */; };
+		DA73872F2A1843D0006914F1 /* PriceParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA73872E2A1843D0006914F1 /* PriceParser.swift */; };
 		DA82CDB62A0FDE0C00E4E228 /* python-stdlib in Resources */ = {isa = PBXBuildFile; fileRef = DA82CDB52A0FDE0C00E4E228 /* python-stdlib */; };
 		DAC7E5BE2A103E9000540B0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC7E5BD2A103E9000540B0C /* AppDelegate.swift */; };
 		DADA3CF72A17AA700006F740 /* PhotoURLFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADA3CF62A17AA700006F740 /* PhotoURLFetcher.swift */; };
@@ -42,6 +44,8 @@
 		DA6170202A152AFF00F616F0 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		DA7387232A182973006914F1 /* PostsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsRepository.swift; sourceTree = "<group>"; };
 		DA7387252A18314F006914F1 /* String+capitalizedWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+capitalizedWords.swift"; sourceTree = "<group>"; };
+		DA73872C2A18410A006914F1 /* DistrictParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistrictParser.swift; sourceTree = "<group>"; };
+		DA73872E2A1843D0006914F1 /* PriceParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceParser.swift; sourceTree = "<group>"; };
 		DA82CDB52A0FDE0C00E4E228 /* python-stdlib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "python-stdlib"; sourceTree = "<group>"; };
 		DAC7E5BD2A103E9000540B0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DADA3CF62A17AA700006F740 /* PhotoURLFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoURLFetcher.swift; sourceTree = "<group>"; };
@@ -75,6 +79,8 @@
 			children = (
 				DA0775FB2A1299DA00A7C36B /* TelegramClient.swift */,
 				DADA3CF62A17AA700006F740 /* PhotoURLFetcher.swift */,
+				DA73872C2A18410A006914F1 /* DistrictParser.swift */,
+				DA73872E2A1843D0006914F1 /* PriceParser.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -271,7 +277,9 @@
 				DAC7E5BE2A103E9000540B0C /* AppDelegate.swift in Sources */,
 				DA3DA4342A168AEC008F0C5A /* CarouselView.swift in Sources */,
 				DA7387242A182973006914F1 /* PostsRepository.swift in Sources */,
+				DA73872D2A18410A006914F1 /* DistrictParser.swift in Sources */,
 				DA0776042A129B0600A7C36B /* Measure.swift in Sources */,
+				DA73872F2A1843D0006914F1 /* PriceParser.swift in Sources */,
 				DA2555D02A0EE23C001D48DC /* DetailsView.swift in Sources */,
 				DADA3CF92A17B84C0006F740 /* URLSession+utf8String.swift in Sources */,
 				DA0775FC2A1299DA00A7C36B /* TelegramClient.swift in Sources */,
