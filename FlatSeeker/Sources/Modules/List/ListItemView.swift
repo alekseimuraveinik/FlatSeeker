@@ -5,7 +5,7 @@ class ListItemViewModel {
     let id: Int
     let text: String
     let district: String?
-    let price: String?
+    let price: Int?
     let carouselViewModel: CarouselViewModel
     
     init(index: Int, post: Post, carouselViewModel: CarouselViewModel) {

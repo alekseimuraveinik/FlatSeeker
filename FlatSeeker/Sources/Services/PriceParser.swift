@@ -1,5 +1,5 @@
 class PriceParser {
-    func parsePrice(from text: String) -> String? {
+    func parsePrice(from text: String) -> Int? {
         let lowercasedText = text.lowercased()
         for regex in priceRegexes {
             if let found = try? regex.firstMatch(in: lowercasedText) {
@@ -7,7 +7,8 @@ class PriceParser {
                 if price.contains(/[0️⃣1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣]/) {
                     price = normalize(memDigits: price)
                 }
-                return String(found.1)
+                let intPrice = Int(price)
+                return intPrice == 0 ? nil : intPrice
             }
         }
         return nil

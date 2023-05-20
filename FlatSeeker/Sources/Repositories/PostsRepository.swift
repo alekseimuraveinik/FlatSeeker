@@ -8,7 +8,7 @@ struct PostImage {
 struct Post {
     let id: Int
     let text: String
-    let price: String?
+    let price: Int?
     let district: String?
     let images: [PostImage]
 }
