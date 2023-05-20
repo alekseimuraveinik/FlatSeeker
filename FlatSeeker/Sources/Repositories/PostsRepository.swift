@@ -19,6 +19,8 @@ class PostsRepository {
     private let districtParser = DistrictParser()
     private let priceParser = PriceParser()
     
+    private var fetchedPosts = Set<String>()
+    
     init(telegramClient: TelegramClient, photoURLFetcher: PhotoURLFetcher) {
         self.telegramClient = telegramClient
         self.photoURLFetcher = photoURLFetcher
@@ -27,7 +29,7 @@ class PostsRepository {
     func getPosts() async -> [Post] {
         let groups = await telegramClient.getGroups()
         
-        let posts = await withTaskGroup(of: Post.self) { [photoURLFetcher, districtParser, priceParser] taskGroup in
+        var posts = await withTaskGroup(of: Post.self) { [photoURLFetcher, districtParser, priceParser] taskGroup in
             for (id, text, images) in groups {
                 taskGroup.addTask {
                     let urls = await photoURLFetcher.fetchURLs(messageIds: images.map(\.0))
@@ -50,6 +52,7 @@ class PostsRepository {
             return result.sorted(by: { $0.id > $1.id })
         }
         
+        posts = posts.filter { self.fetchedPosts.insert($0.text).inserted }
         if posts.isEmpty {
             return await getPosts()
         }
