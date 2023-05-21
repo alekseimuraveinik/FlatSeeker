@@ -1,8 +1,8 @@
 import CoreData
 
 @objc(Post)
-class Post: NSManagedObject {
-    convenience init(context: NSManagedObjectContext, post: PostDTO) {
+final class Post: NSManagedObject, ConvertibleManagedObject {
+    fileprivate convenience init(context: NSManagedObjectContext, post: PostDTO) {
         self.init(context: context)
         
         id = NSNumber(value: post.id)
@@ -11,7 +11,7 @@ class Post: NSManagedObject {
         district = post.district
     }
     
-    var postDTO: PostDTO {
+    var dto: PostDTO {
         PostDTO(
             id: Int(truncating: id!),
             text: text!,
@@ -19,5 +19,11 @@ class Post: NSManagedObject {
             district: district,
             images: []
         )
+    }
+}
+
+extension PostDTO: ManagedObjectConvertible {
+    func makeManagedObject(context: NSManagedObjectContext) -> NSManagedObject {
+        Post(context: context, post: self)
     }
 }

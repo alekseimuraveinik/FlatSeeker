@@ -18,7 +18,7 @@ class PostsRepository {
         self.telegramClient = telegramClient
         self.photoURLFetcher = photoURLFetcher
         
-        favouritePostsCancellable = dataController.favouritePosts
+        favouritePostsCancellable = dataController.makeObjectPublisher(for: Post.self)
             .sink(receiveValue: favouritePosts.send(_:))
     }
     
@@ -64,10 +64,10 @@ class PostsRepository {
     }
     
     func addToFavourite(post: PostDTO) {
-        dataController.save(post: post)
+        dataController.save(object: post)
     }
     
     func removeFromFavourite(post: PostDTO) {
-        dataController.delete(post: post)
+        dataController.delete(object: post)
     }
 }

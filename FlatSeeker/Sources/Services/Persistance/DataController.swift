@@ -1,8 +1,19 @@
 import Combine
 import CoreData
 
+protocol ManagedObjectConvertible {
+    var id: Int { get }
+    func makeManagedObject(context: NSManagedObjectContext) -> NSManagedObject
+}
+
+protocol ConvertibleManagedObject: NSManagedObject {
+    associatedtype DTO
+    
+    var dto: DTO { get }
+    static func fetchRequest() -> NSFetchRequest<Self>
+}
+
 class DataController {
-    let favouritePosts: AnyPublisher<[PostDTO], Never>
     private let container = NSPersistentContainer(name: "Model")
     
     init() {
@@ -11,32 +22,34 @@ class DataController {
                 print("Core Data failed to load: \(error.localizedDescription)")
             }
         }
-        
-        favouritePosts = CoreDataPublisher(
-            request: Post.fetchRequest(),
+    }
+    
+    func makeObjectPublisher<Object: ConvertibleManagedObject>(for _: Object.Type) -> AnyPublisher<[Object.DTO], Never> {
+        CoreDataPublisher(
+            request: Object.fetchRequest(),
             context: container.viewContext
         )
-        .map { $0.map(\.postDTO) }
+        .map { $0.map(\.dto) }
         .catch { _ in Just([]) }
         .eraseToAnyPublisher()
     }
     
-    func save(post: PostDTO) {
-        DispatchQueue.main.async { [managedContext = container.viewContext] in
-            _ = Post(context: managedContext, post: post)
-            try! managedContext.save()
+    func save<Object: ManagedObjectConvertible>(object: Object) {
+        DispatchQueue.main.async { [context = container.viewContext] in
+            _ = object.makeManagedObject(context: context)
+            try! context.save()
         }
     }
     
-    func delete(post: PostDTO) {
-        DispatchQueue.main.async { [managedContext = container.viewContext] in
+    func delete<Object: ManagedObjectConvertible>(object: Object) {
+        DispatchQueue.main.async { [context = container.viewContext] in
             let request = Post.fetchRequest()
-            request.predicate = NSPredicate(format: "id == %lld", post.id)
+            request.predicate = NSPredicate(format: "id == %lld", object.id)
             request.fetchLimit = 1
             
-            if let object = try? managedContext.fetch(request).first {
-                managedContext.delete(object)
-                try! managedContext.save()
+            if let object = try? context.fetch(request).first {
+                context.delete(object)
+                try! context.save()
             }
         }
     }
