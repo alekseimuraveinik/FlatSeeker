@@ -21,8 +21,8 @@
 		DA4DD3232A1A5B29001B681A /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DA4DD3212A1A5B29001B681A /* Model.xcdatamodeld */; };
 		DA4DD3252A1A5B57001B681A /* PostDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4DD3242A1A5B57001B681A /* PostDTO.swift */; };
 		DA4DD3272A1A5C6F001B681A /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4DD3262A1A5C6F001B681A /* DataController.swift */; };
-		DA4DD32A2A1AA46A001B681A /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4DD3282A1AA46A001B681A /* Post.swift */; };
 		DA6170212A152AFF00F616F0 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6170202A152AFF00F616F0 /* ListView.swift */; };
+		DA64308B2A1AB14C00608E86 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6430892A1AB14C00608E86 /* Post.swift */; };
 		DA7387242A182973006914F1 /* PostsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7387232A182973006914F1 /* PostsRepository.swift */; };
 		DA7387262A18314F006914F1 /* String+capitalizedWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7387252A18314F006914F1 /* String+capitalizedWords.swift */; };
 		DA7387292A1832FB006914F1 /* PythonRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = DA7387282A1832FB006914F1 /* PythonRuntime */; };
@@ -50,8 +50,8 @@
 		DA4DD3222A1A5B29001B681A /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		DA4DD3242A1A5B57001B681A /* PostDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDTO.swift; sourceTree = "<group>"; };
 		DA4DD3262A1A5C6F001B681A /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
-		DA4DD3282A1AA46A001B681A /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		DA6170202A152AFF00F616F0 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		DA6430892A1AB14C00608E86 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		DA7387232A182973006914F1 /* PostsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsRepository.swift; sourceTree = "<group>"; };
 		DA7387252A18314F006914F1 /* String+capitalizedWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+capitalizedWords.swift"; sourceTree = "<group>"; };
 		DA73872C2A18410A006914F1 /* DistrictParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistrictParser.swift; sourceTree = "<group>"; };
@@ -181,7 +181,7 @@
 		DA4DD32D2A1AAD20001B681A /* ManagedObjects */ = {
 			isa = PBXGroup;
 			children = (
-				DA4DD3282A1AA46A001B681A /* Post.swift */,
+				DA6430892A1AB14C00608E86 /* Post.swift */,
 			);
 			path = ManagedObjects;
 			sourceTree = "<group>";
@@ -358,7 +358,7 @@
 				DA4DD3272A1A5C6F001B681A /* DataController.swift in Sources */,
 				DA6170212A152AFF00F616F0 /* ListView.swift in Sources */,
 				DADA3CF72A17AA700006F740 /* PhotoURLFetcher.swift in Sources */,
-				DA4DD32A2A1AA46A001B681A /* Post.swift in Sources */,
+				DA64308B2A1AB14C00608E86 /* Post.swift in Sources */,
 				DA7387262A18314F006914F1 /* String+capitalizedWords.swift in Sources */,
 				DA2555BE2A0EE1A3001D48DC /* FlatSeekerApp.swift in Sources */,
 			);
