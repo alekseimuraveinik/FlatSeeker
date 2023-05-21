@@ -11,27 +11,15 @@ class PostsRepository {
     private var fetchedPosts = Set<String>()
     
     private let dataController = DataController()
-    private let savedPosts = CurrentValueSubject<[PostDTO], Never>([])
-    private let savedPostsCancellable: AnyCancellable?
+    private let favouritePosts = CurrentValueSubject<[PostDTO], Never>([])
+    private let favouritePostsCancellable: AnyCancellable?
     
     init(telegramClient: TelegramClient, photoURLFetcher: PhotoURLFetcher) {
         self.telegramClient = telegramClient
         self.photoURLFetcher = photoURLFetcher
         
-        savedPostsCancellable = CDPublisher(request: NSFetchRequest<Post>(entityName: "Post"), context: dataController.container.viewContext)
-            .map { objects in
-                objects.map { object in
-                    PostDTO(
-                        id: Int(truncating: object.value(forKey: "id") as! NSNumber),
-                        text: object.value(forKey: "text") as! String,
-                        price: (object.value(forKey: "price") as! NSNumber?).flatMap(Int.init(truncating:)),
-                        district: object.value(forKey: "district") as! String?,
-                        images: []
-                    )
-                }
-            }
-            .catch { _ in Just([]) }
-            .sink(receiveValue: savedPosts.send)
+        favouritePostsCancellable = dataController.favouritePosts
+            .sink(receiveValue: favouritePosts.send(_:))
     }
     
     func getPosts() async -> [PostDTO] {
@@ -68,7 +56,7 @@ class PostsRepository {
     }
     
     func getIsInFavourite(post: PostDTO) -> AnyPublisher<Bool, Never> {
-        savedPosts
+        favouritePosts
             .map { posts in
                 posts.contains(where: { $0.id == post.id })
             }
