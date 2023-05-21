@@ -18,11 +18,14 @@ class ListViewModel: ObservableObject {
     @MainActor
     private func displayPosts(posts: [PostDTO]) {
         let count = items.count
-        let totalItems = items + posts.enumerated().map { index, post in
+        let totalItems = items + posts.enumerated().map { [postsRepository] index, post in
             ListItemViewModel(
                 index: count + index,
                 post: post,
-                carouselViewModel: CarouselViewModel(images: post.images)
+                carouselViewModel: CarouselViewModel(images: post.images),
+                isInFavourite: postsRepository.getIsInFavourite(post: post),
+                addToFavourite: { postsRepository.addToFavourite(post: post) },
+                removeFromFavourite: { postsRepository.removeFromFavourite(post: post) }
             )
         }
         items = totalItems

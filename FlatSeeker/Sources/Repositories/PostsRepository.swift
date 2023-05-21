@@ -1,4 +1,5 @@
 import Combine
+import CoreData
 import Foundation
 
 class PostsRepository {
@@ -10,25 +11,27 @@ class PostsRepository {
     private var fetchedPosts = Set<String>()
     
     private let dataController = DataController()
-    private let savedPosts: AnyPublisher<[PostDTO], any Error>
+    private let savedPosts = CurrentValueSubject<[PostDTO], Never>([])
+    private let savedPostsCancellable: AnyCancellable?
     
     init(telegramClient: TelegramClient, photoURLFetcher: PhotoURLFetcher) {
         self.telegramClient = telegramClient
         self.photoURLFetcher = photoURLFetcher
         
-        savedPosts = CDPublisher(request: Post.fetchRequest(), context: dataController.container.viewContext)
+        savedPostsCancellable = CDPublisher(request: NSFetchRequest<Post>(entityName: "Post"), context: dataController.container.viewContext)
             .map { objects in
                 objects.map { object in
                     PostDTO(
                         id: Int(truncating: object.value(forKey: "id") as! NSNumber),
                         text: object.value(forKey: "text") as! String,
                         price: (object.value(forKey: "price") as! NSNumber?).flatMap(Int.init(truncating:)),
-                        district: object.value(forKey: "districe") as! String?,
+                        district: object.value(forKey: "district") as! String?,
                         images: []
                     )
                 }
             }
-            .eraseToAnyPublisher()
+            .catch { _ in Just([]) }
+            .sink(receiveValue: savedPosts.send)
     }
     
     func getPosts() async -> [PostDTO] {
@@ -62,5 +65,21 @@ class PostsRepository {
             return await getPosts()
         }
         return posts
+    }
+    
+    func getIsInFavourite(post: PostDTO) -> AnyPublisher<Bool, Never> {
+        savedPosts
+            .map { posts in
+                posts.contains(where: { $0.id == post.id })
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    func addToFavourite(post: PostDTO) {
+        dataController.save(post: post)
+    }
+    
+    func removeFromFavourite(post: PostDTO) {
+        dataController.delete(post: post)
     }
 }

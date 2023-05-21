@@ -30,8 +30,13 @@ class CDPublisher<Entity>: NSObject, NSFetchedResultsControllerDelegate, Publish
         objc_sync_exit(self)
         
         if start {
-            let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context,
-                                                        sectionNameKeyPath: nil, cacheName: nil)
+            let controller = NSFetchedResultsController(
+                fetchRequest: request,
+                managedObjectContext: context,
+                sectionNameKeyPath: nil,
+                cacheName: nil
+            )
+            
             controller.delegate = self
             context.perform {
                 do {
