@@ -23,7 +23,7 @@ final class Post: NSManagedObject, ConvertibleManagedObject {
 }
 
 extension PostDTO: ManagedObjectConvertible {
-    func makeManagedObject(context: NSManagedObjectContext) -> NSManagedObject {
+    func createManagedObject(for context: NSManagedObjectContext) -> NSManagedObject {
         Post(context: context, post: self)
     }
 }

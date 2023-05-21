@@ -3,7 +3,9 @@ import CoreData
 
 protocol ManagedObjectConvertible {
     var id: Int { get }
-    func makeManagedObject(context: NSManagedObjectContext) -> NSManagedObject
+    
+    @discardableResult
+    func createManagedObject(for context: NSManagedObjectContext) -> NSManagedObject
 }
 
 protocol ConvertibleManagedObject: NSManagedObject {
@@ -19,7 +21,7 @@ class DataController {
     init() {
         container.loadPersistentStores { _, error in
             if let error {
-                print("Core Data failed to load: \(error.localizedDescription)")
+                fatalError("Core Data failed to load: \(error.localizedDescription)")
             }
         }
     }
@@ -36,7 +38,7 @@ class DataController {
     
     func save<Object: ManagedObjectConvertible>(object: Object) {
         DispatchQueue.main.async { [context = container.viewContext] in
-            _ = object.makeManagedObject(context: context)
+            object.createManagedObject(for: context)
             try! context.save()
         }
     }
