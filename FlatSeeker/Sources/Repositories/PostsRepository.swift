@@ -1,17 +1,5 @@
+import Combine
 import Foundation
-
-struct PostImage {
-    let thumbnail: Data
-    let imageURL: URL
-}
-
-struct Post {
-    let id: Int
-    let text: String
-    let price: Int?
-    let district: String?
-    let images: [PostImage]
-}
 
 class PostsRepository {
     private let telegramClient: TelegramClient
@@ -21,19 +9,36 @@ class PostsRepository {
     
     private var fetchedPosts = Set<String>()
     
+    private let dataController = DataController()
+    private let savedPosts: AnyPublisher<[PostDTO], any Error>
+    
     init(telegramClient: TelegramClient, photoURLFetcher: PhotoURLFetcher) {
         self.telegramClient = telegramClient
         self.photoURLFetcher = photoURLFetcher
+        
+        savedPosts = CDPublisher(request: Post.fetchRequest(), context: dataController.container.viewContext)
+            .map { objects in
+                objects.map { object in
+                    PostDTO(
+                        id: Int(truncating: object.value(forKey: "id") as! NSNumber),
+                        text: object.value(forKey: "text") as! String,
+                        price: (object.value(forKey: "price") as! NSNumber?).flatMap(Int.init(truncating:)),
+                        district: object.value(forKey: "districe") as! String?,
+                        images: []
+                    )
+                }
+            }
+            .eraseToAnyPublisher()
     }
     
-    func getPosts() async -> [Post] {
+    func getPosts() async -> [PostDTO] {
         let groups = await telegramClient.getGroups()
         
-        var posts = await withTaskGroup(of: Post.self) { [photoURLFetcher, districtParser, priceParser] taskGroup in
+        var posts = await withTaskGroup(of: PostDTO.self) { [photoURLFetcher, districtParser, priceParser] taskGroup in
             for (id, text, images) in groups {
                 taskGroup.addTask {
                     let urls = await photoURLFetcher.fetchURLs(messageIds: images.map(\.0))
-                    return Post(
+                    return PostDTO(
                         id: id,
                         text: text,
                         price: priceParser.parsePrice(from: text),

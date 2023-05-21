@@ -16,7 +16,7 @@ class ListViewModel: ObservableObject {
     }
     
     @MainActor
-    private func displayPosts(posts: [Post]) {
+    private func displayPosts(posts: [PostDTO]) {
         let count = items.count
         let totalItems = items + posts.enumerated().map { index, post in
             ListItemViewModel(

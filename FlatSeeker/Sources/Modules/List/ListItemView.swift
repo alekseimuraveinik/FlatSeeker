@@ -8,7 +8,7 @@ class ListItemViewModel {
     let price: Int?
     let carouselViewModel: CarouselViewModel
     
-    init(index: Int, post: Post, carouselViewModel: CarouselViewModel) {
+    init(index: Int, post: PostDTO, carouselViewModel: CarouselViewModel) {
         self.index = index
         id = post.id
         text = post.text
