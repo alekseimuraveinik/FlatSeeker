@@ -88,10 +88,8 @@
 			isa = PBXGroup;
 			children = (
 				DA4DD32C2A1AA4B3001B681A /* Persistance */,
-				DA0775FB2A1299DA00A7C36B /* TelegramClient.swift */,
-				DADA3CF62A17AA700006F740 /* PhotoURLFetcher.swift */,
-				DA73872C2A18410A006914F1 /* DistrictParser.swift */,
-				DA73872E2A1843D0006914F1 /* PriceParser.swift */,
+				DA4DD32E2A1AAE28001B681A /* Network */,
+				DA4DD32F2A1AAE34001B681A /* Parsers */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -186,6 +184,24 @@
 				DA4DD3282A1AA46A001B681A /* Post.swift */,
 			);
 			path = ManagedObjects;
+			sourceTree = "<group>";
+		};
+		DA4DD32E2A1AAE28001B681A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				DA0775FB2A1299DA00A7C36B /* TelegramClient.swift */,
+				DADA3CF62A17AA700006F740 /* PhotoURLFetcher.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		DA4DD32F2A1AAE34001B681A /* Parsers */ = {
+			isa = PBXGroup;
+			children = (
+				DA73872C2A18410A006914F1 /* DistrictParser.swift */,
+				DA73872E2A1843D0006914F1 /* PriceParser.swift */,
+			);
+			path = Parsers;
 			sourceTree = "<group>";
 		};
 		DA61701F2A152AF700F616F0 /* List */ = {

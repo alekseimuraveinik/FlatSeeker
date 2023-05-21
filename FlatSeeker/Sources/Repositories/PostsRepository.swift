@@ -8,7 +8,7 @@ class PostsRepository {
     private let districtParser = DistrictParser()
     private let priceParser = PriceParser()
     
-    private var fetchedPosts = Set<String>()
+    private var uniquePosts = Set<String>()
     
     private let dataController = DataController()
     private let favouritePosts = CurrentValueSubject<[PostDTO], Never>([])
@@ -48,7 +48,7 @@ class PostsRepository {
             return result.sorted(by: { $0.id > $1.id })
         }
         
-        posts = posts.filter { self.fetchedPosts.insert($0.text).inserted }
+        posts = posts.filter { self.uniquePosts.insert($0.text).inserted }
         if posts.isEmpty {
             return await getPosts()
         }
