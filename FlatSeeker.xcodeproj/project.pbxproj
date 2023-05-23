@@ -29,10 +29,21 @@
 		DA73872D2A18410A006914F1 /* DistrictParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA73872C2A18410A006914F1 /* DistrictParser.swift */; };
 		DA73872F2A1843D0006914F1 /* PriceParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA73872E2A1843D0006914F1 /* PriceParser.swift */; };
 		DA82CDB62A0FDE0C00E4E228 /* python-stdlib in Resources */ = {isa = PBXBuildFile; fileRef = DA82CDB52A0FDE0C00E4E228 /* python-stdlib */; };
+		DAC78BED2A1D268E002B1910 /* FlatSeekerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC78BEC2A1D268E002B1910 /* FlatSeekerTests.swift */; };
 		DAC7E5BE2A103E9000540B0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC7E5BD2A103E9000540B0C /* AppDelegate.swift */; };
 		DADA3CF72A17AA700006F740 /* PhotoURLFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADA3CF62A17AA700006F740 /* PhotoURLFetcher.swift */; };
 		DADA3CF92A17B84C0006F740 /* URLSession+utf8String.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADA3CF82A17B84C0006F740 /* URLSession+utf8String.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DAC78BEE2A1D268E002B1910 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DA2555B22A0EE1A3001D48DC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DA2555B92A0EE1A3001D48DC;
+			remoteInfo = FlatSeeker;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		DA0775FB2A1299DA00A7C36B /* TelegramClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelegramClient.swift; sourceTree = "<group>"; };
@@ -57,6 +68,8 @@
 		DA73872C2A18410A006914F1 /* DistrictParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistrictParser.swift; sourceTree = "<group>"; };
 		DA73872E2A1843D0006914F1 /* PriceParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceParser.swift; sourceTree = "<group>"; };
 		DA82CDB52A0FDE0C00E4E228 /* python-stdlib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "python-stdlib"; sourceTree = "<group>"; };
+		DAC78BEA2A1D268E002B1910 /* FlatSeekerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlatSeekerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAC78BEC2A1D268E002B1910 /* FlatSeekerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlatSeekerTests.swift; sourceTree = "<group>"; };
 		DAC7E5BD2A103E9000540B0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DADA3CF62A17AA700006F740 /* PhotoURLFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoURLFetcher.swift; sourceTree = "<group>"; };
 		DADA3CF82A17B84C0006F740 /* URLSession+utf8String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+utf8String.swift"; sourceTree = "<group>"; };
@@ -68,6 +81,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA7387292A1832FB006914F1 /* PythonRuntime in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DAC78BE72A1D268E002B1910 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				DA2555BC2A0EE1A3001D48DC /* FlatSeeker */,
+				DAC78BEB2A1D268E002B1910 /* FlatSeekerTests */,
 				DA2555BB2A0EE1A3001D48DC /* Products */,
 				DA82C5E02A0FDDF900E4E228 /* Resources */,
 			);
@@ -115,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				DA2555BA2A0EE1A3001D48DC /* FlatSeeker.app */,
+				DAC78BEA2A1D268E002B1910 /* FlatSeekerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -232,6 +254,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		DAC78BEB2A1D268E002B1910 /* FlatSeekerTests */ = {
+			isa = PBXGroup;
+			children = (
+				DAC78BEC2A1D268E002B1910 /* FlatSeekerTests.swift */,
+			);
+			path = FlatSeekerTests;
+			sourceTree = "<group>";
+		};
 		DAF105462A13FE120022303D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -265,6 +295,24 @@
 			productReference = DA2555BA2A0EE1A3001D48DC /* FlatSeeker.app */;
 			productType = "com.apple.product-type.application";
 		};
+		DAC78BE92A1D268E002B1910 /* FlatSeekerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DAC78BF22A1D268E002B1910 /* Build configuration list for PBXNativeTarget "FlatSeekerTests" */;
+			buildPhases = (
+				DAC78BE62A1D268E002B1910 /* Sources */,
+				DAC78BE72A1D268E002B1910 /* Frameworks */,
+				DAC78BE82A1D268E002B1910 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DAC78BEF2A1D268E002B1910 /* PBXTargetDependency */,
+			);
+			name = FlatSeekerTests;
+			productName = FlatSeekerTests;
+			productReference = DAC78BEA2A1D268E002B1910 /* FlatSeekerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -277,6 +325,10 @@
 				TargetAttributes = {
 					DA2555B92A0EE1A3001D48DC = {
 						CreatedOnToolsVersion = 14.2;
+					};
+					DAC78BE92A1D268E002B1910 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = DA2555B92A0EE1A3001D48DC;
 					};
 				};
 			};
@@ -297,6 +349,7 @@
 			projectRoot = "";
 			targets = (
 				DA2555B92A0EE1A3001D48DC /* FlatSeeker */,
+				DAC78BE92A1D268E002B1910 /* FlatSeekerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -311,6 +364,13 @@
 				DA2555C22A0EE1A4001D48DC /* Assets.xcassets in Resources */,
 				DA0775FE2A1299FD00A7C36B /* swift-telegram-messages.py in Resources */,
 				DA82CDB62A0FDE0C00E4E228 /* python-stdlib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DAC78BE82A1D268E002B1910 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,7 +424,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DAC78BE62A1D268E002B1910 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAC78BED2A1D268E002B1910 /* FlatSeekerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DAC78BEF2A1D268E002B1910 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DA2555B92A0EE1A3001D48DC /* FlatSeeker */;
+			targetProxy = DAC78BEE2A1D268E002B1910 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		DA2555C62A0EE1A4001D48DC /* Debug */ = {
@@ -551,6 +627,42 @@
 			};
 			name = Release;
 		};
+		DAC78BF02A1D268E002B1910 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.FlatSeekerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FlatSeeker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FlatSeeker";
+			};
+			name = Debug;
+		};
+		DAC78BF12A1D268E002B1910 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.FlatSeekerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FlatSeeker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FlatSeeker";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -568,6 +680,15 @@
 			buildConfigurations = (
 				DA2555C92A0EE1A4001D48DC /* Debug */,
 				DA2555CA2A0EE1A4001D48DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DAC78BF22A1D268E002B1910 /* Build configuration list for PBXNativeTarget "FlatSeekerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAC78BF02A1D268E002B1910 /* Debug */,
+				DAC78BF12A1D268E002B1910 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
