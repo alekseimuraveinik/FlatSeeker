@@ -19,10 +19,12 @@ class MessageGroup:
             self.text = text_message.text
             self.message_id = text_message.id
             self.author_id = text_message.from_id.user_id
+            self.date = text_message.date.timestamp()
         else:
             self.text = None
             self.message_id = None
             self.author_id = None
+            self.date = None
 
 
 class Client:

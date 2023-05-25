@@ -26,12 +26,13 @@ class PostsRepository {
         let groups = await telegramClient.getGroups()
         
         var posts = await withTaskGroup(of: PostDTO?.self) { [photoURLFetcher, districtParser, priceParser] taskGroup in
-            for (id, authourId, text, thumbnails) in groups {
+            for (id, date, authourId, text, thumbnails) in groups {
                 taskGroup.addTask {
                     guard let result = await photoURLFetcher.fetchURLs(messageId: id) else { return nil }
                     let (authorName, authorImage, urls) = result
                     return PostDTO(
                         id: id,
+                        date: date,
                         authorId: authourId,
                         authorName: authorName,
                         authorImage: authorImage,

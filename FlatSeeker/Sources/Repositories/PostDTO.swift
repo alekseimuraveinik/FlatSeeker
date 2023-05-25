@@ -7,6 +7,7 @@ struct PostImage {
 
 struct PostDTO {
     let id: Int
+    let date: Date
     let authorId: Int
     let authorName: String
     let authorImage: URL

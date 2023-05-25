@@ -14,6 +14,7 @@ final class Post: NSManagedObject, ConvertibleManagedObject {
     var dto: PostDTO {
         PostDTO(
             id: Int(truncating: id!),
+            date: .now,
             authorId: .zero,
             authorName: "",
             authorImage: URL(string: "https://google.com")!,
