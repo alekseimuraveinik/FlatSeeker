@@ -14,6 +14,9 @@ final class Post: NSManagedObject, ConvertibleManagedObject {
     var dto: PostDTO {
         PostDTO(
             id: Int(truncating: id!),
+            authorId: .zero,
+            authorName: "",
+            authorImage: URL(string: "https://google.com")!,
             text: text!,
             price: price.map(Int.init(truncating:)),
             district: district,
