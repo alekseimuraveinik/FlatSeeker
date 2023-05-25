@@ -25,16 +25,16 @@ class PostsRepository {
     func getPosts() async -> [PostDTO] {
         let groups = await telegramClient.getGroups()
         
-        var posts = await withTaskGroup(of: PostDTO.self) { [photoURLFetcher, districtParser, priceParser] taskGroup in
-            for (id, text, images) in groups {
+        var posts = await withTaskGroup(of: PostDTO?.self) { [photoURLFetcher, districtParser, priceParser] taskGroup in
+            for (id, text, thumbnails) in groups {
                 taskGroup.addTask {
-                    let urls = await photoURLFetcher.fetchURLs(messageIds: images.map(\.0))
+                    guard let urls = await photoURLFetcher.fetchURLs(messageId: id) else { return nil }
                     return PostDTO(
                         id: id,
                         text: text,
                         price: priceParser.parsePrice(from: text),
                         district: districtParser.parseDistrict(from: text)?.capitalizedWords,
-                        images: zip(images.map(\.1), urls)
+                        images: zip(thumbnails, urls)
                             .reversed()
                             .map(PostImage.init)
                     )
@@ -45,7 +45,7 @@ class PostsRepository {
                 result.append(group)
             }
             
-            return result.sorted(by: { $0.id > $1.id })
+            return result.compactMap { $0 }.sorted(by: { $0.id > $1.id })
         }
         
         posts = posts.filter { self.uniquePosts.insert($0.text).inserted }

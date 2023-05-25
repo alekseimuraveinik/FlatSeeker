@@ -34,22 +34,17 @@ class TelegramClient: PythonInteractor<TelegramClientStorageKey> {
         }
     }
     
-    func getGroups() async -> [(Int, String, [(Int, Data)])] {
+    func getGroups() async -> [(Int, String, [Data])] {
         await execute(accessing: .client) { client in
             client.get_message_groups().compactMap { group in
-                guard let id = Int(group.grouped_id),
+                guard let id = Int(group.message_id),
                       let text = String(group.text)
                 else {
                     return nil
                 }
                 
-                let images = Array(group.images).compactMap { tuple in
-                    if let messageId = Int(tuple[0]), let thumbnail = PythonBytes(tuple[1])?.data {
-                        return (messageId, thumbnail)
-                    }
-                    return nil
-                }
-                return (id, text, images)
+                let thumbnails = Array(group.thumbnails).compactMap { PythonBytes($0)?.data }
+                return (id, text, thumbnails)
             }
         }
     }

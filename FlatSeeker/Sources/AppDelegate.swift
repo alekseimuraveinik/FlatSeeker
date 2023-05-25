@@ -83,7 +83,7 @@ private extension AppDelegate {
     
     func makePhotoURLFetcherConfig() -> PhotoURLFetcherConfig {
         PhotoURLFetcherConfig(
-            makeWebPageURL: { URL(string: "https://t.me/tbilisi_arendaa/\($0)?embed=1&mode=tme&single=1") },
+            makeWebPageURL: { URL(string: "https://t.me/tbilisi_arendaa/\($0)?embed=1&mode=tme") },
             targetURLRegex: /background-image:url\('(.*?\.jpg)'\)/
         )
     }

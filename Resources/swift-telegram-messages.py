@@ -5,17 +5,24 @@ from requests import get
 
 
 class MessageGroup:
-    def __init__(self, grouped_id, messages):
-        self.grouped_id = grouped_id
+    def __init__(self, messages):
         self.messages = messages
-        self.images = list(
+        self.thumbnails = list(
             map(
-                lambda x: (x.id, utils.stripped_photo_to_jpg(x.photo.sizes[0].bytes)),
+                lambda x: utils.stripped_photo_to_jpg(x.photo.sizes[0].bytes),
                 messages
             )
         )
 
-        self.text= next((x.message for x in self.messages if x.message != ''), None)
+        text_message = next((x for x in messages if x.message != ''), None)
+        if text_message:
+            self.text = text_message.text
+            self.message_id = text_message.id
+            self.author_id = text_message.from_id.user_id
+        else:
+            self.text = None
+            self.message_id = None
+            self.author_id = None
 
 
 class Client:
@@ -40,7 +47,7 @@ class Client:
 
         messages = list(
             filter(
-                lambda x: x.grouped_id is not None and x.photo is not None,
+                lambda x: not (x.grouped_id is None or x.photo is None),
                 messages
             )
         )
@@ -48,7 +55,7 @@ class Client:
         messages = self.remaining_messages + messages
 
         grouped_messages = groupby(messages, key=lambda x: x.grouped_id)
-        message_groups = [MessageGroup(key, list(result)) for key, result in grouped_messages]
+        message_groups = [MessageGroup(list(result)) for key, result in grouped_messages]
 
         if len(message_groups) < 2:
             self.remaining_messages = messages
@@ -56,7 +63,7 @@ class Client:
 
         self.remaining_messages = message_groups[-1].messages
 
-        message_groups = list(sorted(message_groups, key=lambda x: x.grouped_id, reverse=True))[0:-1]
+        message_groups = message_groups[0:-1]
         message_groups = list(
             filter(
                 lambda group: group.text is not None and group.text != '',
@@ -84,7 +91,7 @@ def main():
             message_groups = client.get_message_groups()
             if len(message_groups) != 0:
                 for group in message_groups:
-                    print('Images:', len(group.images), '|', group.district, group.price)
+                    print(group.message_id, group.author_id)
                 input()
         except KeyboardInterrupt:
             client.client.disconnect()
