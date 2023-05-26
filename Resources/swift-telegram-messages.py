@@ -92,12 +92,18 @@ def main():
         try:
             message_groups = client.get_message_groups()
             if len(message_groups) != 0:
-                for group in message_groups:
-                    print(group.message_id, group.author_id)
-                input()
+                break
         except KeyboardInterrupt:
-            client.client.disconnect()
+
             break
+
+    my_id = client.client.get_me().id
+    dialogs = client.client.get_dialogs()
+    dialogs = filter(lambda x: x.entity.id == my_id, dialogs)
+    for dialog in dialogs:
+        client.client.send_message(dialog, 'Feedback')
+
+    client.client.disconnect()
 
 
 if __name__ == "__main__":
