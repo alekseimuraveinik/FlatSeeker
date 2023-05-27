@@ -21,7 +21,9 @@ final class Post: NSManagedObject, ConvertibleManagedObject {
             text: text!,
             price: price.map(Int.init(truncating:)),
             district: district,
-            images: []
+            images: [],
+            deeplinkURL: URL(string: "https://google.com")!,
+            postURL: URL(string: "https://google.com")!
         )
     }
 }

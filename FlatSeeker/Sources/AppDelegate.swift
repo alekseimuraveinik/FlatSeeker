@@ -76,7 +76,7 @@ private extension AppDelegate {
             apiId: 15845540,
             apiHash: "4cb8ba1d05d513ed32a86f62fcd0e499",
             phoneNumber: "+995555993502",
-            codeRequestURL: "http://localhost:8080",
+            codeRequestURL: "http://192.168.0.102:8080",
             channelId: -1001793067559
         )
     }
@@ -84,6 +84,7 @@ private extension AppDelegate {
     func makePhotoURLFetcherConfig() -> PhotoURLFetcherConfig {
         PhotoURLFetcherConfig(
             makeWebPageURL: { URL(string: "https://t.me/tbilisi_arendaa/\($0)?embed=1&mode=tme") },
+            makeDeeplinkURL: { URL(string: "tg://resolve?domain=tbilisi_arendaa&post=\($0)") },
             targetURLRegex: /background-image:url\('(.*?\.jpg)'\)/,
             targetAuthorNameRegex: /<span dir="auto">(.*?)<\/span>/,
             targetAuthorImageURLRegex: /<img src="(.*?\.jpg)"><\/i>/

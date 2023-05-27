@@ -2,6 +2,7 @@ import Foundation
 
 struct PhotoURLFetcherConfig {
     let makeWebPageURL: (Int) -> URL?
+    let makeDeeplinkURL: (Int) -> URL?
     let targetURLRegex: Regex<(Substring, Substring)>
     let targetAuthorNameRegex: Regex<(Substring, Substring)>
     let targetAuthorImageURLRegex: Regex<(Substring, Substring)>
@@ -29,5 +30,13 @@ class PhotoURLFetcher {
             .reversed()
                 
         return (String(authorName), authourImageURL, Array(urls))
+    }
+    
+    func makeDeeplinkURL(messageId: Int) -> URL? {
+        config.makeDeeplinkURL(messageId)
+    }
+    
+    func makePostURL(messageId: Int) -> URL? {
+        config.makeWebPageURL(messageId)
     }
 }

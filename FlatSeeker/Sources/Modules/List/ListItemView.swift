@@ -8,6 +8,8 @@ class ListItemViewModel: ObservableObject {
     let district: String?
     let price: Int?
     let carouselViewModel: CarouselViewModel
+    let deeplinkURL: URL
+    let postURL: URL
     
     @Published private(set) var isInFavourites = false
     private let addToFavourite: () -> Void
@@ -31,6 +33,8 @@ class ListItemViewModel: ObservableObject {
         self.carouselViewModel = carouselViewModel
         self.addToFavourite = addToFavourite
         self.removeFromFavourite = removeFromFavourite
+        self.deeplinkURL = post.deeplinkURL
+        self.postURL = post.postURL
         
         isInFavouritesCancellable = isInFavourite
             .receive(on: RunLoop.main)

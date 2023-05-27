@@ -28,7 +28,11 @@ class PostsRepository {
         var posts = await withTaskGroup(of: PostDTO?.self) { [photoURLFetcher, districtParser, priceParser] taskGroup in
             for (id, date, authourId, text, thumbnails) in groups {
                 taskGroup.addTask {
-                    guard let result = await photoURLFetcher.fetchURLs(messageId: id) else { return nil }
+                    guard let result = await photoURLFetcher.fetchURLs(messageId: id),
+                          let deeplinkURL = photoURLFetcher.makeDeeplinkURL(messageId: id),
+                          let postURL = photoURLFetcher.makePostURL(messageId: id)
+                    else { return nil }
+                    
                     let (authorName, authorImage, urls) = result
                     return PostDTO(
                         id: id,
@@ -41,7 +45,9 @@ class PostsRepository {
                         district: districtParser.parseDistrict(from: text)?.capitalizedWords,
                         images: zip(thumbnails, urls)
                             .reversed()
-                            .map(PostImage.init)
+                            .map(PostImage.init),
+                        deeplinkURL: deeplinkURL,
+                        postURL: postURL
                     )
                 }
             }
