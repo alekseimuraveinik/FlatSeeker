@@ -2,6 +2,7 @@ from telethon import TelegramClient, sync
 from itertools import groupby
 from telethon import utils
 from requests import get
+from telethon.tl.types import PeerUser, PeerChannel
 
 
 class MessageGroup:
@@ -18,7 +19,12 @@ class MessageGroup:
         if text_message:
             self.text = text_message.text
             self.message_id = text_message.id
-            self.author_id = text_message.from_id.user_id
+            if isinstance(text_message.from_id, PeerUser):
+                self.author_id = text_message.from_id.user_id
+            elif isinstance(text_message.from_id, PeerChannel):
+                self.author_id = text_message.from_id.channel_id
+            else:
+                self.author_id = None
             self.date = text_message.date.timestamp()
         else:
             self.text = None
